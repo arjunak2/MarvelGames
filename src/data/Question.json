@@ -1,0 +1,14 @@
+{
+    "id": "si1",
+    "category": "Secret Identities",
+    "points": 100,
+    "type": "MULTIPLE",
+    "prompt": "Which of these did Wong not appear in?",
+    "choices": {
+        "A": "She-hulk",
+        "B": "Shang-Chi",
+        "C": "Eternals",
+        "D": "No Way Home"
+    },
+    "answer": "C"
+}
