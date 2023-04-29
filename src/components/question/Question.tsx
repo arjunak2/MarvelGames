@@ -19,8 +19,10 @@ import "../../styles/Timer.scss";
 import QQ from "../../data/Question.json";
 import { ButtonVariant } from "react-bootstrap/esm/types";
 import Fuse from "fuse.js";
+import { MultipleChoiceSection } from "./MultipleChoice";
+import { TextSection } from "./TextQuestion";
 
-enum PageState {
+export enum PageState {
     INITIAL,
     COMPLETED,
 }
@@ -40,138 +42,6 @@ function renderTime({ remainingTime, color, elapsedTime }: TimeProps) {
     );
 }
 
-interface AnswerProps extends ButtonProps {
-    text: string;
-    isCorrect?: boolean;
-    onAnswer: (chosenAnswer?: string) => void;
-}
-
-function MultipleChoiceSection({
-    question,
-    onAnswer,
-    pageState,
-}: {
-    question: Question_MC;
-    onAnswer: (chosenAnswer?: string) => void;
-    pageState: PageState;
-}) {
-    const isAnswered = pageState === PageState.COMPLETED;
-    const { A, B, C, D } = question.choices;
-
-    const AnswerChoices = Object.entries(question.choices).map(
-        ([choiceKey, answerString]) => {
-            const isCorrectAnswer = question.validateAnswer(answerString);
-            let className: string = isAnswered ? "answered" : "";
-            if (isCorrectAnswer) className += ` correct`;
-            return (
-                <AnswerChoice
-                    key={choiceKey}
-                    className={className + " w-100"}
-                    disabled={isAnswered}
-                    text={answerString}
-                    onAnswer={onAnswer}
-                    isCorrect={isCorrectAnswer}
-                />
-            );
-        }
-    );
-    return (
-        <Container>
-            <Row>
-                <Col>{AnswerChoices[0]}</Col>
-                <Col>{AnswerChoices[1]}</Col>
-            </Row>
-            <Row>
-                <Col>{AnswerChoices[2]}</Col>
-                <Col>{AnswerChoices[3]}</Col>
-            </Row>
-        </Container>
-    );
-}
-
-function TextSection({
-    question,
-    onAnswer,
-    pageState,
-}: {
-    question: Question_Text;
-    onAnswer: (chosenAnswer?: string) => void;
-    pageState: PageState;
-}) {
-    const pageComplete = pageState === PageState.COMPLETED;
-
-    const inputRef : React.RefObject<HTMLInputElement> = useRef(null);
-    return (
-        <>
-            <Form.Control
-                ref={inputRef}
-                placeholder="Enter text"
-                aria-label="Username"
-                aria-describedby="basic-addon1"
-                disabled={pageComplete}
-                isInvalid={pageComplete && !question.validateAnswer(`${inputRef.current?.value}`)}
-                isValid={pageComplete && question.validateAnswer(`${inputRef.current?.value}`)}
-            />
-            <Button
-                type="submit"
-                onClick={() => {
-                    const chosenAnswer = inputRef.current?.value
-                    onAnswer(chosenAnswer)
-                }}
-                disabled={pageComplete}
-            >
-                Submit
-            </Button>
-        </>
-    );
-}
-
-enum AnswerState {
-    UNPICKED,
-    INCORRECT,
-    CORRECT,
-}
-function AnswerChoice({
-    text,
-    isCorrect,
-    onAnswer,
-    disabled,
-    ...otherProps
-}: AnswerProps) {
-    const [state, setState] = useState(AnswerState.UNPICKED);
-    const getVariant = (): ButtonVariant => {
-        if (disabled && isCorrect) {
-            return "success";
-        }
-        switch (state) {
-            case AnswerState.CORRECT: {
-                return "success";
-            }
-            case AnswerState.INCORRECT: {
-                return "danger";
-            }
-            default: {
-                return "primary";
-            }
-        }
-    };
-    return (
-        <Button
-            style={{}}
-            size="lg"
-            onClick={(event) => {
-                if (isCorrect) setState(AnswerState.CORRECT);
-                else setState(AnswerState.INCORRECT);
-                onAnswer(text);
-            }}
-            disabled={disabled}
-            {...otherProps}
-            variant={getVariant()}
-        >
-            {text}
-        </Button>
-    );
-}
 
 const SW = ["#e6e6e6", "#CB3966", "#e60017", "#4E192F", "#1F0815"];
 
