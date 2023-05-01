@@ -1,8 +1,14 @@
-import { Question } from "./Question";
+import { Points, Question } from "./Question";
 
-interface QQ {
-    [index: number]: Question;
+interface Tileinfo {
+    isHovered: boolean;
+    id: string;
+    points: Points;
 }
+
+type GameBoardTile = {
+    [index in Points]: Question;
+};
 export interface IGameBoard {
-    [category: string]: QQ;
+    [category: string]: GameBoardTile;
 }

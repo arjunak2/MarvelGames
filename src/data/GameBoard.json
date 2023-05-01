@@ -1,37 +1,37 @@
 {
     "Category1": {
-        "100": { "id": "cat1_q1", "isSelected": false, "points": 100 },
-        "200": { "id": "cat1_q2", "isSelected": false, "points": 200 },
-        "300": { "id": "cat1_q3", "isSelected": false, "points": 300 },
-        "400": { "id": "cat1_q4", "isSelected": false, "points": 400 },
-        "500": { "id": "cat1_q5", "isSelected": false, "points": 500 }
+        "100": { "id": "cat1_q1", "isHovered": false, "points": 100 },
+        "200": { "id": "cat1_q2", "isHovered": false, "points": 200 },
+        "300": { "id": "cat1_q3", "isHovered": false, "points": 300 },
+        "400": { "id": "cat1_q4", "isHovered": false, "points": 400 },
+        "500": { "id": "cat1_q5", "isHovered": false, "points": 500 }
     },
     "Category2": {
-        "100": { "id": "cat2_q1", "isSelected": false, "points": 100 },
-        "200": { "id": "cat2_q2", "isSelected": false, "points": 200 },
-        "300": { "id": "cat2_q3", "isSelected": false, "points": 300 },
-        "400": { "id": "cat2_q4", "isSelected": false, "points": 400 },
-        "500": { "id": "cat2_q5", "isSelected": false, "points": 500 }
+        "100": { "id": "cat2_q1", "isHovered": false, "points": 100 },
+        "200": { "id": "cat2_q2", "isHovered": false, "points": 200 },
+        "300": { "id": "cat2_q3", "isHovered": false, "points": 300 },
+        "400": { "id": "cat2_q4", "isHovered": false, "points": 400 },
+        "500": { "id": "cat2_q5", "isHovered": false, "points": 500 }
     },
     "Category3": {
-        "100": { "id": "cat3_q1", "isSelected": false, "points": 100 },
-        "200": { "id": "cat3_q2", "isSelected": false, "points": 200 },
-        "300": { "id": "cat3_q3", "isSelected": false, "points": 300 },
-        "400": { "id": "cat3_q4", "isSelected": false, "points": 400 },
-        "500": { "id": "cat3_q5", "isSelected": false, "points": 500 }
+        "100": { "id": "cat3_q1", "isHovered": false, "points": 100 },
+        "200": { "id": "cat3_q2", "isHovered": false, "points": 200 },
+        "300": { "id": "cat3_q3", "isHovered": false, "points": 300 },
+        "400": { "id": "cat3_q4", "isHovered": false, "points": 400 },
+        "500": { "id": "cat3_q5", "isHovered": false, "points": 500 }
     },
     "Category4": {
-        "100": { "id": "cat4_q1", "isSelected": false, "points": 100 },
-        "200": { "id": "cat4_q2", "isSelected": false, "points": 200 },
-        "300": { "id": "cat4_q3", "isSelected": false, "points": 300 },
-        "400": { "id": "cat4_q4", "isSelected": false, "points": 400 },
-        "500": { "id": "cat4_q5", "isSelected": false, "points": 500 }
+        "100": { "id": "cat4_q1", "isHovered": false, "points": 100 },
+        "200": { "id": "cat4_q2", "isHovered": false, "points": 200 },
+        "300": { "id": "cat4_q3", "isHovered": false, "points": 300 },
+        "400": { "id": "cat4_q4", "isHovered": false, "points": 400 },
+        "500": { "id": "cat4_q5", "isHovered": false, "points": 500 }
     },
     "Category5": {
-        "100": { "id": "cat5_q1", "isSelected": false, "points": 100 },
-        "200": { "id": "cat5_q2", "isSelected": false, "points": 200 },
-        "300": { "id": "cat5_q3", "isSelected": false, "points": 300 },
-        "400": { "id": "cat5_q4", "isSelected": false, "points": 400 },
-        "500": { "id": "cat5_q5", "isSelected": false, "points": 500 }
+        "100": { "id": "cat5_q1", "isHovered": false, "points": 100 },
+        "200": { "id": "cat5_q2", "isHovered": false, "points": 200 },
+        "300": { "id": "cat5_q3", "isHovered": false, "points": 300 },
+        "400": { "id": "cat5_q4", "isHovered": false, "points": 400 },
+        "500": { "id": "cat5_q5", "isHovered": false, "points": 500 }
     }
 }

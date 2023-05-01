@@ -1,8 +1,7 @@
-import Fuse from "fuse.js";
 import { v4 as uuidv4 } from "uuid";
 export enum QuestionType {
     MULTIPLE = "multiple",
-    TEXT = "fillIn",
+    TEXT = "text",
     NULL = "",
 }
 enum Category {
@@ -42,26 +41,23 @@ const levenshteinDistance = (s: string, t: String): number => {
 export abstract class Question {
     id: string;
     type: QuestionType = QuestionType.NULL;
-    fuse = new Fuse([""], {
-        // isCaseSensitive: false,
-        // threshold: 0.1,
-        distance: 1,
-    });
+    isAnswered = false;
     constructor(
         public points: Points,
         public category: string,
         public query: string,
         public answer: string,
-        public isHovered: boolean
+        public isHovered: boolean,
     ) {
         this.id = uuidv4();
-        this.fuse.setCollection([answer]);
     }
     validateAnswer(chosenAnswer: string): boolean {
         const editDistance = levenshteinDistance(this.answer, chosenAnswer);
         return editDistance <= 2;
     }
-    updateScore() {}
+    updateScore(score: number) {
+        console.log(`Updating player score to ${score}`)
+    }
 }
 
 interface MCChoices {

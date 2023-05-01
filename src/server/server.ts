@@ -34,7 +34,7 @@ httpServer.listen(PORT, () => {
 
 const CLIENTS: { [id: string]: Socket } = {};
 
-function updateBoard(){
+function updateBoard() {
     Object.values(CLIENTS).forEach((sock) => {
         sock.emit("updateBoard", GameBoard);
     });
@@ -56,7 +56,7 @@ io.on("connection", (socket) => {
             `${socket.id} is hovering over the ${question.points} tile for ${category}`
         );
         GameBoard[category][question.points].isHovered = true;
-        updateBoard()
+        updateBoard();
     });
 
     socket.on("deselect", (question, category) => {
@@ -64,7 +64,10 @@ io.on("connection", (socket) => {
             `${socket.id} is leaving the ${question.points} tile for ${category}`
         );
         GameBoard[category][question.points].isHovered = false;
-        updateBoard()
+        updateBoard();
+    });
+    socket.on("questionClick", (question) => {
+        `Question {}`
     });
 });
 

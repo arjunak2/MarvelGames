@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Container } from "react-bootstrap"
+import { Container } from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 import Logo from "../public/assets/logo.svg";
 import Row from "react-bootstrap/Row";
 import Tile from "./Tile";
 import "../styles/GameBoard.scss";
-import { Question } from "../types/Question";
+import { Points, Question } from "../types/Question";
 import { IGameBoard } from "../types/GameBoard";
 import { socket } from "../utils/WebSocket";
 let GB: IGameBoard = require("../data/GameBoard.json");
@@ -25,7 +25,7 @@ function TableRow({ data, row }: { data: IGameBoard; row: number }) {
             <TableCell
                 key={`${category}_${row * 100}`}
                 category={category}
-                question={data[category][row * 100]}
+                question={data[category][(row * 100) as Points]}
             />
         );
     }
@@ -46,13 +46,16 @@ function TableCell({
     const onLeaveTile = () => {
         socket.emit("deselect", question, category);
     };
+    const clickTile = () => {
+        socket.emit("questionClick", question);
+    };
     return (
         <Col>
             <Tile
                 text={question.points}
                 onMouveOver={onHoverTile}
                 onMouveLeave={onLeaveTile}
-                isSelected={question.isHovered}
+                isHovered={question.isHovered}
             />
         </Col>
     );

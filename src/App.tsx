@@ -18,7 +18,7 @@ function renderScreen(currentScreen: Screens) {
     }
 }
 function App() {
-    const currentScreen = Screens.QUESTION;
+    const currentScreen = Screens.GAME_BOARD;
 
     return <div className="App">{renderScreen(currentScreen)}</div>;
 }

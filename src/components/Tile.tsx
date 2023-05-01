@@ -6,15 +6,15 @@ interface TileProps {
     text: Points;
     onMouveOver?: () => void;
     onMouveLeave?: () => void;
-    isSelected?: boolean;
+    isHovered?: boolean;
 }
 
-function Tile({ text, onMouveOver, onMouveLeave, isSelected }: TileProps) {
+function Tile({ text, onMouveOver, onMouveLeave, isHovered }: TileProps) {
     return (
         <div
             className={`tile-body rounded shadow-sm --bs-success-text
             ${
-                isSelected ? "selected" : false
+                isHovered ? "selected" : false
             }`}
             onMouseOver={onMouveOver}
             onMouseLeave={onMouveLeave}
