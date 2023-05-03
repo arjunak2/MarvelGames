@@ -10,6 +10,7 @@ import { IGameBoard, Tileinfo } from "../types/GameBoard";
 import { socket } from "../utils/WebSocket";
 import { GBData } from "../data/GameBoard";
 import { QUESTIONS_DB } from "../data/QuestionRepository";
+import { redirect, useNavigate } from "react-router-dom";
 // console.log(JSON.stringify(QUESTIONS_DB));
 function TableHeaderRow({ data }: { data: IGameBoard }) {
     const categories = Object.keys(data);
@@ -53,18 +54,21 @@ function TileCell({
     );
 }
 
-socket.on("navigateToQuestion", (question) => {
-    console.log("Question selected!");
-    console.log(question);
-});
-
 export function GameBoard() {
     const [gBoard, setGBoard] = useState<IGameBoard>(GBData);
+    const navigate = useNavigate();
 
     useEffect(() => {
         socket.on("updateBoard", (gBoard) => {
             console.log("UPDATING BOARD");
             setGBoard(gBoard);
+        });
+        socket.on("navigateToQuestion", (question) => {
+            console.log("Question selected!");
+            console.log(question);
+
+            // redirect(`/question/${question.id}`)
+            navigate(`/question/${question.id}`, { state: { question } });
         });
     }, []);
     return (

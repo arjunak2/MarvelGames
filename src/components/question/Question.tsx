@@ -13,6 +13,7 @@ import { TextSection } from "./TextSection";
 import { Timer } from "./CountDownTimer";
 import { PowerButton, PowerSection } from "./PowersSection";
 import { User } from "src/types/User";
+import { useLocation, useParams } from "react-router-dom";
 
 export enum PageState {
     INITIAL,
@@ -20,7 +21,6 @@ export enum PageState {
 }
 
 interface QuestionPageProps {
-    question?: Question;
     user?: User;
 }
 
@@ -53,7 +53,9 @@ const qq: Question = new Question_MC(
 );
 const uu = new User("agent13");
 
-export function QuestionPage({ question = qq, user = uu }: QuestionPageProps) {
+export function QuestionPage({ user = uu }: QuestionPageProps) {
+    let { questionId } = useParams();
+    const question: Question = useLocation().state.question || qq;
     const [state, setState] = useState(PageState.INITIAL);
     const [timerDisabed, disableTimer] = useState(false);
     const [points, setPoints] = useState(question.points);
