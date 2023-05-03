@@ -5,11 +5,12 @@ import Logo from "../public/assets/logo.svg";
 import Row from "react-bootstrap/Row";
 import Tile from "./Tile";
 import "../styles/GameBoard.scss";
-import { Points, Question } from "../types/Question";
-import { IGameBoard } from "../types/GameBoard";
+import { Points } from "../types/Question";
+import { IGameBoard, Tileinfo } from "../types/GameBoard";
 import { socket } from "../utils/WebSocket";
-let GB: IGameBoard = require("../data/GameBoard.json");
-
+import { GBData } from "../data/GameBoard";
+import { QUESTIONS_DB } from "../data/QuestionRepository";
+// console.log(JSON.stringify(QUESTIONS_DB));
 function TableHeaderRow({ data }: { data: IGameBoard }) {
     const categories = Object.keys(data);
     const CategoryElements = categories.map((category) => (
@@ -22,10 +23,10 @@ function TableRow({ data, row }: { data: IGameBoard; row: number }) {
     const RowElements = [];
     for (let category in data) {
         RowElements.push(
-            <TableCell
+            <TileCell
                 key={`${category}_${row * 100}`}
                 category={category}
-                question={data[category][(row * 100) as Points]}
+                tileInfo={data[category][(row * 100) as Points]}
             />
         );
     }
@@ -33,45 +34,39 @@ function TableRow({ data, row }: { data: IGameBoard; row: number }) {
     return <Row className="g-5">{RowElements}</Row>;
 }
 
-function TableCell({
-    question,
+function TileCell({
+    tileInfo,
     category,
 }: {
-    question: Question;
+    tileInfo: Tileinfo;
     category: string;
 }) {
-    const onHoverTile = () => {
-        socket.emit("select", question, category);
-    };
-    const onLeaveTile = () => {
-        socket.emit("deselect", question, category);
-    };
-    const clickTile = () => {
-        socket.emit("questionClick", question);
-    };
     return (
         <Col>
             <Tile
-                text={question.points}
-                onMouveOver={onHoverTile}
-                onMouveLeave={onLeaveTile}
-                isHovered={question.isHovered}
+                tileInfo={tileInfo}
+                category={category}
+                text={tileInfo.points}
+                isHovered={tileInfo.isHovered}
             />
         </Col>
     );
 }
 
+socket.on("navigateToQuestion", (question) => {
+    console.log("Question selected!");
+    console.log(question);
+});
+
 export function GameBoard() {
-    const [gBoard, setGBoard] = useState<IGameBoard>(GB);
+    const [gBoard, setGBoard] = useState<IGameBoard>(GBData);
 
     useEffect(() => {
-        socket.on("connect", () => {
-            console.log(`WebSocket connection established! Id:${socket.id}`);
-        });
         socket.on("updateBoard", (gBoard) => {
+            console.log("UPDATING BOARD");
             setGBoard(gBoard);
         });
-    });
+    }, []);
     return (
         <>
             <div>

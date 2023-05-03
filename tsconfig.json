@@ -1,7 +1,4 @@
 {
-    "ts-node": {
-        "require": ["tsconfig-paths/register"]
-    },
     "compilerOptions": {
         "target": "ES6",
         "lib": ["dom", "dom.iterable", "esnext"],
@@ -21,5 +18,5 @@
         "jsx": "react-jsx"
     },
     "paths": { "#components/*": ["src/components/*"] },
-    "include": ["src", "tst/App.test.tsx", "src/server/index.mts"]
+    "include": ["src/*", "tst/App.test.tsx", "src/server/index.mts"]
 }

@@ -1,8 +1,12 @@
 import express from "express";
 import http from "http";
 import { Server, Socket } from "socket.io";
+import { IGameBoard } from "../types/GameBoard";
 
-let GameBoard: IGameBoard = require("../data/GameBoard.json");
+let GameBoard: IGameBoard = require("../data/GameBoard").GBData;
+let QUESTIONS_DB: {
+    [id: string]: Question;
+} = require("../data/QuestionRepository.json");
 import { v4 as uuidv4 } from "uuid";
 import {
     ClientToServerEvents,
@@ -10,7 +14,7 @@ import {
     ServerToClientEvents,
     SocketData,
 } from "./ServerTypes";
-import { IGameBoard } from "../types/GameBoard";
+import { Question } from "../types/Question";
 
 const HOST = "http://localhost:3000";
 const PORT = 5000;
@@ -29,7 +33,7 @@ const io = new Server<
 });
 
 httpServer.listen(PORT, () => {
-    console.info(`Starting server on ${PORT}`);
+    console.info(`Server started on ${PORT}`);
 });
 
 const CLIENTS: { [id: string]: Socket } = {};
@@ -58,7 +62,6 @@ io.on("connection", (socket) => {
         GameBoard[category][question.points].isHovered = true;
         updateBoard();
     });
-
     socket.on("deselect", (question, category) => {
         console.log(
             `${socket.id} is leaving the ${question.points} tile for ${category}`
@@ -66,8 +69,12 @@ io.on("connection", (socket) => {
         GameBoard[category][question.points].isHovered = false;
         updateBoard();
     });
-    socket.on("questionClick", (question) => {
-        `Question {}`
+    socket.on("questionClick", (tileInfo) => {
+        `Question ${tileInfo}`;
+
+        console.log(QUESTIONS_DB[tileInfo.id]);
+        console.log("Sending back question")
+        socket.emit("navigateToQuestion", QUESTIONS_DB[tileInfo.id]);
     });
 });
 

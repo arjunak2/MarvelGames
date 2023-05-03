@@ -3,6 +3,7 @@ import { CountdownCircleTimer, TimeProps } from "react-countdown-circle-timer";
 import {
     Points,
     Question,
+    QuestionCategory,
     Question_MC,
     Question_Text,
 } from "../../types/Question";
@@ -40,7 +41,7 @@ function QuestionHeader({ text }: { text: string }) {
 
 const qq: Question = new Question_MC(
     Points.One,
-    "Secret Identities",
+    QuestionCategory.CATEGORY_2,
     "Which movie did Wong NOT appear in?",
     {
         A: "She-hulk",
@@ -48,8 +49,7 @@ const qq: Question = new Question_MC(
         C: "Eternals",
         D: "No Way Home",
     },
-    "Eternals",
-    false
+    "Eternals"
 );
 const uu = new User("agent13");
 

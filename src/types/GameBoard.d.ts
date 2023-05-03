@@ -7,7 +7,7 @@ interface Tileinfo {
 }
 
 type GameBoardTile = {
-    [index in Points]: Question;
+    [index in Points]: Tileinfo;
 };
 export interface IGameBoard {
     [category: string]: GameBoardTile;

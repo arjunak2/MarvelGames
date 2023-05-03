@@ -4,9 +4,12 @@ export enum QuestionType {
     TEXT = "text",
     NULL = "",
 }
-enum Category {
+export enum QuestionCategory {
     CATEGORY_1 = "Not Just a Place",
     CATEGORY_2 = "Secret Identities",
+    CATEGORY_3 = "Avengers Assemble",
+    CATEGORY_4 = "Powers",
+    CATEGORY_5 = "Quantumania",
 }
 
 /**
@@ -44,19 +47,18 @@ export abstract class Question {
     isAnswered = false;
     constructor(
         public points: Points,
-        public category: string,
+        public category: QuestionCategory,
         public query: string,
-        public answer: string,
-        public isHovered: boolean,
+        public answer: string
     ) {
-        this.id = uuidv4();
+        this.id = `${category}-${points}`;
     }
     validateAnswer(chosenAnswer: string): boolean {
         const editDistance = levenshteinDistance(this.answer, chosenAnswer);
         return editDistance <= 2;
     }
     updateScore(score: number) {
-        console.log(`Updating player score to ${score}`)
+        console.log(`Updating player score to ${score}`);
     }
 }
 
@@ -71,13 +73,12 @@ export class Question_MC extends Question {
     choices: MCChoices;
     constructor(
         points: Points,
-        category: string,
+        category: QuestionCategory,
         query: string,
         choices: MCChoices,
-        answer: string,
-        isHovered: boolean
+        answer: string
     ) {
-        super(points, category, query, answer, isHovered);
+        super(points, category, query, answer);
         this.type = QuestionType.MULTIPLE;
         this.choices = choices;
     }
@@ -86,12 +87,11 @@ export class Question_MC extends Question {
 export class Question_Text extends Question {
     constructor(
         points: Points,
-        category: string,
+        category: QuestionCategory,
         query: string,
-        answer: string,
-        isHovered: boolean
+        answer: string
     ) {
-        super(points, category, query, answer, isHovered);
+        super(points, category, query, answer);
         this.type = QuestionType.TEXT;
     }
 }

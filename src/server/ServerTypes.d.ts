@@ -1,16 +1,17 @@
+import { Tileinfo, IGameBoard } from "../types/GameBoard";
 import { Question } from "../types/Question";
 export interface ServerToClientEvents {
     noArg: () => void;
     inform: (info: string) => void;
     updateBoard: (board: IGameBoard) => void;
-    navigateToQuestion: (question: Question) => {};
+    navigateToQuestion: (question: Question) => void;
 }
 
 export interface ClientToServerEvents {
     button: (obj: {}) => void;
-    select: (question: Question, category: string) => void;
-    deselect: (question: Question, category: string) => void;
-    questionClick: (question: Question) => void;
+    select: (tileInfo: Tileinfo, category: string) => void;
+    deselect: (tileInfo: Tileinfo, category: string) => void;
+    questionClick: (tileInfo: Tileinfo) => void;
 }
 
 export interface InterServerEvents {
