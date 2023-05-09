@@ -4,14 +4,14 @@ export interface ServerToClientEvents {
     noArg: () => void;
     inform: (info: string) => void;
     updateBoard: (board: IGameBoard) => void;
-    navigateToQuestion: (question: Question) => void;
+    sendQuestion: (question: Question) => void;
 }
 
 export interface ClientToServerEvents {
     button: (obj: {}) => void;
     select: (tileInfo: Tileinfo, category: string) => void;
     deselect: (tileInfo: Tileinfo, category: string) => void;
-    questionClick: (tileInfo: Tileinfo) => void;
+    retrieveQuestion: (questionId: string) => void;
 }
 
 export interface InterServerEvents {

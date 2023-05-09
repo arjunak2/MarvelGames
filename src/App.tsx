@@ -24,9 +24,8 @@ function App() {
             console.log(`WebSocket connection established! Id:${socket.id}`);
         });
     }, []);
-    const currentScreen = Screens.GAME_BOARD;
 
-    return <div className="App">{renderScreen(currentScreen)}</div>;
+    return <div className="App">{renderScreen(Screens.GAME_BOARD)}</div>;
 }
 
 export default App;

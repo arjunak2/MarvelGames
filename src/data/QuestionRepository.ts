@@ -4,20 +4,8 @@ import {
     Points,
     QuestionCategory,
     Question_Text,
+    defaultMCQuestion,
 } from "../types/Question";
-
-const defaultMCQuestion = new Question_MC(
-    Points.One,
-    QuestionCategory.CATEGORY_2,
-    "Which movie did Wong NOT appear in?",
-    {
-        A: "She-hulk",
-        B: "Shang-Chi",
-        C: "Eternals",
-        D: "No Way Home",
-    },
-    "Eternals"
-);
 
 export const QUESTIONS_DB: { [id: string]: Question } = {
     [QuestionCategory.CATEGORY_1 + "-" + Points.One]: defaultMCQuestion,
@@ -25,6 +13,7 @@ export const QUESTIONS_DB: { [id: string]: Question } = {
     [QuestionCategory.CATEGORY_1 + "-" + Points.Three]: defaultMCQuestion,
     [QuestionCategory.CATEGORY_1 + "-" + Points.Four]: defaultMCQuestion,
     [QuestionCategory.CATEGORY_1 + "-" + Points.Five]: defaultMCQuestion,
+
     [QuestionCategory.CATEGORY_2 + "-" + Points.One]: new Question_MC(
         Points.One,
         QuestionCategory.CATEGORY_2,
@@ -37,7 +26,6 @@ export const QUESTIONS_DB: { [id: string]: Question } = {
         },
         "Eternals"
     ),
-
     [QuestionCategory.CATEGORY_2 + "-" + Points.Two]: defaultMCQuestion,
     [QuestionCategory.CATEGORY_2 + "-" + Points.Three]: defaultMCQuestion,
     [QuestionCategory.CATEGORY_2 + "-" + Points.Four]: defaultMCQuestion,
@@ -71,9 +59,64 @@ export const QUESTIONS_DB: { [id: string]: Question } = {
     [QuestionCategory.CATEGORY_4 + "-" + Points.Four]: defaultMCQuestion,
     [QuestionCategory.CATEGORY_4 + "-" + Points.Five]: defaultMCQuestion,
 
-    [QuestionCategory.CATEGORY_5 + "-" + Points.One]: defaultMCQuestion,
-    [QuestionCategory.CATEGORY_5 + "-" + Points.Two]: defaultMCQuestion,
-    [QuestionCategory.CATEGORY_5 + "-" + Points.Three]: defaultMCQuestion,
-    [QuestionCategory.CATEGORY_5 + "-" + Points.Four]: defaultMCQuestion,
-    [QuestionCategory.CATEGORY_5 + "-" + Points.Five]: defaultMCQuestion,
+    [QuestionCategory.CATEGORY_5 + "-" + Points.One]: new Question_MC(
+        Points.One,
+        QuestionCategory.CATEGORY_5,
+        "What is the protein in your red blood cells that gives it its red color",
+        {
+            A: "Platlets",
+            B: "Lipids",
+            C: "Fibronectin",
+            D: "Hemoglobin",
+        },
+        "Hemoglobin"
+    ),
+    [QuestionCategory.CATEGORY_5 + "-" + Points.Two]: new Question_MC(
+        Points.Two,
+        QuestionCategory.CATEGORY_5,
+        "Which bridge, was the longest in the world when it was built in 1937 and was featured in movies like X-men.",
+        {
+            A: "Golden Gate Bridge",
+            B: "Tower Bridge",
+            C: "Brooklyn Bridge",
+            D: "Chicago Bridge",
+        },
+        "Golden Gate Bridge"
+    ),
+    [QuestionCategory.CATEGORY_5 + "-" + Points.Three]: new Question_MC(
+        Points.Three,
+        QuestionCategory.CATEGORY_5,
+        "Which fruit accounts for 50% of the world's deciduous fruit tree production",
+        {
+            A: "Mangoes",
+            B: "Apples",
+            C: "Blueberries",
+            D: "Cranberries",
+        },
+        "Apples"
+    ),
+    [QuestionCategory.CATEGORY_5 + "-" + Points.Four]: new Question_MC(
+        Points.Four,
+        QuestionCategory.CATEGORY_5,
+        "Which bird is the State bird of 7 states including Ohio and North Carolina",
+        {
+            A: "Robin",
+            B: "Cardinal",
+            C: "Western Meadowlark",
+            D: "Mockingboard",
+        },
+        "Cardinal"
+    ),
+    [QuestionCategory.CATEGORY_5 + "-" + Points.Five]: new Question_MC(
+        Points.Five,
+        QuestionCategory.CATEGORY_5,
+        "In 2002 which fictional character testified in congress before the education subcommittee to seek support for funding musical education.",
+        {
+            A: "Elmo",
+            B: "Mr. Rogers",
+            C: "Spongebob",
+            D: "Mary Poppins",
+        },
+        "Elmo"
+    ),
 };

@@ -21,7 +21,7 @@ function Tile({ text, tileInfo, category, isHovered }: TileProps) {
     };
     const onClickTile = () => {
         console.log("Tile Pressed", tileInfo);
-        socket.emit("questionClick", tileInfo);
+        socket.emit("retrieveQuestion", tileInfo.id);
     };
     return (
         <div

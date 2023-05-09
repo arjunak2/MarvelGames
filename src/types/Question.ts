@@ -1,3 +1,4 @@
+import { plainToClass } from "class-transformer";
 import { v4 as uuidv4 } from "uuid";
 export enum QuestionType {
     MULTIPLE = "multiple",
@@ -61,6 +62,11 @@ export abstract class Question {
         console.log(`Updating player score to ${score}`);
     }
 }
+export function mapJsonToQuestion(json: Question) {
+    const QUESTION_CLASS =
+        json.type === QuestionType.MULTIPLE ? Question_MC : Question_Text;
+    return plainToClass(QUESTION_CLASS, json);
+}
 
 interface MCChoices {
     A: string;
@@ -103,3 +109,23 @@ export enum Points {
     Four = 400,
     Five = 500,
 }
+
+export const defaultMCQuestion = new Question_MC(
+    Points.One,
+    QuestionCategory.CATEGORY_2,
+    "Which movie did Wong NOT appear in?",
+    {
+        A: "She-hulk",
+        B: "Shang-Chi",
+        C: "Eternals",
+        D: "No Way Home",
+    },
+    "Eternals"
+);
+
+export const defaultTextQuestion = new Question_Text(
+    Points.One,
+    QuestionCategory.CATEGORY_1,
+    "",
+    ""
+);

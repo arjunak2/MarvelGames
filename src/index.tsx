@@ -14,12 +14,12 @@ const root = ReactDOM.createRoot(
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <App/>,
+        element: <App />,
     },
     {
-      path: "/question/:questionId",
-      element: <QuestionPage/>,
-  },
+        path: "/question/:questionId",
+        element: <QuestionPage />
+    },
 ]);
 root.render(
     <React.StrictMode>

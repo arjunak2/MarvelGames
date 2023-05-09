@@ -6,6 +6,7 @@ import {
     QuestionCategory,
     Question_MC,
     Question_Text,
+    mapJsonToQuestion,
 } from "../../types/Question";
 import "../../styles/Timer.scss";
 import { MultipleChoiceSection } from "./MultipleChoiceSection";
@@ -13,7 +14,9 @@ import { TextSection } from "./TextSection";
 import { Timer } from "./CountDownTimer";
 import { PowerButton, PowerSection } from "./PowersSection";
 import { User } from "src/types/User";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { Button, Spinner } from "react-bootstrap";
+import { socket } from "src/utils/WebSocket";
 
 export enum PageState {
     INITIAL,
@@ -22,9 +25,10 @@ export enum PageState {
 
 interface QuestionPageProps {
     user?: User;
+    question: Question;
 }
 
-function QuestionHeader({ text }: { text: string }) {
+function Header({ text }: { text: string }) {
     return (
         <div
             style={{
@@ -53,9 +57,47 @@ const qq: Question = new Question_MC(
 );
 const uu = new User("agent13");
 
-export function QuestionPage({ user = uu }: QuestionPageProps) {
+export function QuestionPage({ user = uu }: { user?: User }) {
+    const [question, setQuestion] = useState(undefined as Question | undefined);
     let { questionId } = useParams();
-    const question: Question = useLocation().state.question || qq;
+    const passedInQuestion = useLocation()?.state?.question;
+    const fetchQuestion = () => {
+        console.log("Fetching Question");
+        socket.emit("retrieveQuestion", questionId as string);
+    };
+    useEffect(() => {
+        if (passedInQuestion instanceof Question) setQuestion(passedInQuestion);
+        else {
+            fetchQuestion();
+        }
+        socket.on("sendQuestion", (receivedQuestion) => {
+            console.log("Question fetched");
+            const QUESTION = mapJsonToQuestion(receivedQuestion);
+            if (question === undefined) setQuestion(QUESTION);
+        });
+    }, []);
+
+    if (question) {
+        return <QuestionContent user={user} question={question} />;
+    } else {
+        return <Loader />;
+    }
+}
+
+function Loader() {
+    return (
+        <div className="d-flex justify-content-center align-items-center vh-100 vw-100">
+            <Spinner
+                animation="border"
+                role="status"
+                variant="primary"
+                style={{ height: "30vh", width: "30vh" }}
+            />
+        </div>
+    );
+}
+
+function QuestionContent({ user = uu, question }: QuestionPageProps) {
     const [state, setState] = useState(PageState.INITIAL);
     const [timerDisabed, disableTimer] = useState(false);
     const [points, setPoints] = useState(question.points);
@@ -87,6 +129,8 @@ export function QuestionPage({ user = uu }: QuestionPageProps) {
     };
     useEffect(linkPowers, []);
 
+    const navigate = useNavigate();
+
     return (
         <div>
             <div style={{ background: "#7d213b" }}>
@@ -95,7 +139,7 @@ export function QuestionPage({ user = uu }: QuestionPageProps) {
                     answerQuestion={answerQuestion}
                     disabled={timerDisabed}
                 />
-                <QuestionHeader text={question.query} />
+                <Header text={question.query} />
                 <div style={{ fontSize: "2.5rem", fontFamily: "serif" }}>
                     {points}
                 </div>
@@ -119,6 +163,20 @@ export function QuestionPage({ user = uu }: QuestionPageProps) {
             )}
             <div>{user.madeUpNames}</div>
             <PowerSection pageState={state} powerBank={uu.powerBank} />
+            <Button
+                variant="secondary"
+                onClick={() => {
+                    navigate(`/`);
+                }}
+            >
+                <img
+                    src={
+                        "https://www.svgrepo.com/show/22031/home-icon-silhouette.svg"
+                    }
+                    width="30"
+                    height="30"
+                />
+            </Button>
         </div>
     );
 }

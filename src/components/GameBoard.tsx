@@ -5,12 +5,22 @@ import Logo from "../public/assets/logo.svg";
 import Row from "react-bootstrap/Row";
 import Tile from "./Tile";
 import "../styles/GameBoard.scss";
-import { Points } from "../types/Question";
+import {
+    Points,
+    QuestionType,
+    Question_MC,
+    Question_Text,
+    defaultMCQuestion,
+    defaultTextQuestion,
+    mapJsonToQuestion,
+} from "../types/Question";
 import { IGameBoard, Tileinfo } from "../types/GameBoard";
 import { socket } from "../utils/WebSocket";
 import { GBData } from "../data/GameBoard";
 import { QUESTIONS_DB } from "../data/QuestionRepository";
 import { redirect, useNavigate } from "react-router-dom";
+import { plainToClass } from "class-transformer";
+// const  = require("../types/Question");
 // console.log(JSON.stringify(QUESTIONS_DB));
 function TableHeaderRow({ data }: { data: IGameBoard }) {
     const categories = Object.keys(data);
@@ -63,12 +73,10 @@ export function GameBoard() {
             console.log("UPDATING BOARD");
             setGBoard(gBoard);
         });
-        socket.on("navigateToQuestion", (question) => {
+        socket.on("sendQuestion", (question) => {
             console.log("Question selected!");
-            console.log(question);
-
-            // redirect(`/question/${question.id}`)
-            navigate(`/question/${question.id}`, { state: { question } });
+            const QUESTION = mapJsonToQuestion(question);
+            navigate(`/question/${question.id}`, { state: { question: QUESTION } });
         });
     }, []);
     return (

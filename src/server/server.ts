@@ -44,6 +44,10 @@ function updateBoard() {
     });
 }
 
+function readQuestion(questionId: string) {
+    return QUESTIONS_DB[questionId];
+}
+
 io.on("connection", (socket) => {
     console.log(`Received a new connection from ${socket.id}`);
     const userId = uuidv4();
@@ -69,12 +73,10 @@ io.on("connection", (socket) => {
         GameBoard[category][question.points].isHovered = false;
         updateBoard();
     });
-    socket.on("questionClick", (tileInfo) => {
-        `Question ${tileInfo}`;
-
-        console.log(QUESTIONS_DB[tileInfo.id]);
-        console.log("Sending back question")
-        socket.emit("navigateToQuestion", QUESTIONS_DB[tileInfo.id]);
+    socket.on("retrieveQuestion", (questionId) => {
+        const question = readQuestion(questionId);
+        console.log("Sending back question", question);
+        socket.emit("sendQuestion", question);
     });
 });
 
