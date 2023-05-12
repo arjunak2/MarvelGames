@@ -73,10 +73,12 @@ export function GameBoard() {
             console.log("UPDATING BOARD");
             setGBoard(gBoard);
         });
-        socket.on("sendQuestion", (question) => {
+        socket.on("transitionToQuestion", (question) => {
             console.log("Question selected!");
             const QUESTION = mapJsonToQuestion(question);
-            navigate(`/question/${question.id}`, { state: { question: QUESTION } });
+            navigate(`/question/${question.id}`, {
+                state: { question: QUESTION },
+            });
         });
     }, []);
     return (

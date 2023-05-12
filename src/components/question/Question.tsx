@@ -17,6 +17,7 @@ import { User } from "src/types/User";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Button, Spinner } from "react-bootstrap";
 import { socket } from "src/utils/WebSocket";
+import { GameBoardInfo } from "src/types/Screens";
 
 export enum PageState {
     INITIAL,
@@ -66,7 +67,11 @@ export function QuestionPage({ user = uu }: { user?: User }) {
         socket.emit("retrieveQuestion", questionId as string);
     };
     useEffect(() => {
-        if (passedInQuestion instanceof Question) setQuestion(passedInQuestion);
+        if (
+            question instanceof Question ||
+            passedInQuestion instanceof Question
+        )
+            setQuestion(passedInQuestion);
         else {
             fetchQuestion();
         }
@@ -101,6 +106,8 @@ function QuestionContent({ user = uu, question }: QuestionPageProps) {
     const [state, setState] = useState(PageState.INITIAL);
     const [timerDisabed, disableTimer] = useState(false);
     const [points, setPoints] = useState(question.points);
+    const navigate = useNavigate();
+
     const answerQuestion = (chosenAnswer?: string) => {
         console.log("Moving to Completed state");
         setState(PageState.COMPLETED);
@@ -117,6 +124,9 @@ function QuestionContent({ user = uu, question }: QuestionPageProps) {
             console.log(`No Answer submitted!`);
         }
     };
+    const goHome = () => {
+        socket.emit("navigate", { name: "GAME_BOARD" });
+    };
 
     const linkPowers = () => {
         user.powerBank.timestop.activate = () => {
@@ -127,9 +137,12 @@ function QuestionContent({ user = uu, question }: QuestionPageProps) {
         };
         user.powerBank.hint.activate = () => {};
     };
-    useEffect(linkPowers, []);
-
-    const navigate = useNavigate();
+    useEffect(() => {
+        linkPowers();
+        socket.on("transitionToGameBoard", () => {
+            navigate(`/`);
+        });
+    }, []);
 
     return (
         <div>
@@ -163,12 +176,7 @@ function QuestionContent({ user = uu, question }: QuestionPageProps) {
             )}
             <div>{user.madeUpNames}</div>
             <PowerSection pageState={state} powerBank={uu.powerBank} />
-            <Button
-                variant="secondary"
-                onClick={() => {
-                    navigate(`/`);
-                }}
-            >
+            <Button variant="secondary" onClick={goHome}>
                 <img
                     src={
                         "https://www.svgrepo.com/show/22031/home-icon-silhouette.svg"

@@ -3,6 +3,7 @@ import "../styles/Tile.scss";
 import { Points } from "../types/Question";
 import { socket } from "src/utils/WebSocket";
 import { Tileinfo } from "src/types/GameBoard";
+import { ScreenNames } from "src/types/Screens";
 
 interface TileProps {
     text: Points;
@@ -13,7 +14,7 @@ interface TileProps {
 
 function Tile({ text, tileInfo, category, isHovered }: TileProps) {
     const onHoverTile = () => {
-        console.log("SELECTED")
+        console.log("SELECTED");
         socket.emit("select", tileInfo, category);
     };
     const onLeaveTile = () => {
@@ -21,7 +22,11 @@ function Tile({ text, tileInfo, category, isHovered }: TileProps) {
     };
     const onClickTile = () => {
         console.log("Tile Pressed", tileInfo);
-        socket.emit("retrieveQuestion", tileInfo.id);
+        socket.emit("deselect", tileInfo, category);
+        socket.emit("navigate", {
+            name: "QUESTION",
+            data: { questionId: tileInfo.id },
+        });
     };
     return (
         <div

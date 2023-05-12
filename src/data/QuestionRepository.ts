@@ -10,7 +10,18 @@ import {
 export const QUESTIONS_DB: { [id: string]: Question } = {
     [QuestionCategory.CATEGORY_1 + "-" + Points.One]: defaultMCQuestion,
     [QuestionCategory.CATEGORY_1 + "-" + Points.Two]: defaultMCQuestion,
-    [QuestionCategory.CATEGORY_1 + "-" + Points.Three]: defaultMCQuestion,
+    [QuestionCategory.CATEGORY_1 + "-" + Points.Three]: new Question_MC(
+        Points.Three,
+        QuestionCategory.CATEGORY_1,
+        "What planet is Thanos from?",
+        {
+            A: "Sakaar",
+            B: "Titan",
+            C: "Warworld",
+            D: "Hala",
+        },
+        "Titan"
+    ),
     [QuestionCategory.CATEGORY_1 + "-" + Points.Four]: defaultMCQuestion,
     [QuestionCategory.CATEGORY_1 + "-" + Points.Five]: defaultMCQuestion,
 
@@ -28,7 +39,18 @@ export const QUESTIONS_DB: { [id: string]: Question } = {
     ),
     [QuestionCategory.CATEGORY_2 + "-" + Points.Two]: defaultMCQuestion,
     [QuestionCategory.CATEGORY_2 + "-" + Points.Three]: defaultMCQuestion,
-    [QuestionCategory.CATEGORY_2 + "-" + Points.Four]: defaultMCQuestion,
+    [QuestionCategory.CATEGORY_2 + "-" + Points.Four]: new Question_MC(
+        Points.Four,
+        QuestionCategory.CATEGORY_2,
+        "Which marvel character did Taylor Swift almost play?",
+        {
+            A: "Emma Frost",
+            B: "Agent 13",
+            C: "Invisible Woman",
+            D: "Dazzler",
+        },
+        "Dazzler"
+    ),
     [QuestionCategory.CATEGORY_2 + "-" + Points.Five]: defaultMCQuestion,
 
     [QuestionCategory.CATEGORY_3 + "-" + Points.One]: new Question_Text(

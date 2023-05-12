@@ -4,17 +4,13 @@ import { GameBoard } from "./components/GameBoard";
 import "bootstrap";
 import { QuestionPage } from "./components/question/Question";
 import { socket } from "./utils/WebSocket";
+import { ScreenNames } from "./types/Screens";
 
-enum Screens {
-    GAME_BOARD,
-    QUESTION,
-}
-
-function renderScreen(currentScreen: Screens) {
+function renderScreen(currentScreen: ScreenNames) {
     switch (currentScreen) {
-        case Screens.GAME_BOARD:
+        case "GAME_BOARD":
             return <GameBoard />;
-        case Screens.QUESTION:
+        case "QUESTION":
             return <QuestionPage />;
     }
 }
@@ -25,7 +21,7 @@ function App() {
         });
     }, []);
 
-    return <div className="App">{renderScreen(Screens.GAME_BOARD)}</div>;
+    return <div className="App">{renderScreen("GAME_BOARD")}</div>;
 }
 
 export default App;
