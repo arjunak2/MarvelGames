@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { PowerBank, Powers } from "src/types/Powers";
-import { PageState } from "./Question";
+import { QuestionPageState } from "../../types/QuestionPage";
 import {
     ToggleButton,
     ToggleButtonGroup,
@@ -11,7 +11,7 @@ import { produce } from "immer";
 
 interface PowerSectionProps {
     powerBank: PowerBank;
-    pageState: PageState;
+    pageState: QuestionPageState;
 }
 interface PowerButtonProps {
     power: Powers;
@@ -60,7 +60,7 @@ export function PowerButton({ power, powerBank, disabled }: PowerButtonProps) {
 }
 
 export function PowerSection({ powerBank, pageState }: PowerSectionProps) {
-    const areAllPowersDisabled = pageState === PageState.COMPLETED;
+    const areAllPowersDisabled = pageState === QuestionPageState.COMPLETED;
     return (
         <ButtonGroup>
             <PowerButton

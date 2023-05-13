@@ -1,11 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Provider } from "react-redux";
 import "./index.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { QuestionPage } from "./components/question/Question";
+import store from "./store";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
@@ -18,12 +20,14 @@ const router = createBrowserRouter([
     },
     {
         path: "/question/:questionId",
-        element: <QuestionPage />
+        element: <QuestionPage />,
     },
 ]);
 root.render(
     <React.StrictMode>
-        <RouterProvider router={router} />
+        <Provider store={store}>
+            <RouterProvider router={router} />
+        </Provider>
     </React.StrictMode>
 );
 

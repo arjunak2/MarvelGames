@@ -1,11 +1,11 @@
 import { TimeProps, CountdownCircleTimer } from "react-countdown-circle-timer";
-import { PageState } from "./Question";
+import { QuestionPageState } from "../../types/QuestionPage";
 
 const TIMER_DURATION = 30;
 const SW = ["#e6e6e6", "#CB3966", "#e60017", "#4E192F", "#1F0815"];
 
 interface TimerProps {
-    pageState: PageState;
+    pageState: QuestionPageState;
     answerQuestion: (chosenAnswer?: string) => void;
     disabled: boolean
 }
@@ -35,7 +35,7 @@ export function Timer({
         );
     };
 
-    const isPlaying = !disabled && pageState !== PageState.COMPLETED
+    const isPlaying = !disabled && pageState !== QuestionPageState.COMPLETED
     
     return (
         <CountdownCircleTimer

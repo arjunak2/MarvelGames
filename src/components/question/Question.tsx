@@ -18,11 +18,9 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Button, Spinner } from "react-bootstrap";
 import { socket } from "src/utils/WebSocket";
 import { GameBoardInfo } from "src/types/Screens";
-
-export enum PageState {
-    INITIAL,
-    COMPLETED,
-}
+import { useSelector, useDispatch } from "../../store";
+import { questionPageActions } from "src/store/QuestionPageSlice";
+import { QuestionPageState } from "src/types/QuestionPage";
 
 interface QuestionPageProps {
     user?: User;
@@ -44,18 +42,6 @@ function Header({ text }: { text: string }) {
     );
 }
 
-const qq: Question = new Question_MC(
-    Points.One,
-    QuestionCategory.CATEGORY_2,
-    "Which movie did Wong NOT appear in?",
-    {
-        A: "She-hulk",
-        B: "Shang-Chi",
-        C: "Eternals",
-        D: "No Way Home",
-    },
-    "Eternals"
-);
 const uu = new User("agent13");
 
 export function QuestionPage({ user = uu }: { user?: User }) {
@@ -103,14 +89,20 @@ function Loader() {
 }
 
 function QuestionContent({ user = uu, question }: QuestionPageProps) {
-    const [state, setState] = useState(PageState.INITIAL);
+    const { state } = useSelector((state) => {
+        return state.questionPage;
+    });
+    // const [state, setState] = useState(QuestionPageState.INITIAL);
+    const dispatch = useDispatch()
     const [timerDisabed, disableTimer] = useState(false);
     const [points, setPoints] = useState(question.points);
     const navigate = useNavigate();
 
     const answerQuestion = (chosenAnswer?: string) => {
         console.log("Moving to Completed state");
-        setState(PageState.COMPLETED);
+        // setState(QuestionPageState.COMPLETED);
+        dispatch(questionPageActions.complete())
+        
         // @TODO updateScore
         if (chosenAnswer) {
             console.log(`Player submited this answer: ${chosenAnswer}`);

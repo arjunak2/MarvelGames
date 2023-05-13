@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Question_Text } from "src/types/Question";
-import { PageState } from "./Question";
+import { QuestionPageState } from "../../types/QuestionPage";
 
 export function TextSection({
     question,
@@ -10,9 +10,9 @@ export function TextSection({
 }: {
     question: Question_Text;
     onAnswer: (chosenAnswer?: string) => void;
-    pageState: PageState;
+    pageState: QuestionPageState;
 }) {
-    const pageComplete = pageState === PageState.COMPLETED;
+    const pageComplete = pageState === QuestionPageState.COMPLETED;
     const inputRef: React.RefObject<HTMLInputElement> = useRef(null);
     return (
         <>

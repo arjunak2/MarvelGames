@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Container, Row, Col, Button, ButtonProps } from "react-bootstrap";
 import { Question_MC } from "src/types/Question";
-import { PageState } from "./Question";
+import { QuestionPageState } from "../../types/QuestionPage";
 import { ButtonVariant } from "react-bootstrap/esm/types";
 
 interface AnswerProps extends ButtonProps {
@@ -63,9 +63,9 @@ export function MultipleChoiceSection({
 }: {
     question: Question_MC;
     onAnswer: (chosenAnswer?: string) => void;
-    pageState: PageState;
+    pageState: QuestionPageState;
 }) {
-    const isAnswered = pageState === PageState.COMPLETED;
+    const isAnswered = pageState === QuestionPageState.COMPLETED;
     const { A, B, C, D } = question.choices;
 
     const AnswerChoices = Object.entries(question.choices).map(
