@@ -50,6 +50,22 @@ export const emitToAllClients: typeof io.emit = (ev, ...args) => {
     });
     return true;
 };
+type emitParams = Parameters<typeof io.emit>;
+export const emitToOtherClients: (
+    socketid: string,
+    ...otherParams: emitParams
+) => boolean = (socketId, ev, ...args) => {
+    for (let user in CLIENTS) {
+        const ID = CLIENTS[user].id;
+        if (socketId === ID) {
+            continue;
+        } else {
+            CLIENTS[user].emit(ev, ...args);
+        }
+    }
+
+    return true;
+};
 
 function updateBoard() {
     emitToAllClients("updateBoard", GameBoard);
