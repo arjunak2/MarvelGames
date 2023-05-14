@@ -1,4 +1,4 @@
-import { GameBoardInfo, QuestionInfo } from "src/types/Screens";
+import { GameBoardInfo, QuestionInfo } from "../types/Screens";
 import { Tileinfo, IGameBoard } from "../types/GameBoard";
 import { Question } from "../types/Question";
 export interface ServerToClientEvents {

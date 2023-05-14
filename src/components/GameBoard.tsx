@@ -17,7 +17,7 @@ import {
 import { IGameBoard, Tileinfo } from "../types/GameBoard";
 import { socket } from "../utils/WebSocket";
 import { GBData } from "../data/GameBoard";
-import { QUESTIONS_DB } from "../data/QuestionRepository";
+import { QUESTIONS_DB } from "../data/QuRepo";
 import { redirect, useNavigate } from "react-router-dom";
 import { plainToClass } from "class-transformer";
 // const  = require("../types/Question");

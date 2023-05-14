@@ -40,8 +40,10 @@
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "tra": "yarn tsc src/server/server.ts --esModuleInterop true --resolveJsonModule true",
-        "server": "nodemon -r esm ./src/server/server.ts"
+        "compileServer": "tsc -p src/server/tsconfig.json -w",
+        "launchServer": "nodemon -r esm ./src/server/dist/server/server.js",
+        "server": "yarn compileServer & yarn launchServer",
+        "concurrentlyServer": "concurrently --kill-others --names \"BUILD,RUN\" -c \"bgMagenta.bold,bgGreen.bold\" \"yarn compileServer\" \"yarn launchServer\""
     },
     "eslintConfig": {
         "extends": [
@@ -65,9 +67,9 @@
         "@types/uuid": "^9.0.1",
         "babel-cli": "^6.26.0",
         "babel-preset-env": "^1.7.0",
+        "concurrently": "^8.0.1",
         "esm": "^3.2.25",
         "nodemon": "^2.0.20",
-        "prettier": "^2.8.4",
-        "ts-node": "^10.9.1"
+        "prettier": "^2.8.4"
     }
 }

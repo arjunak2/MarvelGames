@@ -1,4 +1,4 @@
-import { IGameBoard } from "src/types/GameBoard";
+import { IGameBoard } from "../types/GameBoard";
 
 export const GBData: IGameBoard = {
     Category1: {

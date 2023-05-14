@@ -8,8 +8,30 @@ import {
 } from "../types/Question";
 
 export const QUESTIONS_DB: { [id: string]: Question } = {
-    [QuestionCategory.CATEGORY_1 + "-" + Points.One]: defaultMCQuestion,
-    [QuestionCategory.CATEGORY_1 + "-" + Points.Two]: defaultMCQuestion,
+    [QuestionCategory.CATEGORY_1 + "-" + Points.One]: new Question_MC(
+        Points.One,
+        QuestionCategory.CATEGORY_1,
+        "Which state has not been prominently featured in a MCU project?",
+        {
+            A: "New Jersey",
+            B: "New York",
+            C: "New Mexico",
+            D: "Pennsylvania",
+        },
+        "Pennsylvania"
+    ),
+    [QuestionCategory.CATEGORY_1 + "-" + Points.Two]: new Question_MC(
+        Points.Two,
+        QuestionCategory.CATEGORY_1,
+        "In which country did Ultron try to create Vision?",
+        {
+            A: "South Korea",
+            B: "China",
+            C: "India",
+            D: "Taiwan",
+        },
+        "Dazzler"
+    ),
     [QuestionCategory.CATEGORY_1 + "-" + Points.Three]: new Question_MC(
         Points.Three,
         QuestionCategory.CATEGORY_1,
@@ -75,8 +97,20 @@ export const QUESTIONS_DB: { [id: string]: Question } = {
     ),
     [QuestionCategory.CATEGORY_3 + "-" + Points.Five]: defaultMCQuestion,
 
-    [QuestionCategory.CATEGORY_4 + "-" + Points.One]: defaultMCQuestion,
-    [QuestionCategory.CATEGORY_4 + "-" + Points.Two]: defaultMCQuestion,
+    [QuestionCategory.CATEGORY_4 + "-" + Points.One]: new Question_MC(
+        Points.One,
+        QuestionCategory.CATEGORY_4,
+        "Which is not one of Spider-man's (Tom Holland) powers?",
+        { A: "Math", B: "Super-strength", C: "Spider-sense", D: "Webs" },
+        "T'Challa"
+    ),
+    [QuestionCategory.CATEGORY_4 + "-" + Points.Two]:  new Question_MC(
+        Points.Two,
+        QuestionCategory.CATEGORY_4,
+        "Whose technology did vulture use to create his wing suit?",
+        { A: "Chitauri", B: "Ultron", C: "Iron Man", D: "Asgardian" },
+        "T'Challa"
+    ),
     [QuestionCategory.CATEGORY_4 + "-" + Points.Three]: defaultMCQuestion,
     [QuestionCategory.CATEGORY_4 + "-" + Points.Four]: defaultMCQuestion,
     [QuestionCategory.CATEGORY_4 + "-" + Points.Five]: defaultMCQuestion,

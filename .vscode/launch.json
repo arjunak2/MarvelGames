@@ -27,7 +27,7 @@
             "name": "Server",
             "request": "launch",
             "runtimeArgs": [
-                "server",
+                "concurrentlyServer",
             ],
             "runtimeExecutable": "yarn",
             "skipFiles": [

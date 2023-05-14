@@ -14,10 +14,7 @@
         "moduleResolution": "node",
         "resolveJsonModule": true,
         "isolatedModules": true,
-        "noEmit": true,
         "jsx": "react-jsx",
         "outDir": "dist"
-    },
-    "paths": { "#components/*": ["src/components/*"] },
-    "include": ["src/*", "tst/App.test.tsx"]
+    }
 }

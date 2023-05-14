@@ -2,11 +2,10 @@ import express from "express";
 import http from "http";
 import { Server, Socket } from "socket.io";
 import { IGameBoard } from "../types/GameBoard";
-
+import { QUESTIONS_DB } from "../data/QuRepo";
 let GameBoard: IGameBoard = require("../data/GameBoard").GBData;
-let QUESTIONS_DB: {
-    [id: string]: Question;
-} = require("../data/QuestionRepository.json");
+import { GBData } from "../data/GameBoard";
+
 import { v4 as uuidv4 } from "uuid";
 import {
     ClientToServerEvents,
@@ -50,6 +49,7 @@ export const emitToAllClients: typeof io.emit = (ev, ...args) => {
     });
     return true;
 };
+
 type emitParams = Parameters<typeof io.emit>;
 export const emitToOtherClients: (
     socketid: string,
