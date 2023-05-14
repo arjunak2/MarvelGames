@@ -89,20 +89,16 @@ function Loader() {
 }
 
 function QuestionContent({ user = uu, question }: QuestionPageProps) {
-    const { state } = useSelector((state) => {
-        return state.questionPage;
+    const { state, timerActive, points } = useSelector((store) => {
+        return store.questionPage;
     });
-    // const [state, setState] = useState(QuestionPageState.INITIAL);
-    const dispatch = useDispatch()
-    const [timerDisabed, disableTimer] = useState(false);
-    const [points, setPoints] = useState(question.points);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const answerQuestion = (chosenAnswer?: string) => {
         console.log("Moving to Completed state");
-        // setState(QuestionPageState.COMPLETED);
-        dispatch(questionPageActions.complete())
-        
+        dispatch(questionPageActions.complete());
+
         // @TODO updateScore
         if (chosenAnswer) {
             console.log(`Player submited this answer: ${chosenAnswer}`);
@@ -122,16 +118,17 @@ function QuestionContent({ user = uu, question }: QuestionPageProps) {
 
     const linkPowers = () => {
         user.powerBank.timestop.activate = () => {
-            disableTimer(true);
+            dispatch(questionPageActions.timeStop());
         };
         user.powerBank.double.activate = () => {
-            setPoints(points * 2);
+            dispatch(questionPageActions.setPoints(points * 2));
         };
         user.powerBank.hint.activate = () => {};
     };
     useEffect(() => {
         linkPowers();
         socket.on("transitionToGameBoard", () => {
+            dispatch(questionPageActions.reset());
             navigate(`/`);
         });
     }, []);
@@ -142,7 +139,7 @@ function QuestionContent({ user = uu, question }: QuestionPageProps) {
                 <Timer
                     pageState={state}
                     answerQuestion={answerQuestion}
-                    disabled={timerDisabed}
+                    disabled={!timerActive}
                 />
                 <Header text={question.query} />
                 <div style={{ fontSize: "2.5rem", fontFamily: "serif" }}>

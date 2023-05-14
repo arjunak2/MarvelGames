@@ -1,17 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { QuestionPageState } from "../types/QuestionPage";
-import { Question, defaultTextQuestion } from "../types/Question";
+import { Points, Question, defaultTextQuestion } from "../types/Question";
 
 interface QuestionPageSlice {
     state: QuestionPageState;
     timerActive: boolean;
-    question?: Question;
+    points: Points;
+    questionId: string;
 }
 
 const initialState: QuestionPageSlice = {
     state: QuestionPageState.INITIAL,
     timerActive: true,
-    question: defaultTextQuestion,
+    points: Points.One,
+    questionId: "",
 };
 
 export const questionPageSlice = createSlice({
@@ -21,11 +23,24 @@ export const questionPageSlice = createSlice({
         complete: (state) => {
             state.state = QuestionPageState.COMPLETED;
         },
-        stopTime: (state) => {
+        timeStop: (state) => {
             state.timerActive = false;
         },
-        reset: (state, action) => {
-            state = initialState;
+        setPoints: (state, { payload }: PayloadAction<Points>) => {
+            state.points = payload;
+        },
+        setQuestion: (
+            state,
+            { payload: question }: PayloadAction<Question>
+        ) => {
+            state.questionId = question.id;
+            state.points = question.points;
+        },
+        reset: (state) => {
+            state.state = QuestionPageState.INITIAL;
+            state.timerActive = true;
+            state.points = Points.One;
+            state.questionId = "";
         },
     },
 });

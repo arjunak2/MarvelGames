@@ -20,6 +20,8 @@ import { GBData } from "../data/GameBoard";
 import { QUESTIONS_DB } from "../data/QuRepo";
 import { redirect, useNavigate } from "react-router-dom";
 import { plainToClass } from "class-transformer";
+import { useDispatch } from "src/store";
+import { questionPageActions } from "src/store/QuestionPageSlice";
 // const  = require("../types/Question");
 // console.log(JSON.stringify(QUESTIONS_DB));
 function TableHeaderRow({ data }: { data: IGameBoard }) {
@@ -67,6 +69,7 @@ function TileCell({
 export function GameBoard() {
     const [gBoard, setGBoard] = useState<IGameBoard>(GBData);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         socket.on("updateBoard", (gBoard) => {
@@ -76,6 +79,7 @@ export function GameBoard() {
         socket.on("transitionToQuestion", (question) => {
             console.log("Question selected!");
             const QUESTION = mapJsonToQuestion(question);
+            dispatch(questionPageActions.setQuestion(QUESTION))
             navigate(`/question/${question.id}`, {
                 state: { question: QUESTION },
             });
