@@ -14,7 +14,7 @@ import {
     SocketData,
 } from "./ServerTypes";
 import { Question } from "../types/Question";
-import { GameBoardInfo, QuestionInfo, ScreenNames } from "../types/Screens";
+import { GameBoardNavData, QuestionNavData, ScreenNames } from "../types/Screens";
 
 const HOST = "http://localhost:3000";
 const PORT = 5000;
@@ -100,7 +100,7 @@ io.on("connection", (socket) => {
         GameBoard[category][question.points].isHovered = false;
         updateBoard();
     });
-    socket.on("navigate", (info: GameBoardInfo | QuestionInfo) => {
+    socket.on("navigate", (info: GameBoardNavData | QuestionNavData) => {
         updateScreen(info.name);
         console.log(`Instructing all clients to navigate to ${info.name}`);
         if (info.name === "GAME_BOARD")

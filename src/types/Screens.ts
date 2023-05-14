@@ -1,14 +1,14 @@
 export type ScreenNames = "GAME_BOARD" | "QUESTION";
 
-export interface ScreenInfo {
+export interface NavigationData {
     name: ScreenNames;
     data?: {};
 }
 
-export interface GameBoardInfo extends ScreenInfo {
+export interface GameBoardNavData extends NavigationData {
     name: "GAME_BOARD";
 }
-export interface QuestionInfo extends ScreenInfo {
+export interface QuestionNavData extends NavigationData {
     name: "QUESTION";
     data: { questionId: string };
 }

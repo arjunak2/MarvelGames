@@ -17,7 +17,7 @@ import { User } from "src/types/User";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Button, Spinner } from "react-bootstrap";
 import { socket } from "src/utils/WebSocket";
-import { GameBoardInfo } from "src/types/Screens";
+import { GameBoardNavData } from "src/types/Screens";
 import { useSelector, useDispatch } from "../../store";
 import { questionPageActions } from "src/store/QuestionPageSlice";
 import { QuestionPageState } from "src/types/QuestionPage";

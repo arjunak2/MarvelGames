@@ -2,14 +2,14 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { QuestionPageState } from "../types/QuestionPage";
 import { Points, Question, defaultTextQuestion } from "../types/Question";
 
-interface QuestionPageSlice {
+interface QuestionPageData {
     state: QuestionPageState;
     timerActive: boolean;
     points: Points;
     questionId: string;
 }
 
-const initialState: QuestionPageSlice = {
+const initialState: QuestionPageData = {
     state: QuestionPageState.INITIAL,
     timerActive: true,
     points: Points.One,

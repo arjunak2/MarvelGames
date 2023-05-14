@@ -1,4 +1,4 @@
-import { GameBoardInfo, QuestionInfo } from "../types/Screens";
+import { GameBoardNavData, QuestionNavData } from "../types/Screens";
 import { Tileinfo, IGameBoard } from "../types/GameBoard";
 import { Question } from "../types/Question";
 export interface ServerToClientEvents {
@@ -16,7 +16,7 @@ export interface ClientToServerEvents {
     select: (tileInfo: Tileinfo, category: string) => void;
     deselect: (tileInfo: Tileinfo, category: string) => void;
     retrieveQuestion: (questionId: string) => void;
-    navigate: (info: GameBoardInfo | QuestionInfo ) => void;
+    navigate: (info: GameBoardNavData | QuestionNavData ) => void;
 }
 
 export interface InterServerEvents {
