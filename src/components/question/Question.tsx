@@ -8,7 +8,6 @@ import {
     Question_Text,
     mapJsonToQuestion,
 } from "../../types/Question";
-import "../../styles/Timer.scss";
 import { MultipleChoiceSection } from "./MultipleChoiceSection";
 import { TextSection } from "./TextSection";
 import { Timer } from "./CountDownTimer";
@@ -21,6 +20,7 @@ import { GameBoardNavData } from "src/types/Screens";
 import { useSelector, useDispatch } from "../../store";
 import { questionPageActions } from "src/store/QuestionPageSlice";
 import { QuestionPageState } from "src/types/QuestionPage";
+import "../../styles/Question.scss";
 
 interface QuestionPageProps {
     user?: User;

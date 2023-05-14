@@ -78,8 +78,8 @@ export function GameBoard() {
         });
         socket.on("transitionToQuestion", (question) => {
             console.log("Question selected!");
+            dispatch(questionPageActions.setQuestion(question))
             const QUESTION = mapJsonToQuestion(question);
-            dispatch(questionPageActions.setQuestion(QUESTION))
             navigate(`/question/${question.id}`, {
                 state: { question: QUESTION },
             });

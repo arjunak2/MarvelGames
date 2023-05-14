@@ -1,7 +1,9 @@
 import { TimeProps, CountdownCircleTimer } from "react-countdown-circle-timer";
 import { QuestionPageState } from "../../types/QuestionPage";
+import "../../styles/Timer.scss";
 
-const TIMER_DURATION = 30;
+
+const TIMER_DURATION = 130;
 const SW = ["#e6e6e6", "#CB3966", "#e60017", "#4E192F", "#1F0815"];
 
 interface TimerProps {

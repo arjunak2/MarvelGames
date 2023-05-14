@@ -1,19 +1,29 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { QuestionPageState } from "../types/QuestionPage";
-import { Points, Question, defaultTextQuestion } from "../types/Question";
+import {
+    Points,
+    Question,
+    QuestionType,
+    defaultTextQuestion,
+} from "../types/Question";
 
 interface QuestionPageData {
     state: QuestionPageState;
+    questionType: QuestionType;
     timerActive: boolean;
     points: Points;
     questionId: string;
+    hoveredAnswerChoice?: string;
+    chosenAnswer: string;
 }
 
 const initialState: QuestionPageData = {
     state: QuestionPageState.INITIAL,
+    questionType: QuestionType.NULL,
     timerActive: true,
     points: Points.One,
     questionId: "",
+    chosenAnswer: "",
 };
 
 export const questionPageSlice = createSlice({
@@ -22,6 +32,7 @@ export const questionPageSlice = createSlice({
     reducers: {
         complete: (state) => {
             state.state = QuestionPageState.COMPLETED;
+            state.hoveredAnswerChoice = "";
         },
         timeStop: (state) => {
             state.timerActive = false;
@@ -35,12 +46,18 @@ export const questionPageSlice = createSlice({
         ) => {
             state.questionId = question.id;
             state.points = question.points;
+            state.questionType = question.type;
         },
-        reset: (state) => {
-            state.state = QuestionPageState.INITIAL;
-            state.timerActive = true;
-            state.points = Points.One;
-            state.questionId = "";
+        updateQuestion: (
+            state,
+            {
+                payload: questionPageData,
+            }: PayloadAction<Partial<QuestionPageData>>
+        ) => {
+            return { ...state, ...questionPageData };
+        },
+        reset: () => {
+            return initialState;
         },
     },
 });

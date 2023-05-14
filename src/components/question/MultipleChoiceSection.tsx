@@ -3,6 +3,8 @@ import { Container, Row, Col, Button, ButtonProps } from "react-bootstrap";
 import { Question_MC } from "src/types/Question";
 import { QuestionPageState } from "../../types/QuestionPage";
 import { ButtonVariant } from "react-bootstrap/esm/types";
+import { useDispatch, useSelector } from "src/store";
+import { questionPageActions } from "src/store/QuestionPageSlice";
 
 interface AnswerProps extends ButtonProps {
     text: string;
@@ -38,10 +40,38 @@ function AnswerChoice({
             }
         }
     };
+    const { hoveredAnswerChoice } = useSelector((store) => {
+        return store.questionPage;
+    });
+    const dispatch = useDispatch();
+
+    const onHover = () => {
+        dispatch(
+            questionPageActions.updateQuestion({
+                hoveredAnswerChoice: text,
+            })
+        );
+    };
+    const onLeave = () => {
+        dispatch(
+            questionPageActions.updateQuestion({
+                hoveredAnswerChoice: "",
+            })
+        );
+    };
+    const generateClassName = (): string => {
+        const answerChoiceTag = "answer-choice";
+        const buttonType = "w-100";
+        const isHovered = hoveredAnswerChoice === text;
+        const hoveredTag = isHovered ? "hovered" : "";
+        const correctTag = isCorrect ? "correct" : "";
+        return [answerChoiceTag, buttonType, hoveredTag, correctTag].join(" ");
+    };
     return (
         <Button
             style={{}}
             size="lg"
+            className={generateClassName()}
             onClick={(event) => {
                 if (isCorrect) setState(AnswerState.CORRECT);
                 else setState(AnswerState.INCORRECT);
@@ -50,6 +80,8 @@ function AnswerChoice({
             disabled={disabled}
             {...otherProps}
             variant={getVariant()}
+            onMouseOver={onHover}
+            onMouseLeave={onLeave}
         >
             {text}
         </Button>
@@ -66,17 +98,16 @@ export function MultipleChoiceSection({
     pageState: QuestionPageState;
 }) {
     const isAnswered = pageState === QuestionPageState.COMPLETED;
+
     const { A, B, C, D } = question.choices;
 
     const AnswerChoices = Object.entries(question.choices).map(
         ([choiceKey, answerString]) => {
             const isCorrectAnswer = question.validateAnswer(answerString);
-            let className: string = isAnswered ? "answered" : "";
-            if (isCorrectAnswer) className += ` correct`;
             return (
                 <AnswerChoice
+                    id={choiceKey}
                     key={choiceKey}
-                    className={className + " w-100"}
                     disabled={isAnswered}
                     text={answerString}
                     onAnswer={onAnswer}
