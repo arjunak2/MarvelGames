@@ -102,14 +102,14 @@ export const QUESTIONS_DB: { [id: string]: Question } = {
         QuestionCategory.CATEGORY_4,
         "Which is not one of Spider-man's (Tom Holland) powers?",
         { A: "Math", B: "Super-strength", C: "Spider-sense", D: "Webs" },
-        "T'Challa"
+        "Webs"
     ),
     [QuestionCategory.CATEGORY_4 + "-" + Points.Two]:  new Question_MC(
         Points.Two,
         QuestionCategory.CATEGORY_4,
         "Whose technology did vulture use to create his wing suit?",
         { A: "Chitauri", B: "Ultron", C: "Iron Man", D: "Asgardian" },
-        "T'Challa"
+        "Chitauri"
     ),
     [QuestionCategory.CATEGORY_4 + "-" + Points.Three]: defaultMCQuestion,
     [QuestionCategory.CATEGORY_4 + "-" + Points.Four]: defaultMCQuestion,
