@@ -4,18 +4,8 @@ import {
     Points,
     Question,
     QuestionType,
-    defaultTextQuestion,
 } from "../types/Question";
-
-interface QuestionPageData {
-    state: QuestionPageState;
-    questionType: QuestionType;
-    timerActive: boolean;
-    points: Points;
-    questionId: string;
-    hoveredAnswerChoice?: string;
-    chosenAnswer: string;
-}
+import { QuestionPageData } from "../types/PageData";
 
 const initialState: QuestionPageData = {
     state: QuestionPageState.INITIAL,
@@ -23,7 +13,6 @@ const initialState: QuestionPageData = {
     timerActive: true,
     points: Points.One,
     questionId: "",
-    chosenAnswer: "",
 };
 
 export const questionPageSlice = createSlice({

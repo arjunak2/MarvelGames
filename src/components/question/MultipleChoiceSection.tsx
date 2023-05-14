@@ -5,6 +5,7 @@ import { QuestionPageState } from "../../types/QuestionPage";
 import { ButtonVariant } from "react-bootstrap/esm/types";
 import { useDispatch, useSelector } from "src/store";
 import { questionPageActions } from "src/store/QuestionPageSlice";
+import { socket } from "src/utils/WebSocket";
 
 interface AnswerProps extends ButtonProps {
     text: string;
@@ -46,18 +47,14 @@ function AnswerChoice({
     const dispatch = useDispatch();
 
     const onHover = () => {
-        dispatch(
-            questionPageActions.updateQuestion({
-                hoveredAnswerChoice: text,
-            })
-        );
+        socket.emit("updateQuestionPageData", {
+            hoveredAnswerChoice: text,
+        });
     };
     const onLeave = () => {
-        dispatch(
-            questionPageActions.updateQuestion({
-                hoveredAnswerChoice: "",
-            })
-        );
+        socket.emit("updateQuestionPageData", {
+            hoveredAnswerChoice: undefined,
+        });
     };
     const generateClassName = (): string => {
         const answerChoiceTag = "answer-choice";

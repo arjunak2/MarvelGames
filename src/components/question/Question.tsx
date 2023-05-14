@@ -46,6 +46,7 @@ const uu = new User("agent13");
 
 export function QuestionPage({ user = uu }: { user?: User }) {
     const [question, setQuestion] = useState(undefined as Question | undefined);
+    const dispatch = useDispatch();
     let { questionId } = useParams();
     const passedInQuestion = useLocation()?.state?.question;
     const fetchQuestion = () => {
@@ -65,6 +66,12 @@ export function QuestionPage({ user = uu }: { user?: User }) {
             console.log("Question fetched");
             const QUESTION = mapJsonToQuestion(receivedQuestion);
             if (question === undefined) setQuestion(QUESTION);
+        });
+
+        socket.on("questionPageDataUpdated", (questionPageDataUpdate) => {
+            dispatch(
+                questionPageActions.updateQuestion(questionPageDataUpdate)
+            );
         });
     }, []);
 

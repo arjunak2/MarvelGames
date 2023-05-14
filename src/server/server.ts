@@ -14,7 +14,12 @@ import {
     SocketData,
 } from "./ServerTypes";
 import { Question } from "../types/Question";
-import { GameBoardNavData, QuestionNavData, ScreenNames } from "../types/Screens";
+import {
+    GameBoardNavData,
+    QuestionNavData,
+    ScreenNames,
+} from "../types/Screens";
+import { QuestionPageData } from "../types/PageData";
 
 const HOST = "http://localhost:3000";
 const PORT = 5000;
@@ -39,6 +44,8 @@ httpServer.listen(PORT, () => {
 const CLIENTS: { [id: string]: Socket } = {};
 
 let CURRENT_SCREEN: ScreenNames = "GAME_BOARD";
+let QUESTION_PAGE_DATE: QuestionPageData = undefined;
+
 function updateScreen(screen: ScreenNames) {
     console.log(`Updating the screen to ${screen}`);
     CURRENT_SCREEN = screen;
@@ -122,6 +129,10 @@ io.on("connection", (socket) => {
         } else {
             socket.emit("sendQuestion", question);
         }
+    });
+    socket.on("updateQuestionPageData", (questionPageData) => {
+        QUESTION_PAGE_DATE = { ...QUESTION_PAGE_DATE, ...questionPageData };
+        emitToAllClients("questionPageDataUpdated", QUESTION_PAGE_DATE);
     });
 });
 
