@@ -44,7 +44,6 @@ function AnswerChoice({
     const { hoveredAnswerChoice } = useSelector((store) => {
         return store.questionPage;
     });
-    const dispatch = useDispatch();
 
     const onHover = () => {
         socket.emit("updateQuestionPageData", {
@@ -53,7 +52,7 @@ function AnswerChoice({
     };
     const onLeave = () => {
         socket.emit("updateQuestionPageData", {
-            hoveredAnswerChoice: undefined,
+            hoveredAnswerChoice: "",
         });
     };
     const generateClassName = (): string => {

@@ -21,6 +21,7 @@ import { useSelector, useDispatch } from "../../store";
 import { questionPageActions } from "src/store/QuestionPageSlice";
 import { QuestionPageState } from "src/types/QuestionPage";
 import "../../styles/Question.scss";
+import { initialState } from "src/types/PageData";
 
 interface QuestionPageProps {
     user?: User;
@@ -69,6 +70,8 @@ export function QuestionPage({ user = uu }: { user?: User }) {
         });
 
         socket.on("questionPageDataUpdated", (questionPageDataUpdate) => {
+            console.log("Question Page data updated")
+            console.log(JSON.stringify(questionPageDataUpdate))
             dispatch(
                 questionPageActions.updateQuestion(questionPageDataUpdate)
             );
@@ -104,7 +107,10 @@ function QuestionContent({ user = uu, question }: QuestionPageProps) {
 
     const answerQuestion = (chosenAnswer?: string) => {
         console.log("Moving to Completed state");
-        dispatch(questionPageActions.complete());
+        socket.emit("updateQuestionPageData", {
+            state: QuestionPageState.COMPLETED,
+            hoveredAnswerChoice: "",
+        });
 
         // @TODO updateScore
         if (chosenAnswer) {
@@ -125,17 +131,21 @@ function QuestionContent({ user = uu, question }: QuestionPageProps) {
 
     const linkPowers = () => {
         user.powerBank.timestop.activate = () => {
-            dispatch(questionPageActions.timeStop());
+            socket.emit("updateQuestionPageData", {
+                timerActive: false,
+            });
         };
         user.powerBank.double.activate = () => {
-            dispatch(questionPageActions.setPoints(points * 2));
+            socket.emit("updateQuestionPageData", {
+                points: points * 2,
+            });
         };
         user.powerBank.hint.activate = () => {};
     };
     useEffect(() => {
         linkPowers();
         socket.on("transitionToGameBoard", () => {
-            dispatch(questionPageActions.reset());
+            socket.emit("updateQuestionPageData", initialState);
             navigate(`/`);
         });
     }, []);

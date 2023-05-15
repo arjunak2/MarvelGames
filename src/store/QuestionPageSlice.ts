@@ -1,19 +1,24 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { QuestionPageState } from "../types/QuestionPage";
-import {
-    Points,
-    Question,
-    QuestionType,
-} from "../types/Question";
-import { QuestionPageData } from "../types/PageData";
+import { Points, Question, QuestionType } from "../types/Question";
+import { initialState, QuestionPageData } from "../types/PageData";
 
-const initialState: QuestionPageData = {
-    state: QuestionPageState.INITIAL,
-    questionType: QuestionType.NULL,
-    timerActive: true,
-    points: Points.One,
-    questionId: "",
+enum Actions {
+    COMPLETE,
+    TIME_STOP,
+    SET_POINTS,
+    RESET
+}
+const QuestionPageActions: { [index in Actions]: Partial<QuestionPageData> } = {
+    [Actions.COMPLETE]: {
+        state: QuestionPageState.COMPLETED,
+        hoveredAnswerChoice: "",
+    },
+    [Actions.TIME_STOP]: {timerActive: false},
+    [Actions.SET_POINTS]: {},
+    [Actions.RESET]: {},
 };
+ 
 
 export const questionPageSlice = createSlice({
     name: "questionPage",
