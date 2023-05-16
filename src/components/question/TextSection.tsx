@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Question_Text } from "src/types/Question";
 import { QuestionPageState } from "../../types/QuestionPage";
+import { useSelector } from "src/store";
 
 export function TextSection({
     question,
@@ -9,9 +10,12 @@ export function TextSection({
     pageState,
 }: {
     question: Question_Text;
-    onAnswer: (chosenAnswer?: string) => void;
+    onAnswer: (chosenAnswer: string) => void;
     pageState: QuestionPageState;
 }) {
+    const { chosenAnswer } = useSelector((store) => {
+        return store.questionPage;
+    });
     const pageComplete = pageState === QuestionPageState.COMPLETED;
     const inputRef: React.RefObject<HTMLInputElement> = useRef(null);
     return (
@@ -24,18 +28,18 @@ export function TextSection({
                 disabled={pageComplete}
                 isInvalid={
                     pageComplete &&
-                    !question.validateAnswer(`${inputRef.current?.value}`)
+                    !question.validateAnswer(`${chosenAnswer}`)
                 }
                 isValid={
                     pageComplete &&
-                    question.validateAnswer(`${inputRef.current?.value}`)
+                    question.validateAnswer(`${chosenAnswer}`)
                 }
             />
             <Button
                 type="submit"
                 onClick={() => {
                     const chosenAnswer = inputRef.current?.value;
-                    onAnswer(chosenAnswer);
+                    onAnswer(chosenAnswer!);
                 }}
                 disabled={pageComplete}
             >

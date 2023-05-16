@@ -8,13 +8,13 @@ const SW = ["#e6e6e6", "#CB3966", "#e60017", "#4E192F", "#1F0815"];
 
 interface TimerProps {
     pageState: QuestionPageState;
-    answerQuestion: (chosenAnswer?: string) => void;
+    timesUp: (chosenAnswer?: string) => void;
     disabled: boolean
 }
 
 export function Timer({
     pageState,
-    answerQuestion,
+    timesUp,
     disabled
 }: TimerProps) {
     const renderCountDownText = ({
@@ -57,7 +57,7 @@ export function Timer({
                 0,
             ]}
             onComplete={() => {
-                answerQuestion();
+                timesUp();
                 return { delay: 1 };
             }}
         >

@@ -18,7 +18,10 @@ import { Button, Spinner } from "react-bootstrap";
 import { socket } from "src/utils/WebSocket";
 import { GameBoardNavData } from "src/types/Screens";
 import { useSelector, useDispatch } from "../../store";
-import { questionPageActions } from "src/store/QuestionPageSlice";
+import {
+    QuestionPageActions,
+    questionPageActions,
+} from "src/store/QuestionPageSlice";
 import { QuestionPageState } from "src/types/QuestionPage";
 import "../../styles/Question.scss";
 import { initialState } from "src/types/PageData";
@@ -70,8 +73,8 @@ export function QuestionPage({ user = uu }: { user?: User }) {
         });
 
         socket.on("questionPageDataUpdated", (questionPageDataUpdate) => {
-            console.log("Question Page data updated")
-            console.log(JSON.stringify(questionPageDataUpdate))
+            console.log("Question Page data updated");
+            console.log(JSON.stringify(questionPageDataUpdate));
             dispatch(
                 questionPageActions.updateQuestion(questionPageDataUpdate)
             );
@@ -99,19 +102,16 @@ function Loader() {
 }
 
 function QuestionContent({ user = uu, question }: QuestionPageProps) {
-    const { state, timerActive, points } = useSelector((store) => {
-        return store.questionPage;
-    });
+    const { state, timerActive, points, chosenAnswer } = useSelector(
+        (store) => {
+            return store.questionPage;
+        }
+    );
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const answerQuestion = (chosenAnswer?: string) => {
+    const complete = () => {
         console.log("Moving to Completed state");
-        socket.emit("updateQuestionPageData", {
-            state: QuestionPageState.COMPLETED,
-            hoveredAnswerChoice: "",
-        });
-
         // @TODO updateScore
         if (chosenAnswer) {
             console.log(`Player submited this answer: ${chosenAnswer}`);
@@ -125,27 +125,38 @@ function QuestionContent({ user = uu, question }: QuestionPageProps) {
             console.log(`No Answer submitted!`);
         }
     };
+    const answerQuestion = (chosenAnswer: string) => {
+        socket.emit(
+            "updateQuestionPageData",
+            QuestionPageActions.COMPLETE(chosenAnswer)
+        );
+    };
+    const timesUp = () => {
+        socket.emit("updateQuestionPageData", QuestionPageActions.TIMES_UP());
+    };
     const goHome = () => {
         socket.emit("navigate", { name: "GAME_BOARD" });
     };
 
     const linkPowers = () => {
         user.powerBank.timestop.activate = () => {
-            socket.emit("updateQuestionPageData", {
-                timerActive: false,
-            });
+            socket.emit(
+                "updateQuestionPageData",
+                QuestionPageActions.TIME_STOP()
+            );
         };
         user.powerBank.double.activate = () => {
-            socket.emit("updateQuestionPageData", {
-                points: points * 2,
-            });
+            socket.emit(
+                "updateQuestionPageData",
+                QuestionPageActions.SET_POINTS(points * 2)
+            );
         };
         user.powerBank.hint.activate = () => {};
     };
     useEffect(() => {
         linkPowers();
         socket.on("transitionToGameBoard", () => {
-            socket.emit("updateQuestionPageData", initialState);
+            socket.emit("updateQuestionPageData", QuestionPageActions.RESET());
             navigate(`/`);
         });
     }, []);
@@ -155,7 +166,7 @@ function QuestionContent({ user = uu, question }: QuestionPageProps) {
             <div style={{ background: "#7d213b" }}>
                 <Timer
                     pageState={state}
-                    answerQuestion={answerQuestion}
+                    timesUp={timesUp}
                     disabled={!timerActive}
                 />
                 <Header text={question.query} />
@@ -167,17 +178,13 @@ function QuestionContent({ user = uu, question }: QuestionPageProps) {
                 <MultipleChoiceSection
                     pageState={state}
                     question={question}
-                    onAnswer={(answer) => {
-                        answerQuestion(answer);
-                    }}
+                    onAnswer={answerQuestion}
                 />
             ) : (
                 <TextSection
                     pageState={state}
                     question={question}
-                    onAnswer={(answer) => {
-                        answerQuestion(answer);
-                    }}
+                    onAnswer={answerQuestion}
                 />
             )}
             <div>{user.madeUpNames}</div>

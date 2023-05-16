@@ -3,22 +3,32 @@ import { QuestionPageState } from "../types/QuestionPage";
 import { Points, Question, QuestionType } from "../types/Question";
 import { initialState, QuestionPageData } from "../types/PageData";
 
-enum Actions {
-    COMPLETE,
-    TIME_STOP,
-    SET_POINTS,
-    RESET
-}
-const QuestionPageActions: { [index in Actions]: Partial<QuestionPageData> } = {
-    [Actions.COMPLETE]: {
+type Actions =
+    | "COMPLETE"
+    | "HOVER"
+    | "LEAVE"
+    | "TIME_STOP"
+    | "TIMES_UP"
+    | "SET_POINTS"
+    | "RESET";
+export const QuestionPageActions = {
+    COMPLETE: (chosenAnswer: string) => ({
         state: QuestionPageState.COMPLETED,
         hoveredAnswerChoice: "",
-    },
-    [Actions.TIME_STOP]: {timerActive: false},
-    [Actions.SET_POINTS]: {},
-    [Actions.RESET]: {},
+        chosenAnswer,
+    }),
+    HOVER: (answer: string) => ({ hoveredAnswerChoice: answer }),
+    LEAVE: () => ({ hoveredAnswerChoice: "" }),
+    TIME_STOP: () => ({ timerActive: false }),
+    TIMES_UP: () => ({
+        state: QuestionPageState.COMPLETED,
+        hoveredAnswerChoice: "",
+        timerActive: false,
+    }),
+
+    SET_POINTS: (points: number) => ({ points }),
+    RESET: () => initialState,
 };
- 
 
 export const questionPageSlice = createSlice({
     name: "questionPage",
