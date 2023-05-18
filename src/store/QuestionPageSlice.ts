@@ -19,13 +19,13 @@ export const QuestionPageActions = {
     }),
     HOVER: (answer: string) => ({ hoveredAnswerChoice: answer }),
     LEAVE: () => ({ hoveredAnswerChoice: "" }),
+    TEXT_UPDATE: (text: string) => ({ textInputUpdate: text }),
     TIME_STOP: () => ({ timerActive: false }),
     TIMES_UP: () => ({
         state: QuestionPageState.COMPLETED,
         hoveredAnswerChoice: "",
         timerActive: false,
     }),
-
     SET_POINTS: (points: number) => ({ points }),
     RESET: () => initialState,
 };
@@ -52,7 +52,13 @@ export const questionPageSlice = createSlice({
             state.points = question.points;
             state.questionType = question.type;
         },
-        updateQuestion: (
+        setQuestionPageData: (
+            _state,
+            { payload: data }: PayloadAction<QuestionPageData>
+        ) => {
+            return data
+        },
+        updateQuestionPageData: (
             state,
             {
                 payload: questionPageData,

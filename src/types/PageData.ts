@@ -16,4 +16,5 @@ export interface QuestionPageData {
     questionId: string;
     hoveredAnswerChoice?: string;
     chosenAnswer?: string;
+    textInputUpdate?: string;
 }
