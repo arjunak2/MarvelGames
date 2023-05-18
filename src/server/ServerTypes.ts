@@ -11,6 +11,7 @@ export interface ServerToClientEvents {
     transitionToQuestion: (question: Question) => void;
     transition: (data?: Question) => void;
     questionPageDataUpdated: (data: Partial<QuestionPageData>) => void;
+    questionPageDataSet: (data: QuestionPageData) => void;
 }
 
 export interface ClientToServerEvents {
@@ -20,6 +21,7 @@ export interface ClientToServerEvents {
     retrieveQuestion: (questionId: string) => void;
     navigate: (info: GameBoardNavData | QuestionNavData) => void;
     updateQuestionPageData: (data: Partial<QuestionPageData>) => void;
+    setQuestionPageData: (data: QuestionPageData) => void;
 }
 
 export interface InterServerEvents {

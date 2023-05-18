@@ -19,7 +19,10 @@ import {
     QuestionNavData,
     ScreenNames,
 } from "../types/Screens";
-import { QuestionPageData } from "../types/PageData";
+import {
+    QuestionPageData,
+    initialState as initialQuestionPageState,
+} from "../types/PageData";
 
 const HOST = "http://localhost:3000";
 const PORT = 5000;
@@ -44,7 +47,7 @@ httpServer.listen(PORT, () => {
 const CLIENTS: { [id: string]: Socket } = {};
 
 let CURRENT_SCREEN: ScreenNames = "GAME_BOARD";
-let QUESTION_PAGE_DATE: QuestionPageData = undefined;
+let QUESTION_PAGE_DATE: QuestionPageData = initialQuestionPageState;
 
 function updateScreen(screen: ScreenNames) {
     console.log(`Updating the screen to ${screen}`);
@@ -130,9 +133,13 @@ io.on("connection", (socket) => {
             socket.emit("sendQuestion", question);
         }
     });
-    socket.on("updateQuestionPageData", (questionPageData) => {
-        QUESTION_PAGE_DATE = { ...QUESTION_PAGE_DATE, ...questionPageData };
-        emitToAllClients("questionPageDataUpdated", QUESTION_PAGE_DATE);
+    socket.on("updateQuestionPageData", (dataUpdate) => {
+        QUESTION_PAGE_DATE = { ...QUESTION_PAGE_DATE, ...dataUpdate };
+        emitToAllClients("questionPageDataUpdated", dataUpdate);
+    });
+
+    socket.on("setQuestionPageData", (questionPageData) => {
+        QUESTION_PAGE_DATE = questionPageData;
     });
 });
 

@@ -51,6 +51,8 @@ const uu = new User("agent13");
 export function QuestionPage({ user = uu }: { user?: User }) {
     const [question, setQuestion] = useState(undefined as Question | undefined);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     let { questionId } = useParams();
     const passedInQuestion = useLocation()?.state?.question;
     const fetchQuestion = () => {
@@ -73,11 +75,21 @@ export function QuestionPage({ user = uu }: { user?: User }) {
         });
 
         socket.on("questionPageDataUpdated", (questionPageDataUpdate) => {
-            console.log("Question Page data updated");
-            console.log(JSON.stringify(questionPageDataUpdate));
+            console.log("Question Page data updated", JSON.stringify(questionPageDataUpdate));
             dispatch(
-                questionPageActions.updateQuestion(questionPageDataUpdate)
+                questionPageActions.updateQuestionPageData(questionPageDataUpdate)
             );
+        });
+
+        socket.on("questionPageDataSet", (questionPageData) => {
+            dispatch(
+                questionPageActions.setQuestionPageData(questionPageData)
+            );
+        });
+        socket.on("transitionToGameBoard", () => {
+            socket.emit("updateQuestionPageData", QuestionPageActions.RESET());
+            dispatch(questionPageActions.reset())
+            navigate(`/`);
         });
     }, []);
 
@@ -108,7 +120,6 @@ function QuestionContent({ user = uu, question }: QuestionPageProps) {
         }
     );
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const complete = () => {
         console.log("Moving to Completed state");
@@ -155,10 +166,6 @@ function QuestionContent({ user = uu, question }: QuestionPageProps) {
     };
     useEffect(() => {
         linkPowers();
-        socket.on("transitionToGameBoard", () => {
-            socket.emit("updateQuestionPageData", QuestionPageActions.RESET());
-            navigate(`/`);
-        });
     }, []);
 
     return (
