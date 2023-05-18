@@ -81,7 +81,12 @@ export const QUESTIONS_DB: { [id: string]: Question } = {
         "Reality Is Often Disappointing. Now, Reality Can Be Whatever I Want.",
         "Thanos"
     ),
-    [QuestionCategory.CATEGORY_3 + "-" + Points.Two]: defaultMCQuestion,
+    [QuestionCategory.CATEGORY_3 + "-" + Points.Two]: new Question_Text(
+        Points.Two,
+        QuestionCategory.CATEGORY_3,
+        "Ain't no thing like me, 'cept me",
+        "Rocket"
+    ),
     [QuestionCategory.CATEGORY_3 + "-" + Points.Three]: new Question_MC(
         Points.Three,
         QuestionCategory.CATEGORY_3,
