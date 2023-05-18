@@ -117,6 +117,9 @@ io.on("connection", (socket) => {
             emitToAllClients("transitionToGameBoard");
         else if (info.name === "QUESTION") {
             const question = readQuestion(info.data.questionId);
+            QUESTION_PAGE_DATE.questionId = question.id;
+            QUESTION_PAGE_DATE.points = question.points;
+            QUESTION_PAGE_DATE.questionType = question.type;
             emitToAllClients("transitionToQuestion", question);
         }
     });
