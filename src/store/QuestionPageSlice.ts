@@ -7,27 +7,32 @@ type Actions =
     | "COMPLETE"
     | "HOVER"
     | "LEAVE"
+    | "TEXT_UPDATE"
     | "TIME_STOP"
     | "TIMES_UP"
     | "SET_POINTS"
     | "RESET";
 export const QuestionPageActions = {
-    COMPLETE: (chosenAnswer: string) => ({
+    COMPLETE: (chosenAnswer: string): Partial<QuestionPageData> => ({
         state: QuestionPageState.COMPLETED,
         hoveredAnswerChoice: "",
         chosenAnswer,
     }),
-    HOVER: (answer: string) => ({ hoveredAnswerChoice: answer }),
-    LEAVE: () => ({ hoveredAnswerChoice: "" }),
-    TEXT_UPDATE: (text: string) => ({ textInputUpdate: text }),
-    TIME_STOP: () => ({ timerActive: false }),
-    TIMES_UP: () => ({
+    HOVER: (answer: string): Partial<QuestionPageData> => ({
+        hoveredAnswerChoice: answer,
+    }),
+    LEAVE: (): Partial<QuestionPageData> => ({ hoveredAnswerChoice: "" }),
+    TEXT_UPDATE: (text: string): Partial<QuestionPageData> => ({
+        textInputUpdate: text,
+    }),
+    TIME_STOP: (): Partial<QuestionPageData> => ({ timerActive: false }),
+    TIMES_UP: (): Partial<QuestionPageData> => ({
         state: QuestionPageState.COMPLETED,
         hoveredAnswerChoice: "",
         timerActive: false,
     }),
-    SET_POINTS: (points: number) => ({ points }),
-    RESET: () => initialState,
+    SET_POINTS: (points: number): Partial<QuestionPageData> => ({ points }),
+    RESET: (): Partial<QuestionPageData> => initialState,
 };
 
 export const questionPageSlice = createSlice({
@@ -56,7 +61,7 @@ export const questionPageSlice = createSlice({
             _state,
             { payload: data }: PayloadAction<QuestionPageData>
         ) => {
-            return data
+            return data;
         },
         updateQuestionPageData: (
             state,
