@@ -79,6 +79,7 @@ export const LoginModal = forwardRef((props, ref) => {
         handleClose,
         handleShow,
         toggle,
+        color,
     }));
 
     return (
@@ -105,8 +106,12 @@ export const LoginModal = forwardRef((props, ref) => {
                         setColor(selectedColor);
                     }}
                 >
-                    <Dropdown.Toggle variant="primary" className={`w-100 ${color} fs-5 rounded-3`} id="colorPicker">
-                        Select Color
+                    <Dropdown.Toggle
+                        variant="primary"
+                        className={`w-100 ${color} fs-5 rounded-3`}
+                        id="colorPicker"
+                    >
+                        {color || "Select Color"}
                     </Dropdown.Toggle>
                     <DropDownOptions />
                 </Dropdown>
