@@ -8,7 +8,11 @@ export class User {
         [Powers.DOUBLE]: { count: 1, activate: () => {} },
         [Powers.HINT]: { count: 3, activate: () => {} },
     };
-    constructor(public madeUpNames: string) {
+    team: null | string = null;
+    constructor(public madeUpNames: string, public color: string) {
         this.id = uuidv4();
+    }
+    joinTeam(teamId: string) {
+        this.team = teamId;
     }
 }
