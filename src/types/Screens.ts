@@ -1,4 +1,4 @@
-export type ScreenNames = "GAME_BOARD" | "QUESTION";
+export type ScreenNames = "GAME_BOARD" | "QUESTION" | "LOGIN";
 
 export interface NavigationData {
     name: ScreenNames;

@@ -3,6 +3,7 @@ import "./styles/App.scss";
 import { GameBoard } from "./components/GameBoard";
 import "bootstrap";
 import { QuestionPage } from "./components/question/Question";
+import { LoginPage } from "./components/login/LoginPage";
 import { socket } from "./utils/WebSocket";
 import { ScreenNames } from "./types/Screens";
 
@@ -12,6 +13,8 @@ function renderScreen(currentScreen: ScreenNames) {
             return <GameBoard />;
         case "QUESTION":
             return <QuestionPage />;
+        case "LOGIN":
+            return <LoginPage />;
     }
 }
 function App() {
@@ -21,7 +24,7 @@ function App() {
         });
     }, []);
 
-    return <div className="App">{renderScreen("GAME_BOARD")}</div>;
+    return <div className="App">{renderScreen("LOGIN")}</div>;
 }
 
 export default App;
