@@ -60,11 +60,11 @@ const ColorOption = ({
 
 const DropDownOptions = () => {
     return (
-        <>
+        <Dropdown.Menu>
             {GRADIENTS.map((gradient) => (
                 <ColorOption gradient={gradient} />
             ))}
-        </>
+        </Dropdown.Menu>
     );
 };
 
@@ -93,9 +93,8 @@ export const LoginModal = forwardRef((props, ref) => {
                 <Modal.Title>Welcome!</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <DropdownButton
+                <Dropdown
                     title="Select Color"
-                    variant="btn-primary"
                     onSelect={(
                         eventKey,
                         event: React.SyntheticEvent<unknown, Event>
@@ -106,8 +105,11 @@ export const LoginModal = forwardRef((props, ref) => {
                         setColor(selectedColor);
                     }}
                 >
+                    <Dropdown.Toggle variant="primary" className={`w-100 ${color} fs-5 rounded-3`} id="colorPicker">
+                        Select Color
+                    </Dropdown.Toggle>
                     <DropDownOptions />
-                </DropdownButton>
+                </Dropdown>
                 Enter you info
             </Modal.Body>
             <Modal.Footer>

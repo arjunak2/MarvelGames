@@ -4,13 +4,16 @@
     overflow-y: scroll;
     overflow-x: hidden;
     border-radius: 0px 0px 25px 25px;
-    padding: 15px;
+    padding: 0px 15px 5px 15px;
+}
+
+#colorPicker {
+    border: none;
 }
 
 /* width */
 ::-webkit-scrollbar {
     width: 15px;
-    
 }
 
 /* Track */
@@ -29,5 +32,4 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #747474;
     // display:inline;
-    
 }
