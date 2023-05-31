@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { PowerBank, Powers } from "./Powers";
 import { IconNames } from "../assets";
+import { GradientType } from "./Gradient";
 
 export class User {
     id: string;
@@ -12,7 +13,7 @@ export class User {
     team: null | string = null;
     constructor(
         public madeUpNames: string,
-        public color: string,
+        public color: GradientType,
         public icon: IconNames
     ) {
         this.id = uuidv4();

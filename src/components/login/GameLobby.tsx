@@ -38,7 +38,7 @@ const PlayerCard = ({ player }: { player: User }) => {
 };
 export const GameLobby = () => {
     const player1 = new User("Peter Parker", "desert_glow", "Hulk");
-    const player2 = new User("Nicholas Fury", "mauve", "Hulk");
+    const player2 = new User("Nicholas Fury", "vermillion_sand", "Hulk");
     return (
         <>
             <h1>{"Lobby"}</h1>

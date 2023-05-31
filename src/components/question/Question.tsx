@@ -46,7 +46,7 @@ function Header({ text }: { text: string }) {
     );
 }
 
-const uu = new User("agent13","white", "Hulk");
+const uu = new User("agent13", "angel_care", "Hulk");
 
 export function QuestionPage({ user = uu }: { user?: User }) {
     const [question, setQuestion] = useState(undefined as Question | undefined);
