@@ -13,14 +13,13 @@ import {
     Image,
 } from "react-bootstrap";
 import "../../styles/LoginModal.scss";
-import { SlowBuffer } from "buffer";
-import BlackPantherIcon from "../../assets/icons8-black-panther-mask.svg";
-import { GRADIENTS, GradientType } from "../../types/Gradient";
+import { GRADIENTS, GradientType as GradientName } from "../../types/Gradient";
+import { IconNames, IconType, Icons } from "src/assets";
 
-const ColorOption = ({ gradient }: { gradient: GradientType }) => {
+const GradientOption = ({ gradient }: { gradient: GradientName }) => {
     return (
         <Dropdown.Item
-            eventKey="1"
+            eventKey={gradient}
             as="button"
             className={`d-flex flex-row align-items-center rounded-4 m-2 p-2 ${gradient}`}
         >
@@ -33,11 +32,45 @@ const ColorOption = ({ gradient }: { gradient: GradientType }) => {
     );
 };
 
-const DropDownOptions = () => {
+const GradientPickerOptions = () => {
     return (
         <Dropdown.Menu>
             {GRADIENTS.map((gradient) => (
-                <ColorOption gradient={gradient} />
+                <GradientOption gradient={gradient} />
+            ))}
+        </Dropdown.Menu>
+    );
+};
+
+const GradientPicker = ({
+    color,
+    setColor,
+}: {
+    color?: GradientName;
+    setColor: (color: GradientName) => void;
+}) => {
+    return (
+        <Dropdown
+            title="Select Color"
+            onSelect={(
+                eventKey
+            ) => {
+                const selectedColor = eventKey;
+                setColor(selectedColor as GradientName);
+            }}
+        >
+            <Dropdown.Toggle
+                variant="primary"
+                className={`w-100 ${color} fs-5 rounded-3`}
+                id="colorPicker"
+            >
+                {color || "Select Color"}
+            </Dropdown.Toggle>
+            <GradientPickerOptions />
+        </Dropdown>
+    );
+};
+
             ))}
         </Dropdown.Menu>
     );
@@ -45,7 +78,7 @@ const DropDownOptions = () => {
 
 export const LoginModal = forwardRef((props, ref) => {
     const [show, setShow] = useState(true);
-    const [color, setColor] = useState<string | undefined>(undefined);
+    const [color, setColor] = useState<GradientName | undefined>(undefined);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -72,27 +105,7 @@ export const LoginModal = forwardRef((props, ref) => {
             </Modal.Header>
 
             <Modal.Body>
-                <Dropdown
-                    title="Select Color"
-                    onSelect={(
-                        eventKey,
-                        event: React.SyntheticEvent<unknown, Event>
-                    ) => {
-                        const selectedColor = (event.target as HTMLElement)
-                            .innerText;
-
-                        setColor(selectedColor);
-                    }}
-                >
-                    <Dropdown.Toggle
-                        variant="primary"
-                        className={`w-100 ${color} fs-5 rounded-3`}
-                        id="colorPicker"
-                    >
-                        {color || "Select Color"}
-                    </Dropdown.Toggle>
-                    <DropDownOptions />
-                </Dropdown>
+                <GradientPicker color={color} setColor={setColor} />
                 Enter you info
             </Modal.Body>
             <Modal.Footer>

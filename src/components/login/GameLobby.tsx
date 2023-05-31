@@ -15,7 +15,6 @@ const PlayerCard = ({ player }: { player: User }) => {
     const cardRef: React.RefObject<HTMLDivElement> = useRef(null);
     const shade = player.color;
     const ICON = Icons[player.icon]
-    console.log("Hey");
     return (
         <div
             ref={cardRef}
