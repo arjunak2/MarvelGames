@@ -40,6 +40,7 @@
         #b12a5b 100%
     );
     color: #8b2047;
+    fill: #8b2047;
 }
 
 /*006 Lady Lips*/
@@ -141,6 +142,7 @@
 .everlasting_sky {
     background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
     color: #a15959;
+    fill: #a15959;
 }
 
 /*030 Happy Fisher*/
@@ -152,6 +154,7 @@
 .blessing {
     background-image: linear-gradient(45deg, #fddb92 0%, #d1fdff 100%);
     color: #2b5146;
+    fill: #2b5146;
 }
 
 /*032 Sharpeye Eagle*/
@@ -301,6 +304,7 @@
         #1c1a27 100%
     );
     color: #3e1135;
+    fill: #3e1135;
 }
 
 /*064 Red Salvation*/
@@ -332,6 +336,7 @@
 .aqua_splash {
     background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
     color: #09322e;
+    fill: #09322e;
 }
 
 /*071 Above Clouds*/
@@ -540,6 +545,7 @@
 .vicious_stance {
     background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
     color: #8d96a5;
+    fill: #8d96a5;
 }
 
 /*101 Palo Alto*/
@@ -618,12 +624,14 @@
 .child_care {
     background-image: linear-gradient(-20deg, #f794a4 0%, #fdd6bd 100%);
     color: #804851;
+    fill: #804851;
 }
 
 /*113 Flying Lemon*/
 .flying_lemon {
     background-image: linear-gradient(60deg, #64b3f4 0%, #c2e59c 100%);
     color: #37625f;
+    fill: #37625f;
 }
 
 /*114 New Retrowave*/
@@ -668,6 +676,7 @@
         #56317a 100%
     );
     color: #a5e6e9;
+    fill: #a5e6e9;
 }
 
 /*119 Chemic Aqua*/
@@ -735,6 +744,7 @@
 .colorful_peach {
     background-image: linear-gradient(to right, #ed6ea0 0%, #ec8c69 100%);
     color: #783852;
+    fill: #783852;
 }
 
 /*127 Gentle Care*/
@@ -832,111 +842,24 @@
     background-image: linear-gradient(to top, #50cc7f 0%, #f5d100 100%);
 }
 
-/*139 High Flight*/
-.high_flight {
-    background-image: linear-gradient(to right, #0acffe 0%, #495aff 100%);
-}
-
-/*140 Mole Hall*/
-.mole_hall {
-    background-image: linear-gradient(-20deg, #616161 0%, #9bc5c3 100%);
-}
-
-/*141 Earl Gray*/
-.earl_gray {
-    background: #e4e4e1
-            radial-gradient(
-                at top center,
-                rgba(255, 255, 255, 0.03) 0%,
-                rgba(0, 0, 0, 0.03) 100%
-            ),
-        linear-gradient(
-            to top,
-            rgba(255, 255, 255, 0.1) 0%,
-            rgba(143, 152, 157, 0.6) 100%
-        );
-    background-blend-mode: normal, multiply;
-}
-
-/*142 Space Shift*/
-.space_shift {
-    background-image: linear-gradient(
-        60deg,
-        #3d3393 0%,
-        #2b76b9 37%,
-        #2cacd1 65%,
-        #35eb93 100%
-    );
-}
-
-/*143 Forest Inei*/
-.forest_inei {
-    background-image: linear-gradient(to top, #df89b5 0%, #bfd9fe 100%);
-}
 
 /*144 Royal Garden*/
 .royal_garden {
     background-image: linear-gradient(to right, #ed6ea0 0%, #ec8c69 100%);
 }
 
-/*145 Rich Metal*/
-.rich_metal {
-    background-image: linear-gradient(to right, #d7d2cc 0%, #304352 100%);
-}
-
 /*146 Juicy Cake*/
 .juicy_cake {
-    background-image: linear-gradient(to top, #e14fad 0%, #f9d423 100%);
-}
-
-/*147 Smart Indigo*/
-.smart_indigo {
-    background-image: linear-gradient(to top, #b224ef 0%, #7579ff 100%);
-}
-
-/*148 Sand Strike*/
-.sand_strike {
-    background-image: linear-gradient(
-        to right,
-        #c1c161 0%,
-        #c1c161 0%,
-        #d4d4b1 100%
-    );
-}
-
-/*149 Norse Beauty*/
-.norse_beauty {
-    background-image: linear-gradient(to right, #ec77ab 0%, #7873f5 100%);
-}
-
-/*150 Aqua Guidance*/
-.aqua_guidance {
-    background-image: linear-gradient(to top, #007adf 0%, #00ecbc 100%);
+    background-image: linear-gradient(25deg, #e14fad 0%, #f9d423 100%);
+    color: #a3632e;
+    fill: #a3632e;
 }
 
 /*151 Sun Veggie*/
 .sun_veggie {
     background-image: linear-gradient(-225deg, #20e2d7 0%, #f9fea5 100%);
-}
-
-/*152 Sea Lord*/
-.sea_lord {
-    background-image: linear-gradient(
-        -225deg,
-        #2cd8d5 0%,
-        #c5c1ff 56%,
-        #ffbac3 100%
-    );
-}
-
-/*153 Black Sea*/
-.black_sea {
-    background-image: linear-gradient(
-        -225deg,
-        #2cd8d5 0%,
-        #6b8dd6 48%,
-        #8e37d7 100%
-    );
+    color: #2b6643;
+    fill: #2b6643;
 }
 
 /*154 Grass Shampoo*/
@@ -947,31 +870,8 @@
         #90f9c4 48%,
         #39f3bb 100%
     );
-}
-
-/*155 Landing Aircraft*/
-.landing_aircraft {
-    background-image: linear-gradient(
-        -225deg,
-        #5d9fff 0%,
-        #b8dcff 48%,
-        #6bbbff 100%
-    );
-}
-
-/*156 Witch Dance*/
-.witch_dance {
-    background-image: linear-gradient(-225deg, #a8bfff 0%, #884d80 100%);
-}
-
-/*157 Sleepless Night*/
-.sleepless_night {
-    background-image: linear-gradient(
-        -225deg,
-        #5271c4 0%,
-        #b19fff 48%,
-        #eca1fe 100%
-    );
+    color: #3c9776;
+    fill: #3c9776;
 }
 
 /*158 Angel Care*/
@@ -982,77 +882,36 @@
         #ffa99f 48%,
         #ff719a 100%
     );
-}
-
-/*159 Crystal River*/
-.crystal_river {
-    background-image: linear-gradient(
-        -225deg,
-        #22e1ff 0%,
-        #1d8fe1 48%,
-        #625eb1 100%
-    );
-}
-
-/*160 Soft Lipstick*/
-.soft_lipstick {
-    background-image: linear-gradient(-225deg, #b6cee8 0%, #f578dc 100%);
+    color: #b3586a;
+    fill: #b3586a;
 }
 
 /*161 Salt Mountain*/
 .salt_mountain {
     background-image: linear-gradient(-225deg, #fffeff 0%, #d7fffe 100%);
+    color: #21b3ae;
+    fill: #21b3ae;
 }
 
 /*162 Perfect White*/
 .perfect_white {
     background-image: linear-gradient(-225deg, #e3fdf5 0%, #ffe6fa 100%);
-}
-
-/*163 Fresh Oasis*/
-.fresh_oasis {
-    background-image: linear-gradient(-225deg, #7de2fc 0%, #b9b6e5 100%);
+    color: #bf8eb8;
+    fill: #bf8eb8;
 }
 
 /*164 Strict November*/
 .strict_november {
     background-image: linear-gradient(-225deg, #cbbacc 0%, #2580b3 100%);
+    color: #185476;
+    fill: #185476;
 }
 
 /*165 Morning Salad*/
 .morning_salad {
     background-image: linear-gradient(-225deg, #b7f8db 0%, #50a7c2 100%);
     color: #055a4c;
-}
-
-/*166 Deep Relief*/
-.deep_relief {
-    background-image: linear-gradient(
-        -225deg,
-        #7085b6 0%,
-        #87a7d9 50%,
-        #def3f8 100%
-    );
-}
-
-/*167 Sea Strike*/
-.sea_strike {
-    background-image: linear-gradient(
-        -225deg,
-        #77ffd2 0%,
-        #6297db 48%,
-        #1eecff 100%
-    );
-}
-
-/*168 Night Call*/
-.night_call {
-    background-image: linear-gradient(
-        -225deg,
-        #ac32e4 0%,
-        #7918f2 48%,
-        #4801ff 100%
-    );
+    fill: #055a4c;
 }
 
 /*169 Supreme Sky*/
@@ -1063,6 +922,8 @@
         #57f2cc 48%,
         #4596fb 100%
     );
+    color: #145747;
+    fill: #145747;
 }
 
 /*170 Light Blue*/
@@ -1073,6 +934,8 @@
         #57e9f2 48%,
         #45d4fb 100%
     );
+    color: #066144;
+    fill: #066144;
 }
 
 /*171 Mind Crawl*/
@@ -1083,61 +946,26 @@
         #3584a7 51%,
         #30d2be 100%
     );
-}
-
-/*172 Lily Meadow*/
-.lily_meadow {
-    background-image: linear-gradient(
-        -225deg,
-        #65379b 0%,
-        #886aea 53%,
-        #6457c6 100%
-    );
-}
-
-/*173 Sugar Lollipop*/
-.sugar_lollipop {
-    background-image: linear-gradient(
-        -225deg,
-        #a445b2 0%,
-        #d41872 52%,
-        #ff0066 100%
-    );
-}
-
-/*177 Frozen Heat*/
-.frozen_heat {
-    background-image: linear-gradient(
-        -225deg,
-        #ff057c 0%,
-        #7c64d5 48%,
-        #4cc3ff 100%
-    );
-}
-
-/*180 Perfect Blue*/
-.perfect_blue {
-    background-image: linear-gradient(
-        -225deg,
-        #3d4e81 0%,
-        #5753c9 48%,
-        #6e7ff3 100%
-    );
+    color: #85d0c7;
+    fill: #85d0c7;
 }
 
 .morning_eggplant {
     background-image: linear-gradient(-45deg, #534666 20%, #138086 100%);
     color: #c5e1c2;
+    fill: #c5e1c2;
 }
 
 .apple_dew {
     background-image: linear-gradient(45deg, #cff4d2 20%, #56c596 100%);
     color: #2f6a51;
+    fill: #2f6a51;
 }
 
 .slate {
     background-image: linear-gradient(25deg, #4a707a 20%, #7697a0 100%);
     color: #1e3640;
+    fill: #1e3640;
 }
 
 .vermillion_circus {
@@ -1147,57 +975,69 @@
 .vermillion_sand {
     background-image: linear-gradient(-45deg, #e4c7b7 0%, #8b4c70 100%);
     color: #452b38;
+    fill: #452b38;
 }
 
 .desert_glow {
     background-image: linear-gradient(45deg, #de5b6d 0%, #f2a490 100%);
     color: #652a31;
+    fill: #652a31;
 }
 
 .bruised_desert {
     background-image: linear-gradient(45deg, #ae6378 0%, #d87f81 100%);
     color: #4e1a29;
+    fill: #4e1a29;
 }
 
 .peach_stone {
     background-image: linear-gradient(45deg, #d4cfc9 0%, #d45769 100%);
     color: #6e2d37;
+    fill: #6e2d37;
 }
 
 .bleached_blue {
     background-image: linear-gradient(45deg, #308695 0%, #d4cfc9 80%);
     color: #1a454d;
+    fill: #1a454d;
 }
 
 .decent {
     background-image: linear-gradient(45deg, #4ca1af 0%, #c4e0e5 80%);
     color: #1f4045;
+    fill: #1f4045;
 }
 .royal {
     background-image: linear-gradient(45deg, #141e30 0%, #243b55 80%);
     color: #a5b8d2;
+    fill: #a5b8d2;
 }
 .shades_50 {
     background-image: linear-gradient(45deg, #bdc3c7 0%, #2c3e50 80%);
     color: #212e3b;
+    fill: #212e3b;
 }
 
 .mauve {
     background-image: linear-gradient(45deg, #42275a 0%, #734b6d 80%);
     color: #c399bf;
+    fill: #c399bf;
 }
 .scorched_desert {
     background-image: linear-gradient(45deg, #54003e -10%, #e16f69 100%);
     color: #f8aeac;
+    fill: #f8aeac;
 }
 
 .morning_dew {
     background-image: linear-gradient(45deg, #3d806f 0%, #a4e8af 80%);
     color: #23483e;
+    fill: #23483e;
 }
 .summer_orange {
     background-image: linear-gradient(45deg, #feb47b 0%, #ff643f 100%);
     color: #7b3321;
+    fill: #7b3321;
 }
 
 .dark_forest {
@@ -1208,4 +1048,5 @@
         #33524d 100%
     );
     color: #99c3b8;
+    fill: #99c3b8;
 }

@@ -19,5 +19,5 @@
         "outDir": "dist"
     },
     "paths": { "#components/*": ["src/components/*"] },
-    "include": ["src/*", "tst/App.test.tsx"]
+    "include": ["src/**/*", "tst/App.test.tsx"]
 }

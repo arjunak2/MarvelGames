@@ -4,45 +4,20 @@ import React, {
     useImperativeHandle,
     useState,
 } from "react";
-import { Button, Dropdown, DropdownButton, Modal } from "react-bootstrap";
+import {
+    Button,
+    Dropdown,
+    DropdownButton,
+    Form,
+    Modal,
+    Image,
+} from "react-bootstrap";
 import "../../styles/LoginModal.scss";
 import { SlowBuffer } from "buffer";
+import BlackPantherIcon from "../../assets/icons8-black-panther-mask.svg";
+import { GRADIENTS, GradientType } from "../../types/Gradient";
 
-export const GRADIENTS = [
-    "aqua_splash",
-    "vicious_stance",
-    "young_passion",
-    "morning_salad",
-    "flying_lemon",
-    "colorful_peach",
-    "dense_water",
-    "child_care",
-    "morning_eggplant",
-    "apple_dew",
-    "peach_stone",
-    "slate",
-    "vermillion_sand",
-    "desert_glow",
-    "bruised_desert",
-    "bleached_blue",
-    "decent",
-    "royal",
-    "shades_50",
-    "mauve",
-    "summer_orange",
-    "morning_dew",
-    "scorched_desert",
-    "dark_forest",
-    "everlasting_sky",
-    "blessing",
-    "soft_cherish",
-];
-
-const ColorOption = ({
-    gradient,
-}: {
-    gradient: (typeof GRADIENTS)[number];
-}) => {
+const ColorOption = ({ gradient }: { gradient: GradientType }) => {
     return (
         <Dropdown.Item
             eventKey="1"
@@ -82,6 +57,8 @@ export const LoginModal = forwardRef((props, ref) => {
         color,
     }));
 
+    // const qq = transform.sync( SVG, { icon: true }, { componentName: 'MyComponent' }, )
+
     return (
         <Modal
             show={show}
@@ -93,6 +70,7 @@ export const LoginModal = forwardRef((props, ref) => {
             <Modal.Header className={color}>
                 <Modal.Title>Welcome!</Modal.Title>
             </Modal.Header>
+
             <Modal.Body>
                 <Dropdown
                     title="Select Color"
