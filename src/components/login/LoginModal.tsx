@@ -25,7 +25,7 @@ interface LoginModalProps {
 }
 export const LoginModal = forwardRef((props: LoginModalProps, ref) => {
     const [show, setShow] = useState(true);
-    const [name, setName] = useState<string | undefined>(props.name);
+    const [name, setName] = useState<string | undefined>(props.name || "");
     const [color, setColor] = useState<GradientName | undefined>(props.color);
     const [icon, setIcon] = useState<IconNames | undefined>(props.icon);
 
@@ -56,7 +56,7 @@ export const LoginModal = forwardRef((props: LoginModalProps, ref) => {
             centered
         >
             <Modal.Header className={color}>
-                <Modal.Title>Welcome!</Modal.Title>
+                <Modal.Title>{`Welcome ${name}`}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <h5>Enter your personelle details</h5>
