@@ -18,11 +18,16 @@ import { GRADIENTS, GradientType as GradientName } from "../../types/Gradient";
 import { IconNames, IconType, Icons } from "src/assets";
 import { Picker, PickerTypes } from "./picker/Picker";
 
-export const LoginModal = forwardRef((props, ref) => {
+interface LoginModalProps {
+    name?: string;
+    color?: GradientName;
+    icon?: IconNames;
+}
+export const LoginModal = forwardRef((props: LoginModalProps, ref) => {
     const [show, setShow] = useState(true);
-    const [name, setName] = useState<string | undefined>(undefined);
-    const [color, setColor] = useState<GradientName | undefined>(undefined);
-    const [icon, setIcon] = useState<IconNames | undefined>(undefined);
+    const [name, setName] = useState<string | undefined>(props.name);
+    const [color, setColor] = useState<GradientName | undefined>(props.color);
+    const [icon, setIcon] = useState<IconNames | undefined>(props.icon);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
