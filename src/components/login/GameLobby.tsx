@@ -33,7 +33,7 @@ export const GameLobby = () => {
     const player2 = new User(
         "Nicholas Fury",
         "vermillion_sand",
-        "IronMan"
+        "Daredevil"
     );
     return (
         <>

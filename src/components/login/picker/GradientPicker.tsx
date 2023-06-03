@@ -1,5 +1,8 @@
 import { Dropdown } from "react-bootstrap";
-import { GRADIENTS, GradientType as GradientName } from "../../../types/Gradient";
+import {
+    GRADIENTS,
+    GradientType as GradientName,
+} from "../../../types/Gradient";
 import { IconNames } from "src/assets";
 
 export const GradientOption = ({ gradient }: { gradient: GradientName }) => {

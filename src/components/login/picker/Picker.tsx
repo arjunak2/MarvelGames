@@ -26,17 +26,22 @@ export const Picker = <T extends GradientName | IconNames>({
                 setValue(eventKey as T);
             }}
         >
-            <Dropdown.Toggle
-                variant="primary"
-                className={`w-100 ${value} fs-5 rounded-3`}
-            >
-                {value || title}
-            </Dropdown.Toggle>
-            {pickerType === PickerTypes.COLOR ? (
-                <GradientPickerOptions />
-            ) : (
-                <IconPickerOptions />
-            )}
+            <div className="d-flex flex-row">
+                <h4>{`${pickerType}:`}</h4>
+                <Dropdown.Toggle
+                    variant="primary"
+                    className={`w-100 ${value} fs-5 rounded-3`}
+                >
+                    <h5 style={{ display: "inline-block" }}>
+                        {value || title}
+                    </h5>
+                </Dropdown.Toggle>
+                {pickerType === PickerTypes.COLOR ? (
+                    <GradientPickerOptions />
+                ) : (
+                    <IconPickerOptions />
+                )}
+            </div>
         </Dropdown>
     );
 };
