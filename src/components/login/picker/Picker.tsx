@@ -1,4 +1,4 @@
-import { Dropdown } from "react-bootstrap";
+import { Dropdown, InputGroup } from "react-bootstrap";
 import { GradientType as GradientName } from "../../../types/Gradient";
 import { IconNames } from "src/assets";
 import { GradientPickerOptions } from "./GradientPicker";
@@ -20,17 +20,17 @@ export const Picker = <T extends GradientName | IconNames>({
 }) => {
     const title = `Select ${pickerType}`;
     return (
-        <Dropdown
-            title={title}
-            onSelect={(eventKey) => {
-                setValue(eventKey as T);
-            }}
-        >
-            <div className="d-flex flex-row">
-                <h4>{`${pickerType}:`}</h4>
+        <InputGroup className="flex-nowrap mb-3" size="lg">
+            <InputGroup.Text>{pickerType}</InputGroup.Text>
+            <Dropdown
+                title={title}
+                onSelect={(eventKey) => {
+                    setValue(eventKey as T);
+                }}
+            >
                 <Dropdown.Toggle
                     variant="primary"
-                    className={`w-100 ${value} fs-5 rounded-3`}
+                    className={`w-100 ${value} fs-5 border-0`}
                 >
                     <h5 style={{ display: "inline-block" }}>
                         {value || title}
@@ -41,7 +41,7 @@ export const Picker = <T extends GradientName | IconNames>({
                 ) : (
                     <IconPickerOptions />
                 )}
-            </div>
-        </Dropdown>
+            </Dropdown>
+        </InputGroup>
     );
 };
