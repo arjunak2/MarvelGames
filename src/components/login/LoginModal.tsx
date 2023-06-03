@@ -32,7 +32,14 @@ export const LoginModal = forwardRef((props: LoginModalProps, ref) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const toggle = () => setShow(!show);
-    const submit = () => {};
+
+    const submit = () => {
+        const dataEntered = name && color && icon && true;
+        if (dataEntered) {
+        } else {
+            return;
+        }
+    };
 
     useImperativeHandle(ref, () => ({
         handleClose,
