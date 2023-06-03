@@ -1,4 +1,4 @@
-import { ReactComponent as Avengers } from "./avengers.svg";
+// import { ReactComponent as Avengers } from "./avengers.svg";
 import { ReactComponent as BlackPanther } from "./black_panther.svg";
 import { ReactComponent as BlackPantherCute } from "./black_panther_cute.svg";
 import { ReactComponent as BlackWidow } from "./black_widow.svg";
@@ -10,7 +10,9 @@ import { ReactComponent as IronMan } from "./iron_man.svg";
 import { ReactComponent as Rocket } from "./rocket.svg";
 import { ReactComponent as ScarletWitch } from "./scarlet_witch.svg";
 import { ReactComponent as Shield } from "./shield.svg";
-import { ReactComponent as SpiderGwen } from "./spider_gwen.svg";
+const SpiderGwen = require("./spider_gwen.svg").ReactComponent;
+
+const Avengers = require("./avengers.svg").ReactComponent;
 
 // let BlackPanther = "./black_panther.svg";
 // let BlackWidow = "./black_widow.svg";
