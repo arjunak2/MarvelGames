@@ -24,7 +24,7 @@ import {
     initialState as initialQuestionPageState,
 } from "../types/PageData";
 
-const HOST = "http://localhost";
+const HOST = "http://localhost:3000";
 const PORT = 5000;
 const app = express();
 const httpServer = http.createServer(app);
