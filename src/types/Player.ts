@@ -3,7 +3,7 @@ import { PowerBank, Powers } from "./Powers";
 import { IconNames } from "../assets";
 import { GradientType } from "./Gradient";
 
-export class User {
+export class Player {
     id: string;
     powerBank: PowerBank = {
         [Powers.TIME_STOP]: { count: 2, activate: () => {} },

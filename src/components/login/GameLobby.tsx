@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Button, Spinner } from "react-bootstrap";
-import { User } from "src/types/User";
+import { Player } from "src/types/Player";
 import { Icons } from "../../assets";
 
 //@ts-ignore
@@ -10,7 +10,7 @@ const Lobby = () => {
     return <></>;
 };
 
-const PlayerCard = ({ player }: { player: User }) => {
+const PlayerCard = ({ player }: { player: Player }) => {
     const cardRef: React.RefObject<HTMLDivElement> = useRef(null);
     const shade = player.color;
     const ICON = Icons[player.icon];
@@ -29,8 +29,8 @@ const PlayerCard = ({ player }: { player: User }) => {
     );
 };
 export const GameLobby = () => {
-    const player1 = new User("Peter Parker", "desert_glow", "SpiderGwen");
-    const player2 = new User(
+    const player1 = new Player("Peter Parker", "desert_glow", "SpiderGwen");
+    const player2 = new Player(
         "Nicholas Fury",
         "vermillion_sand",
         "Daredevil"

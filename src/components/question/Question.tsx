@@ -12,7 +12,7 @@ import { MultipleChoiceSection } from "./MultipleChoiceSection";
 import { TextSection } from "./TextSection";
 import { Timer } from "./CountDownTimer";
 import { PowerButton, PowerSection } from "./PowersSection";
-import { User } from "src/types/User";
+import { Player } from "src/types/Player";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Button, Spinner } from "react-bootstrap";
 import { socket } from "src/utils/WebSocket";
@@ -27,7 +27,7 @@ import "../../styles/Question.scss";
 import { initialState } from "src/types/PageData";
 
 interface QuestionPageProps {
-    user?: User;
+    user?: Player;
     question: Question;
 }
 
@@ -46,9 +46,9 @@ function Header({ text }: { text: string }) {
     );
 }
 
-const uu = new User("agent13", "angel_care", "Hulk");
+const uu = new Player("agent13", "angel_care", "Hulk");
 
-export function QuestionPage({ user = uu }: { user?: User }) {
+export function QuestionPage({ user = uu }: { user?: Player }) {
     const [question, setQuestion] = useState(undefined as Question | undefined);
     const dispatch = useDispatch();
     const navigate = useNavigate();
