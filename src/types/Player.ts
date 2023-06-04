@@ -3,6 +3,7 @@ import { PowerBank, Powers } from "./Powers";
 import { IconNames } from "../assets";
 import { GradientType } from "./Gradient";
 import { plainToClass } from "class-transformer";
+import { TeamNames } from "./Team";
 
 export interface PlayerRaw {
     id: string;
@@ -11,7 +12,7 @@ export interface PlayerRaw {
         [Powers.DOUBLE]: { count: number };
         [Powers.HINT]: { count: number };
     };
-    team: null | string;
+    team: undefined | TeamNames;
     madeUpNames: string;
     color: GradientType;
     icon: IconNames;
@@ -28,20 +29,17 @@ export class Player implements PlayerRaw {
         [Powers.DOUBLE]: { count: 1, activate: () => {} },
         [Powers.HINT]: { count: 3, activate: () => {} },
     };
-    team: null | string = null;
     constructor(
         public madeUpNames: string,
         public color: GradientType,
         public icon: IconNames,
+        public team: TeamNames,
         id?: string
     ) {
         this.id =
             localStorage.getItem("playerId") ||
             id ||
             generatePlayerId(madeUpNames);
-    }
-    joinTeam(teamId: string) {
-        this.team = teamId;
     }
 }
 

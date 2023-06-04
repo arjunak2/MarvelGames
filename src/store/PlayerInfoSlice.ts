@@ -24,7 +24,7 @@ const sampleData: PlayerInfo = {
                 double: { count: 1 },
                 hint: { count: 3 },
             },
-            team: null,
+            team: undefined,
         },
         "NicholasFury-e43046": {
             id: "NicholasFury-e43046",
@@ -36,7 +36,7 @@ const sampleData: PlayerInfo = {
                 double: { count: 1 },
                 hint: { count: 3 },
             },
-            team: null,
+            team: undefined,
         },
         "MrTerrific-e43046": {
             id: "MrTerrific-e43046",
@@ -48,7 +48,7 @@ const sampleData: PlayerInfo = {
                 double: { count: 1 },
                 hint: { count: 3 },
             },
-            team: null,
+            team: undefined,
         },
     },
 };

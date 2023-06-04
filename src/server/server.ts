@@ -3,6 +3,7 @@ import http from "http";
 import { Server, Socket } from "socket.io";
 import { IGameBoard } from "../types/GameBoard";
 import { QUESTIONS_DB } from "../data/QuRepo";
+import { Teams, TeamsDataType, intialTeamsData } from "../types/Team";
 let GameBoard: IGameBoard = require("../data/GameBoard").GBData;
 import { GBData } from "../data/GameBoard";
 
@@ -50,6 +51,8 @@ const CLIENTS: { [id: string]: Socket } = {};
 let CURRENT_SCREEN: ScreenNames = "GAME_BOARD";
 let QUESTION_PAGE_DATE: QuestionPageData = initialQuestionPageState;
 let PLAYERS: { [id: string]: PlayerRaw } = {};
+
+let TEAMS_DATA: TeamsDataType = intialTeamsData;
 
 function updateScreen(screen: ScreenNames) {
     console.log(`Updating the screen to ${screen}`);

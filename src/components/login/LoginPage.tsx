@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import GameLobby from "./GameLobby";
 import { LoginModal } from "./LoginModal";
-import { TeamModal } from "./TeamModal";
 import "../../styles/Gradient.scss";
 import { useSelector } from "src/store";
 import { ModalActions } from "src/types/Modal";
@@ -27,7 +26,6 @@ export const LoginPage = () => {
                 modalActions={modalActions}
                 loggedInPlayer={loggedInPlayer}
             />
-            <TeamModal />
             <GameLobby modalActions={modalActions} />
         </>
     );

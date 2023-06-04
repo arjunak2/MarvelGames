@@ -25,6 +25,7 @@ import {
 import { QuestionPageState } from "src/types/QuestionPage";
 import "../../styles/Question.scss";
 import { initialState } from "src/types/PageData";
+import { Teams } from "src/types/Team";
 
 interface QuestionPageProps {
     user?: Player;
@@ -46,7 +47,7 @@ function Header({ text }: { text: string }) {
     );
 }
 
-const uu = new Player("agent13", "angel_care", "Hulk");
+const uu = new Player("agent13", "angel_care", "Hulk", Teams[0]);
 
 export function QuestionPage({ user = uu }: { user?: Player }) {
     const [question, setQuestion] = useState(undefined as Question | undefined);
@@ -75,20 +76,23 @@ export function QuestionPage({ user = uu }: { user?: Player }) {
         });
 
         socket.on("questionPageDataUpdated", (questionPageDataUpdate) => {
-            console.log("Question Page data updated", JSON.stringify(questionPageDataUpdate));
+            console.log(
+                "Question Page data updated",
+                JSON.stringify(questionPageDataUpdate)
+            );
             dispatch(
-                questionPageActions.updateQuestionPageData(questionPageDataUpdate)
+                questionPageActions.updateQuestionPageData(
+                    questionPageDataUpdate
+                )
             );
         });
 
         socket.on("questionPageDataSet", (questionPageData) => {
-            dispatch(
-                questionPageActions.setQuestionPageData(questionPageData)
-            );
+            dispatch(questionPageActions.setQuestionPageData(questionPageData));
         });
         socket.on("transitionToGameBoard", () => {
             socket.emit("updateQuestionPageData", QuestionPageActions.RESET());
-            dispatch(questionPageActions.reset())
+            dispatch(questionPageActions.reset());
             navigate(`/`);
         });
     }, []);

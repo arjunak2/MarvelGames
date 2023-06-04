@@ -12,6 +12,8 @@ import {
     Modal,
     Image,
     InputGroup,
+    ButtonGroup,
+    ToggleButton,
 } from "react-bootstrap";
 import "../../styles/LoginModal.scss";
 import { GRADIENTS, GradientType as GradientName } from "../../types/Gradient";
@@ -22,6 +24,7 @@ import { useDispatch, useSelector } from "src/store";
 import { ModalActions } from "src/types/Modal";
 import { playerInfoActions } from "src/store/PlayerInfoSlice";
 import { socket } from "src/utils/WebSocket";
+import { TeamNames, Teams } from "src/types/Team";
 
 interface LoginModalProps {
     visible: boolean;
@@ -48,12 +51,16 @@ export const LoginModal = ({
         loggedInPlayer?.icon
     );
 
+    const [team, setTeam] = useState<TeamNames | undefined>(
+        loggedInPlayer?.team
+    );
+
     const registerPlayer = () => {};
 
     const submit = () => {
-        const dataEntered = name && color && icon && true;
+        const dataEntered = name && color && icon && team && true;
         if (dataEntered) {
-            const player = new Player(name, color, icon, id);
+            const player = new Player(name, color, icon, team);
             if (!id) {
                 localStorage.setItem("playerId", player.id);
                 dispatch(playerInfoActions.addPlayer(player.id));
@@ -98,6 +105,24 @@ export const LoginModal = ({
                     setValue={setIcon}
                     pickerType={PickerTypes.ICON}
                 />
+                <ButtonGroup className="mb-2 w-100" size="lg">
+                    {Teams.map((teamNameRadio, idx) => (
+                        <ToggleButton
+                            key={teamNameRadio}
+                            id={`${teamNameRadio}`}
+                            type="radio"
+                            variant="outline-primary"
+                            name="radio"
+                            value={team || ""}
+                            checked={teamNameRadio === team}
+                            onChange={(e) => {
+                                setTeam(e.currentTarget.id as TeamNames);
+                            }}
+                        >
+                            {teamNameRadio}
+                        </ToggleButton>
+                    ))}
+                </ButtonGroup>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="outline-primary" onClick={submit}>
