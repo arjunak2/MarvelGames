@@ -16,6 +16,11 @@ export interface PlayerRaw {
     color: GradientType;
     icon: IconNames;
 }
+
+export function generatePlayerId(madeUpNames: string) {
+    const randomString = uuidv4().slice(0, 6);
+    return `${madeUpNames}-`;
+}
 export class Player implements PlayerRaw {
     id: string;
     powerBank: PowerBank = {
@@ -27,9 +32,13 @@ export class Player implements PlayerRaw {
     constructor(
         public madeUpNames: string,
         public color: GradientType,
-        public icon: IconNames
+        public icon: IconNames,
+        id?: string
     ) {
-        this.id = madeUpNames + "-" + uuidv4().slice(0, 6);
+        this.id =
+            localStorage.getItem("playerId") ||
+            id ||
+            generatePlayerId(madeUpNames);
     }
     joinTeam(teamId: string) {
         this.team = teamId;

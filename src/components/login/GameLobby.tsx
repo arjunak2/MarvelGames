@@ -38,7 +38,7 @@ const PlayerCard = ({
     return (
         <div
             ref={cardRef}
-            className={`col p-5 ${shade} h-75`}
+            className={`col p-5 ${shade}`}
             style={{
                 borderRadius: "2rem",
             }}

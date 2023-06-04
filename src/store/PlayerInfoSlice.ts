@@ -2,9 +2,13 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { GradientType } from "src/types/Gradient";
 import { Player, PlayerRaw } from "src/types/Player";
 
+interface Players {
+    [id: string]: PlayerRaw;
+}
+
 interface PlayerInfo {
     id: undefined | string;
-    players: { [id: string]: PlayerRaw };
+    players: Players;
 }
 
 const sampleData: PlayerInfo = {
@@ -54,13 +58,21 @@ const initialState: PlayerInfo = {
 };
 export const playerInfoSlice = createSlice({
     name: "playerInfo",
-    initialState: sampleData,
+    initialState,
     reducers: {
         updatePlayerInfo: (
             state,
-            { payload: playerInfo }: PayloadAction<Partial<PlayerRaw>>
+            { payload: playerInfo }: PayloadAction<PlayerRaw>
         ) => {
-            return { ...state, ...playerInfo };
+            state.players[playerInfo.id] = playerInfo;
+            return state;
+        },
+        updateAllPlayerInfo: (
+            state,
+            { payload: players }: PayloadAction<Players>
+        ) => {
+            state.players = players;
+            return state;
         },
 
         addPlayer: (state, { payload: id }: PayloadAction<string>) => {

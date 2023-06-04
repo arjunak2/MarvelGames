@@ -18,8 +18,10 @@ import { GRADIENTS, GradientType as GradientName } from "../../types/Gradient";
 import { IconNames, IconType, Icons } from "src/assets";
 import { Picker, PickerTypes } from "./picker/Picker";
 import { Player, PlayerRaw } from "src/types/Player";
-import { useSelector } from "src/store";
+import { useDispatch, useSelector } from "src/store";
 import { ModalActions } from "src/types/Modal";
+import { playerInfoActions } from "src/store/PlayerInfoSlice";
+import { socket } from "src/utils/WebSocket";
 
 interface LoginModalProps {
     visible: boolean;
@@ -34,6 +36,7 @@ export const LoginModal = ({
     const { id: id } = useSelector((state) => {
         return state.playerInfo;
     });
+    const dispatch = useDispatch();
 
     const [name, setName] = useState<string | undefined>(
         loggedInPlayer?.madeUpNames || ""
@@ -45,13 +48,17 @@ export const LoginModal = ({
         loggedInPlayer?.icon
     );
 
+    const registerPlayer = () => {};
+
     const submit = () => {
         const dataEntered = name && color && icon && true;
         if (dataEntered) {
+            const player = new Player(name, color, icon, id);
             if (!id) {
-                const player = new Player(name, color, icon);
                 localStorage.setItem("playerId", player.id);
+                dispatch(playerInfoActions.addPlayer(player.id));
             }
+            socket.emit("updatePlayerData", player);
             modalActions.close();
         } else {
             return;

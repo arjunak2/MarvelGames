@@ -23,6 +23,7 @@ import {
     QuestionPageData,
     initialState as initialQuestionPageState,
 } from "../types/PageData";
+import { PlayerRaw } from "../types/Player";
 
 const HOST = "http://localhost:3000";
 const PORT = 5000;
@@ -48,6 +49,7 @@ const CLIENTS: { [id: string]: Socket } = {};
 
 let CURRENT_SCREEN: ScreenNames = "GAME_BOARD";
 let QUESTION_PAGE_DATE: QuestionPageData = initialQuestionPageState;
+let PLAYERS: { [id: string]: PlayerRaw } = {};
 
 function updateScreen(screen: ScreenNames) {
     console.log(`Updating the screen to ${screen}`);
@@ -90,6 +92,7 @@ io.on("connection", (socket) => {
     const userId = uuidv4();
     CLIENTS[userId] = socket;
     socket.emit("updateBoard", GameBoard);
+    emitToAllClients("sendAllPlayerInfo", PLAYERS);
 
     socket.on("button", (data) => {
         console.log("The Server received this.");
@@ -143,6 +146,13 @@ io.on("connection", (socket) => {
 
     socket.on("setQuestionPageData", (questionPageData) => {
         QUESTION_PAGE_DATE = questionPageData;
+    });
+
+    socket.on("updatePlayerData", (playerDataUpdate) => {
+        const targetPlayer = playerDataUpdate.id;
+        PLAYERS[targetPlayer] = playerDataUpdate;
+        // emitToAllClients("playersUpdated", playerDataUpdate);
+        emitToAllClients("sendAllPlayerInfo", PLAYERS);
     });
 });
 
