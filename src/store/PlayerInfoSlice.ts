@@ -5,8 +5,9 @@ interface PlayerInfo {
     playerId: undefined | string;
     players: { [id: string]: PlayerRaw };
 }
-const initialState: PlayerInfo = {
-    playerId: undefined,
+
+const sampleData: PlayerInfo = {
+    playerId: localStorage.getItem("playerId") || undefined,
     players: {
         "GwenStacy-9e4alf": {
             id: "GwenStacy-9e4alf",
@@ -46,9 +47,13 @@ const initialState: PlayerInfo = {
         },
     },
 };
+const initialState: PlayerInfo = {
+    playerId: localStorage.getItem("playerId") || undefined,
+    players: {},
+};
 export const playerInfoSlice = createSlice({
     name: "playerInfo",
-    initialState,
+    initialState: sampleData,
     reducers: {
         updatePlayerInfo: (
             state,

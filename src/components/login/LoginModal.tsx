@@ -17,6 +17,8 @@ import "../../styles/LoginModal.scss";
 import { GRADIENTS, GradientType as GradientName } from "../../types/Gradient";
 import { IconNames, IconType, Icons } from "src/assets";
 import { Picker, PickerTypes } from "./picker/Picker";
+import { Player } from "src/types/Player";
+import { useSelector } from "src/store";
 
 interface LoginModalProps {
     name?: string;
@@ -24,33 +26,40 @@ interface LoginModalProps {
     icon?: IconNames;
 }
 export const LoginModal = forwardRef((props: LoginModalProps, ref) => {
-    const [show, setShow] = useState(true);
+    const { playerId } = useSelector((state) => {
+        return state.playerInfo;
+    });
+    const loggedInCheck = playerId ? true : false;
+    const [visibility, setVisibility] = useState(loggedInCheck ? false : true);
     const [name, setName] = useState<string | undefined>(props.name || "");
     const [color, setColor] = useState<GradientName | undefined>(props.color);
     const [icon, setIcon] = useState<IconNames | undefined>(props.icon);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-    const toggle = () => setShow(!show);
+    const close = () => setVisibility(false);
+    const show = () => setVisibility(true);
+    const toggle = () => setVisibility(!visibility);
 
     const submit = () => {
         const dataEntered = name && color && icon && true;
         if (dataEntered) {
+            const player = new Player(name, color, icon);
+            localStorage.setItem("playerId", player.id);
+            close();
         } else {
             return;
         }
     };
 
     useImperativeHandle(ref, () => ({
-        handleClose,
-        handleShow,
+        close,
+        show,
         toggle,
         color,
     }));
     return (
         <Modal
-            show={show}
-            onHide={handleClose}
+            show={visibility}
+            onHide={close}
             backdrop={"static"}
             keyboard={false}
             centered
