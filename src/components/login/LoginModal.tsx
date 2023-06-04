@@ -17,49 +17,50 @@ import "../../styles/LoginModal.scss";
 import { GRADIENTS, GradientType as GradientName } from "../../types/Gradient";
 import { IconNames, IconType, Icons } from "src/assets";
 import { Picker, PickerTypes } from "./picker/Picker";
-import { Player } from "src/types/Player";
+import { Player, PlayerRaw } from "src/types/Player";
 import { useSelector } from "src/store";
+import { ModalActions } from "src/types/Modal";
 
 interface LoginModalProps {
-    name?: string;
-    color?: GradientName;
-    icon?: IconNames;
+    visible: boolean;
+    modalActions: ModalActions;
+    loggedInPlayer?: PlayerRaw;
 }
-export const LoginModal = forwardRef((props: LoginModalProps, ref) => {
-    const { playerId } = useSelector((state) => {
+export const LoginModal = ({
+    visible,
+    modalActions,
+    loggedInPlayer,
+}: LoginModalProps) => {
+    const { id: id } = useSelector((state) => {
         return state.playerInfo;
     });
-    const loggedInCheck = playerId ? true : false;
-    const [visibility, setVisibility] = useState(loggedInCheck ? false : true);
-    const [name, setName] = useState<string | undefined>(props.name || "");
-    const [color, setColor] = useState<GradientName | undefined>(props.color);
-    const [icon, setIcon] = useState<IconNames | undefined>(props.icon);
 
-    const close = () => setVisibility(false);
-    const show = () => setVisibility(true);
-    const toggle = () => setVisibility(!visibility);
+    const [name, setName] = useState<string | undefined>(
+        loggedInPlayer?.madeUpNames || ""
+    );
+    const [color, setColor] = useState<GradientName | undefined>(
+        loggedInPlayer?.color
+    );
+    const [icon, setIcon] = useState<IconNames | undefined>(
+        loggedInPlayer?.icon
+    );
 
     const submit = () => {
         const dataEntered = name && color && icon && true;
         if (dataEntered) {
-            const player = new Player(name, color, icon);
-            localStorage.setItem("playerId", player.id);
-            close();
+            if (!id) {
+                const player = new Player(name, color, icon);
+                localStorage.setItem("playerId", player.id);
+            }
+            modalActions.close();
         } else {
             return;
         }
     };
-
-    useImperativeHandle(ref, () => ({
-        close,
-        show,
-        toggle,
-        color,
-    }));
     return (
         <Modal
-            show={visibility}
-            onHide={close}
+            show={visible}
+            onHide={modalActions.close}
             backdrop={"static"}
             keyboard={false}
             centered
@@ -74,6 +75,7 @@ export const LoginModal = forwardRef((props: LoginModalProps, ref) => {
                     <Form.Control
                         placeholder="Made up name"
                         aria-label="Made up name"
+                        value={name}
                         onChange={(event) => {
                             setName(event.target.value);
                         }}
@@ -97,6 +99,6 @@ export const LoginModal = forwardRef((props: LoginModalProps, ref) => {
             </Modal.Footer>
         </Modal>
     );
-});
+};
 
 export default LoginModal;

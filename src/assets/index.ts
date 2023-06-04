@@ -16,6 +16,9 @@ import { ReactComponent as Thor } from "./thor.svg";
 import { ReactComponent as Wolverine } from "./wolverine.svg";
 import { ReactComponent as WolverineCute } from "./wolverine_cute.svg";
 
+
+import { ReactComponent as Edit } from "./edit-svgrepo-com.svg";
+
 export const Icons = {
     Avengers,
     BlackPanther,
@@ -43,3 +46,10 @@ export type IconType = React.FunctionComponent<
         title?: string | undefined;
     }
 >;
+
+export const Symbols = {
+    Edit
+} 
+
+
+export type SymbolNames = keyof typeof Symbol;

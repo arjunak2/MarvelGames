@@ -1,13 +1,14 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { GradientType } from "src/types/Gradient";
 import { Player, PlayerRaw } from "src/types/Player";
 
 interface PlayerInfo {
-    playerId: undefined | string;
+    id: undefined | string;
     players: { [id: string]: PlayerRaw };
 }
 
 const sampleData: PlayerInfo = {
-    playerId: localStorage.getItem("playerId") || undefined,
+    id: localStorage.getItem("playerId") || undefined,
     players: {
         "GwenStacy-9e4alf": {
             id: "GwenStacy-9e4alf",
@@ -48,7 +49,7 @@ const sampleData: PlayerInfo = {
     },
 };
 const initialState: PlayerInfo = {
-    playerId: localStorage.getItem("playerId") || undefined,
+    id: localStorage.getItem("playerId") || undefined,
     players: {},
 };
 export const playerInfoSlice = createSlice({
@@ -62,8 +63,8 @@ export const playerInfoSlice = createSlice({
             return { ...state, ...playerInfo };
         },
 
-        addPlayer: (state, { payload: playerId }: PayloadAction<string>) => {
-            state.playerId = playerId;
+        addPlayer: (state, { payload: id }: PayloadAction<string>) => {
+            state.id = id;
         },
     },
 });
