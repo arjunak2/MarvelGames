@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Button, Spinner } from "react-bootstrap";
-import { Player } from "src/types/Player";
+import { Player, mapJsonToPlayer } from "src/types/Player";
 import { Icons } from "../../assets";
+import { useSelector } from "src/store";
 
 //@ts-ignore
 // import generator from "uigradients";
@@ -29,19 +30,22 @@ const PlayerCard = ({ player }: { player: Player }) => {
     );
 };
 export const GameLobby = () => {
-    const player1 = new Player("Peter Parker", "desert_glow", "SpiderGwen");
-    const player2 = new Player(
-        "Nicholas Fury",
-        "vermillion_sand",
-        "Daredevil"
-    );
+    const { players } = useSelector((state) => {
+        return state.playerInfo;
+    });
+    const PLAYERS = Object.values(players);
+    const PLAYER_CARDS = PLAYERS.map((player) => {
+        return (
+            <PlayerCard
+                key={player.id}
+                player={mapJsonToPlayer(player as Player)}
+            />
+        );
+    });
     return (
         <>
             <h1>{"Lobby"}</h1>
-            <div className="container-fluid row gap-4">
-                <PlayerCard player={player1} />
-                <PlayerCard player={player2} />
-            </div>
+            <div className="container-fluid row gap-4">{PLAYER_CARDS}</div>
         </>
     );
 };

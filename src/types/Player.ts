@@ -2,8 +2,21 @@ import { v4 as uuidv4 } from "uuid";
 import { PowerBank, Powers } from "./Powers";
 import { IconNames } from "../assets";
 import { GradientType } from "./Gradient";
+import { plainToClass } from "class-transformer";
 
-export class Player {
+export interface PlayerRaw {
+    id: string;
+    powerBank: {
+        [Powers.TIME_STOP]: { count: number };
+        [Powers.DOUBLE]: { count: number };
+        [Powers.HINT]: { count: number };
+    };
+    team: null | string;
+    madeUpNames: string;
+    color: GradientType;
+    icon: IconNames;
+}
+export class Player implements PlayerRaw {
     id: string;
     powerBank: PowerBank = {
         [Powers.TIME_STOP]: { count: 2, activate: () => {} },
@@ -16,9 +29,13 @@ export class Player {
         public color: GradientType,
         public icon: IconNames
     ) {
-        this.id = uuidv4();
+        this.id = madeUpNames + "-" + uuidv4().slice(0, 6);
     }
     joinTeam(teamId: string) {
         this.team = teamId;
     }
+}
+
+export function mapJsonToPlayer(json: Player) {
+    return plainToClass(Player, json);
 }
