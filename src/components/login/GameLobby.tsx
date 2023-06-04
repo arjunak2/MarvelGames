@@ -66,7 +66,16 @@ export const GameLobby = ({ modalActions }: { modalActions: ModalActions }) => {
     });
     return (
         <>
-            <h1>{"Lobby"}</h1>
+            <h1
+                style={{
+                    fontSize: "4rem",
+                    fontWeight: 700,
+                    color: "rgb(68 68 68)",
+                    marginBottom: 40,
+                }}
+            >
+                {"Lobby"}
+            </h1>
             <div className="container-fluid row gap-5">{PLAYER_CARDS}</div>
         </>
     );
