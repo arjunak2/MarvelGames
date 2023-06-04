@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Button, Spinner } from "react-bootstrap";
-import { Player, mapJsonToPlayer } from "src/types/Player";
+import { Player, PlayerRaw, mapJsonToPlayer } from "src/types/Player";
 import { Icons, Symbols } from "../../assets";
 import { useSelector } from "src/store";
 import { ModalActions } from "src/types/Modal";
+import { TeamNames, Teams } from "src/types/Team";
 
 //@ts-ignore
 // import generator from "uigradients";
@@ -49,12 +50,22 @@ const PlayerCard = ({
         </div>
     );
 };
-export const GameLobby = ({ modalActions }: { modalActions: ModalActions }) => {
-    const { id, players } = useSelector((state) => {
+
+const TeamSection = ({
+    teamName,
+    players,
+    modalActions,
+}: {
+    teamName: TeamNames;
+    players: PlayerRaw[];
+    modalActions: ModalActions;
+}) => {
+    const { id } = useSelector((state) => {
         return state.playerInfo;
     });
-    const PLAYERS = Object.values(players);
-    const PLAYER_CARDS = PLAYERS.map((player) => {
+    const Title = <h2>{teamName}</h2>;
+    const TEAM_PLAYERS = players.filter((player) => player.team === teamName);
+    const PLAYER_CARDS = TEAM_PLAYERS.map((player) => {
         return (
             <PlayerCard
                 key={player.id}
@@ -64,6 +75,20 @@ export const GameLobby = ({ modalActions }: { modalActions: ModalActions }) => {
             />
         );
     });
+    return (
+        <div className="col gap-5">
+            <h2>{teamName}</h2>
+            <div className="container-fluid row gap-5">{PLAYER_CARDS}</div>
+        </div>
+    );
+};
+
+export const GameLobby = ({ modalActions }: { modalActions: ModalActions }) => {
+    const { players } = useSelector((state) => {
+        return state.playerInfo;
+    });
+    const PLAYERS = Object.values(players);
+
     return (
         <>
             <h1
@@ -76,7 +101,16 @@ export const GameLobby = ({ modalActions }: { modalActions: ModalActions }) => {
             >
                 {"Lobby"}
             </h1>
-            <div className="container-fluid row gap-5">{PLAYER_CARDS}</div>
+            <div className="container-fluid row gap-5">
+                {Teams.map((teamName) => (
+                    <TeamSection
+                        teamName={teamName}
+                        players={PLAYERS}
+                        modalActions={modalActions}
+                    />
+                ))}
+            </div>
+            {/* <div className="container-fluid row gap-5">{PLAYER_CARDS}</div> */}
         </>
     );
 };
