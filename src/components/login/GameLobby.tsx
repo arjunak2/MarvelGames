@@ -42,9 +42,12 @@ const PlayerCard = ({
             className={`col p-5 ${shade}`}
             style={{
                 borderRadius: "2rem",
+                height: "fit-content",
+                // height: "60vh",
+                maxWidth: "75%",
             }}
         >
-            <h3>{player.madeUpNames}</h3>
+            <h3 style={{ marginBottom: 20 }}>{player.madeUpNames}</h3>
             <ICON width={"100%"} height={"80%"} />
             {self && <EditIcon onClick={modalActions.show} />}
         </div>
@@ -76,9 +79,11 @@ const TeamSection = ({
         );
     });
     return (
-        <div className="col gap-5">
+        <div className="col">
             <h2>{teamName}</h2>
-            <div className="container-fluid row gap-5">{PLAYER_CARDS}</div>
+            <div className="container-fluid">
+                <div className="row gap-3 justify-content-center">{PLAYER_CARDS}</div>
+            </div>
         </div>
     );
 };
@@ -101,16 +106,17 @@ export const GameLobby = ({ modalActions }: { modalActions: ModalActions }) => {
             >
                 {"Lobby"}
             </h1>
-            <div className="container-fluid row gap-5">
-                {Teams.map((teamName) => (
-                    <TeamSection
-                        teamName={teamName}
-                        players={PLAYERS}
-                        modalActions={modalActions}
-                    />
-                ))}
+            <div className="container-fluid">
+                <div className="row">
+                    {Teams.map((teamName) => (
+                        <TeamSection
+                            teamName={teamName}
+                            players={PLAYERS}
+                            modalActions={modalActions}
+                        />
+                    ))}
+                </div>
             </div>
-            {/* <div className="container-fluid row gap-5">{PLAYER_CARDS}</div> */}
         </>
     );
 };
