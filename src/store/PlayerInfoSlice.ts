@@ -1,58 +1,13 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { GradientType } from "src/types/Gradient";
-import { Player, PlayerRaw } from "src/types/Player";
+import { Player, PlayerRaw, Players } from "src/types/Player";
 import { Teams } from "src/types/Team";
-
-interface Players {
-    [id: string]: PlayerRaw;
-}
 
 interface PlayerInfo {
     id: undefined | string;
     players: Players;
 }
 
-const sampleData: PlayerInfo = {
-    id: localStorage.getItem("playerId") || undefined,
-    players: {
-        "GwenStacy-9e4alf": {
-            id: "GwenStacy-9e4alf",
-            madeUpNames: "Gwen Stacy",
-            color: "desert_glow",
-            icon: "SpiderGwen",
-            powerBank: {
-                timestop: { count: 2 },
-                double: { count: 1 },
-                hint: { count: 3 },
-            },
-            team: Teams[0],
-        },
-        "NicholasFury-e43046": {
-            id: "NicholasFury-e43046",
-            madeUpNames: "Nicholas Fury",
-            color: "dark_forest",
-            icon: "BlackWidow",
-            powerBank: {
-                timestop: { count: 2 },
-                double: { count: 1 },
-                hint: { count: 3 },
-            },
-            team: Teams[1],
-        },
-        "MrTerrific-e43046": {
-            id: "MrTerrific-e43046",
-            madeUpNames: "MrTerrific",
-            color: "morning_eggplant",
-            icon: "WolverineCute",
-            powerBank: {
-                timestop: { count: 2 },
-                double: { count: 1 },
-                hint: { count: 3 },
-            },
-            team: Teams[0],
-        },
-    },
-};
 const initialState: PlayerInfo = {
     id: localStorage.getItem("playerId") || undefined,
     players: {},

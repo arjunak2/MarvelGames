@@ -3,7 +3,7 @@ import { PowerBank, Powers } from "./Powers";
 import { IconNames } from "../assets";
 import { GradientType } from "./Gradient";
 import { plainToClass } from "class-transformer";
-import { TeamNames } from "./Team";
+import { TeamNames, Teams } from "./Team";
 
 export interface PlayerRaw {
     id: string;
@@ -46,3 +46,46 @@ export class Player implements PlayerRaw {
 export function mapJsonToPlayer(json: Player) {
     return plainToClass(Player, json);
 }
+
+export interface Players {
+    [id: string]: PlayerRaw;
+}
+
+export const samplePlayersData: Players = {
+    "GwenStacy-9e4alf": {
+        id: "GwenStacy-9e4alf",
+        madeUpNames: "Gwen Stacy",
+        color: "desert_glow",
+        icon: "SpiderGwen",
+        powerBank: {
+            timestop: { count: 2 },
+            double: { count: 1 },
+            hint: { count: 3 },
+        },
+        team: Teams[0],
+    },
+    "NicholasFury-e43046": {
+        id: "NicholasFury-e43046",
+        madeUpNames: "Nicholas Fury",
+        color: "dark_forest",
+        icon: "BlackWidow",
+        powerBank: {
+            timestop: { count: 2 },
+            double: { count: 1 },
+            hint: { count: 3 },
+        },
+        team: Teams[1],
+    },
+    "MrTerrific-e43046": {
+        id: "MrTerrific-e43046",
+        madeUpNames: "MrTerrific",
+        color: "morning_eggplant",
+        icon: "WolverineCute",
+        powerBank: {
+            timestop: { count: 2 },
+            double: { count: 1 },
+            hint: { count: 3 },
+        },
+        team: Teams[0],
+    },
+};
