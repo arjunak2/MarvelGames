@@ -3,7 +3,7 @@ import { QuestionPageState } from "../../types/QuestionPage";
 import "../../styles/Timer.scss";
 
 
-const TIMER_DURATION = 130;
+const TIMER_DURATION = 40;
 const SW = ["#e6e6e6", "#CB3966", "#e60017", "#4E192F", "#1F0815"];
 
 interface TimerProps {
@@ -22,14 +22,14 @@ export function Timer({
         color,
         elapsedTime,
     }: TimeProps) => {
-        const progress = elapsedTime / (remainingTime + elapsedTime);
+        const progress = Math.ceil(elapsedTime / (remainingTime + elapsedTime)*10)*1/10;
         return (
             <div
                 className="time"
                 style={{
                     color: color,
                     fontWeight: progress * 600 + 300,
-                    fontSize: `${progress * 4 + 2}rem`,
+                    fontSize: `${progress * 5 + 2}rem`,
                 }}
             >
                 {remainingTime}
@@ -43,11 +43,11 @@ export function Timer({
         <CountdownCircleTimer
             isPlaying={isPlaying}
             trailColor={"#2b2d33"}
-            strokeWidth={15}
+            strokeWidth={10}
             strokeLinecap="square"
             duration={TIMER_DURATION}
             size={200}
-            colors={["#e6e6e6", "#CB3966", "#e60017", "#4E192F", "#1F0815"]}
+            colors={["#b05d6c", "#CB3966", "#FF7583", "#4E192F", "#1F0815"]}
             // colors={["#50a696", "#4fb86b","#CB3966", "#520B19", "#F7B801", "#f44369", "#c5302e"]}
             colorsTime={[
                 TIMER_DURATION,

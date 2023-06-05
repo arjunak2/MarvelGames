@@ -26,10 +26,9 @@ import { QuestionPageState } from "src/types/QuestionPage";
 import "../../styles/Question.scss";
 import { initialState } from "src/types/PageData";
 import { Teams } from "src/types/Team";
-import BannerImage from "../../assets/questions/500/SW_Banner.png";
+import BannerImage from "../../assets/questions/500/SW_Banner2.png";
 import WebFont from "webfontloader";
-import '../../fonts/Dream-Avenue.ttf';
-
+import "../../fonts/Dream-Avenue.ttf";
 
 interface QuestionPageProps {
     user?: Player;
@@ -40,7 +39,7 @@ function Header({ text }: { text: string }) {
     return <h1 className={"title"}>{text.toLocaleUpperCase()}</h1>;
 }
 
-const uu = new Player("agent13", "angel_care", "Hulk", Teams[0]);
+const uu = new Player("Sajiberjabber", "angel_care", "Hulk", Teams[0]);
 
 export function QuestionPage({ user = uu }: { user?: Player }) {
     const [question, setQuestion] = useState(undefined as Question | undefined);
@@ -172,35 +171,29 @@ function QuestionContent({ user = uu, question }: QuestionPageProps) {
                     "Cinzel",
                     "Prata",
                     "Marcellus",
-                    "Spectral"
+                    "Spectral",
                 ],
             },
         });
     }, []);
 
     return (
-        <div className="d-flex flex-row">
-            {/* <div
-                id="banner"
-                style={
-                    {
-                        // flexShrink: 0,
-                        // backgroundImage: `url("../assets/questions/500/SW.png")`,
-                        // height: "100vh",
-                        // width: "35%",
-                    }
-                }
-            /> */}
-            <Image id="banner" src={BannerImage} />
-            <div id="powerSection">
+        <div className="d-flex flex-row page">
+            <div id="banner">
+                <Image src={BannerImage} />
+                <h2 className="points">{points}</h2>
+            </div>
+            <div id="playerSection">
                 <Timer
                     pageState={state}
                     timesUp={timesUp}
                     disabled={!timerActive}
                 />
-                <div>{user.madeUpNames}</div>
-                <PowerSection pageState={state} powerBank={uu.powerBank} />
-                <Button variant="secondary" onClick={goHome}>
+                <h2 className="player-name">
+                    {user.madeUpNames.toUpperCase()}
+                </h2>
+                <PowerSection pageState={state} powerBank={user.powerBank} />
+                <Button className="home" variant="secondary" onClick={goHome}>
                     <img
                         src={
                             "https://www.svgrepo.com/show/22031/home-icon-silhouette.svg"

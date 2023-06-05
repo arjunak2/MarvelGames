@@ -54,7 +54,7 @@ export function PowerButton({ power, powerBank, disabled }: PowerButtonProps) {
             value={power}
         >
             <img src={pickIcon()} width="30" height="30" />
-            {`${powerCount} x`}
+            <h5>{`${powerCount} x`}</h5>
         </Button>
     );
 }
@@ -62,7 +62,7 @@ export function PowerButton({ power, powerBank, disabled }: PowerButtonProps) {
 export function PowerSection({ powerBank, pageState }: PowerSectionProps) {
     const areAllPowersDisabled = pageState === QuestionPageState.COMPLETED;
     return (
-        <ButtonGroup>
+        <ButtonGroup className="powerCotainer">
             <PowerButton
                 power={Powers.DOUBLE}
                 powerBank={powerBank}

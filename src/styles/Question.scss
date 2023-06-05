@@ -1,3 +1,10 @@
+@font-face {
+    font-family: "DreamAvenue";
+    src: local("DreamAvenue"),
+        url("../fonts/Dream-Avenue.ttf") format("truetype");
+    font-weight: bold;
+}
+
 $transition-speed: 200ms;
 .answer-choice.hovered {
     transform: scale(1.1);
@@ -7,38 +14,93 @@ $transition-speed: 200ms;
 $sw-text: #f493a5;
 #root {
     height: 100vh;
-    // overflow: hidden;
-    // background-image: url("../assets/questions/500/SW.png");
-    // background-size:contain;
-
-    // background-color: #271426;
 }
 
+.page {
+    font-family: "DreamAvenue";
+}
 #banner {
     height: 100vh;
-    object-fit: cover;
     max-width: 30%;
+    flex-shrink: 0;
 }
 
-#powerSection {
+#banner img {
+    height: 100vh;
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+}
+
+.points {
+    z-index: 10;
+    color: #d3556a;
+    position: relative;
+    bottom: 15vh;
+    margin: 0px;
+    width: 100%;
+    text-align: center;
+    font-size: 8vw;
+    line-height: 8vw;
+    text-shadow: -3px -3px 10px rgb(177, 27, 52);
+}
+
+#playerSection {
+    color: $sw-text;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: #8b193a;
-    padding: 2rem;
+    padding-top: 2rem;
 }
 
-#powerSection {
+#playerSection .player-name {
+    margin-top: 3rem;
+    font-size: 2.5vw;
+    container-name: playerSection;
+    border-top: #b05d6c;
+    border-top-width: 1px;
+    border-top-style: solid;
+    flex-grow: 1;
+    padding: 15px;
 }
 
-@font-face {
-    font-family: "DreamAvenue";
-    src: local("DreamAvenue"),
-        url("../fonts/Dream-Avenue.ttf") format("truetype");
-    font-weight: bold;
+#playerSection .powerCotainer {
+    background-color: rgb(84, 22, 33);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 10%;
+    border-radius: 0px;
+    font-family: "Poppins";
+    color: $sw-text;
+}
+
+#playerSection .powerCotainer h5 {
+    color: $sw-text;
+}
+
+#playerSection .powerCotainer .btn.btn-warning {
+    background-color: transparent;
+    border: 0px;
+}
+
+#playerSection .powerCotainer .btn.btn-warning:disabled {
+    background-color: #8b193a7f;
+}
+#playerSection .powerCotainer .btn.btn-warning:hover {
+    background-color: #8b193a7f;
+}
+
+#playerSection .home {
+    width: 100%;
+    border-radius: 0px;
+    display: none;
 }
 
 #details {
     background-color: #271426;
     padding: 10px 5% 10px 5%;
-    font-family: "DreamAvenue";
     color: $sw-text;
 }
 
