@@ -14,7 +14,7 @@ import { Timer } from "./CountDownTimer";
 import { PowerButton, PowerSection } from "./PowersSection";
 import { Player } from "src/types/Player";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { Button, Spinner } from "react-bootstrap";
+import { Button, Image, Spinner } from "react-bootstrap";
 import { socket } from "src/utils/WebSocket";
 import { GameBoardNavData } from "src/types/Screens";
 import { useSelector, useDispatch } from "../../store";
@@ -26,6 +26,10 @@ import { QuestionPageState } from "src/types/QuestionPage";
 import "../../styles/Question.scss";
 import { initialState } from "src/types/PageData";
 import { Teams } from "src/types/Team";
+import BannerImage from "../../assets/questions/500/SW_Banner.png";
+import WebFont from "webfontloader";
+import '../../fonts/Dream-Avenue.ttf';
+
 
 interface QuestionPageProps {
     user?: Player;
@@ -33,18 +37,7 @@ interface QuestionPageProps {
 }
 
 function Header({ text }: { text: string }) {
-    return (
-        <div
-            style={{
-                fontSize: "2.5rem",
-                fontWeight: "800",
-                fontFamily: "Lato, SANS-SERIF",
-                color: "#ffffff",
-            }}
-        >
-            {text}
-        </div>
-    );
+    return <h1 className={"title"}>{text.toLocaleUpperCase()}</h1>;
 }
 
 const uu = new Player("agent13", "angel_care", "Hulk", Teams[0]);
@@ -170,45 +163,69 @@ function QuestionContent({ user = uu, question }: QuestionPageProps) {
     };
     useEffect(() => {
         linkPowers();
+        WebFont.load({
+            google: {
+                families: [
+                    "Poppins",
+                    "Chilanka",
+                    "Playfair Display",
+                    "Cinzel",
+                    "Prata",
+                    "Marcellus",
+                    "Spectral"
+                ],
+            },
+        });
     }, []);
 
     return (
-        <div>
-            <div style={{ background: "#7d213b" }}>
+        <div className="d-flex flex-row">
+            {/* <div
+                id="banner"
+                style={
+                    {
+                        // flexShrink: 0,
+                        // backgroundImage: `url("../assets/questions/500/SW.png")`,
+                        // height: "100vh",
+                        // width: "35%",
+                    }
+                }
+            /> */}
+            <Image id="banner" src={BannerImage} />
+            <div id="powerSection">
                 <Timer
                     pageState={state}
                     timesUp={timesUp}
                     disabled={!timerActive}
                 />
-                <Header text={question.query} />
-                <div style={{ fontSize: "2.5rem", fontFamily: "serif" }}>
-                    {points}
-                </div>
+                <div>{user.madeUpNames}</div>
+                <PowerSection pageState={state} powerBank={uu.powerBank} />
+                <Button variant="secondary" onClick={goHome}>
+                    <img
+                        src={
+                            "https://www.svgrepo.com/show/22031/home-icon-silhouette.svg"
+                        }
+                        width="30"
+                        height="30"
+                    />
+                </Button>
             </div>
-            {question instanceof Question_MC ? (
-                <MultipleChoiceSection
-                    pageState={state}
-                    question={question}
-                    onAnswer={answerQuestion}
-                />
-            ) : (
-                <TextSection
-                    pageState={state}
-                    question={question}
-                    onAnswer={answerQuestion}
-                />
-            )}
-            <div>{user.madeUpNames}</div>
-            <PowerSection pageState={state} powerBank={uu.powerBank} />
-            <Button variant="secondary" onClick={goHome}>
-                <img
-                    src={
-                        "https://www.svgrepo.com/show/22031/home-icon-silhouette.svg"
-                    }
-                    width="30"
-                    height="30"
-                />
-            </Button>
+            <div id="details">
+                <Header text={question.query} />
+                {question instanceof Question_MC ? (
+                    <MultipleChoiceSection
+                        pageState={state}
+                        question={question}
+                        onAnswer={answerQuestion}
+                    />
+                ) : (
+                    <TextSection
+                        pageState={state}
+                        question={question}
+                        onAnswer={answerQuestion}
+                    />
+                )}
+            </div>
         </div>
     );
 }

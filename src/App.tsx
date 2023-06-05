@@ -34,7 +34,7 @@ function App() {
         });
     }, []);
 
-    return <div className="App">{renderScreen("LOGIN")}</div>;
+    return <div className="App">{renderScreen("GAME_BOARD")}</div>;
 }
 
 export default App;

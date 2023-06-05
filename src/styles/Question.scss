@@ -1,5 +1,48 @@
-$transition-speed: 200ms; 
+$transition-speed: 200ms;
 .answer-choice.hovered {
     transform: scale(1.1);
     transition: $transition-speed;
+}
+
+$sw-text: #f493a5;
+#root {
+    height: 100vh;
+    // overflow: hidden;
+    // background-image: url("../assets/questions/500/SW.png");
+    // background-size:contain;
+
+    // background-color: #271426;
+}
+
+#banner {
+    height: 100vh;
+    object-fit: cover;
+    max-width: 30%;
+}
+
+#powerSection {
+    background-color: #8b193a;
+    padding: 2rem;
+}
+
+#powerSection {
+}
+
+@font-face {
+    font-family: "DreamAvenue";
+    src: local("DreamAvenue"),
+        url("../fonts/Dream-Avenue.ttf") format("truetype");
+    font-weight: bold;
+}
+
+#details {
+    background-color: #271426;
+    padding: 10px 5% 10px 5%;
+    font-family: "DreamAvenue";
+    color: $sw-text;
+}
+
+#details .title {
+    font-weight: 500;
+    font-size: 4vw;
 }
