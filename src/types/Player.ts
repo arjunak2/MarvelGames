@@ -12,7 +12,7 @@ export interface PlayerRaw {
         [Powers.DOUBLE]: { count: number };
         [Powers.HINT]: { count: number };
     };
-    team: undefined | TeamNames;
+    team: TeamNames;
     madeUpNames: string;
     color: GradientType;
     icon: IconNames;

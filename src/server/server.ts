@@ -155,6 +155,7 @@ io.on("connection", (socket) => {
         const targetPlayer = playerDataUpdate.id;
         PLAYERS[targetPlayer] = playerDataUpdate;
         // emitToAllClients("playersUpdated", playerDataUpdate);
+        TEAMS_DATA[playerDataUpdate.team].players.add(targetPlayer);
         emitToAllClients("sendAllPlayerInfo", PLAYERS);
     });
 });

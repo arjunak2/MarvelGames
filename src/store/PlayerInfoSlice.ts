@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { GradientType } from "src/types/Gradient";
 import { Player, PlayerRaw } from "src/types/Player";
+import { Teams } from "src/types/Team";
 
 interface Players {
     [id: string]: PlayerRaw;
@@ -24,7 +25,7 @@ const sampleData: PlayerInfo = {
                 double: { count: 1 },
                 hint: { count: 3 },
             },
-            team: undefined,
+            team: Teams[0],
         },
         "NicholasFury-e43046": {
             id: "NicholasFury-e43046",
@@ -36,7 +37,7 @@ const sampleData: PlayerInfo = {
                 double: { count: 1 },
                 hint: { count: 3 },
             },
-            team: undefined,
+            team: Teams[1],
         },
         "MrTerrific-e43046": {
             id: "MrTerrific-e43046",
@@ -48,7 +49,7 @@ const sampleData: PlayerInfo = {
                 double: { count: 1 },
                 hint: { count: 3 },
             },
-            team: undefined,
+            team: Teams[0],
         },
     },
 };
