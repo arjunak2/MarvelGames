@@ -12,7 +12,7 @@ import { MultipleChoiceSection } from "./MultipleChoiceSection";
 import { TextSection } from "./TextSection";
 import { Timer } from "./CountDownTimer";
 import { PowerButton, PowerSection } from "./PowersSection";
-import { Player } from "src/types/Player";
+import { Player, mapJsonToPlayer } from "src/types/Player";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Button, Image, Spinner } from "react-bootstrap";
 import { socket } from "src/utils/WebSocket";
@@ -31,7 +31,6 @@ import WebFont from "webfontloader";
 import "../../fonts/Dream-Avenue.ttf";
 
 interface QuestionPageProps {
-    user?: Player;
     question: Question;
 }
 
@@ -41,7 +40,7 @@ function Header({ text }: { text: string }) {
 
 const uu = new Player("Sajiberjabber", "angel_care", "Hulk", Teams[0]);
 
-export function QuestionPage({ user = uu }: { user?: Player }) {
+export function QuestionPage() {
     const [question, setQuestion] = useState(undefined as Question | undefined);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -90,7 +89,7 @@ export function QuestionPage({ user = uu }: { user?: Player }) {
     }, []);
 
     if (question) {
-        return <QuestionContent user={user} question={question} />;
+        return <QuestionContent question={question} />;
     } else {
         return <Loader />;
     }
@@ -109,12 +108,18 @@ function Loader() {
     );
 }
 
-function QuestionContent({ user = uu, question }: QuestionPageProps) {
+function QuestionContent({ question }: QuestionPageProps) {
+    const currentPlayerId = "GwenStacy-9e4alf";
     const { state, timerActive, points, chosenAnswer } = useSelector(
         (store) => {
             return store.questionPage;
         }
     );
+
+    const player = useSelector((store) => {
+        const playerRaw = store.playerInfo.players[currentPlayerId];
+        return mapJsonToPlayer(playerRaw as Player);
+    });
     const dispatch = useDispatch();
 
     const complete = () => {
@@ -146,22 +151,21 @@ function QuestionContent({ user = uu, question }: QuestionPageProps) {
     };
 
     const linkPowers = () => {
-        user.powerBank.timestop.activate = () => {
+        player.powerBank.timestop.activate = () => {
             socket.emit(
                 "updateQuestionPageData",
                 QuestionPageActions.TIME_STOP()
             );
         };
-        user.powerBank.double.activate = () => {
+        player.powerBank.double.activate = () => {
             socket.emit(
                 "updateQuestionPageData",
                 QuestionPageActions.SET_POINTS(points * 2)
             );
         };
-        user.powerBank.hint.activate = () => {};
+        player.powerBank.hint.activate = () => {};
     };
     useEffect(() => {
-        linkPowers();
         WebFont.load({
             google: {
                 families: [
@@ -176,6 +180,9 @@ function QuestionContent({ user = uu, question }: QuestionPageProps) {
             },
         });
     }, []);
+    useEffect(() => {
+        linkPowers();
+    }, [player]);
 
     return (
         <div className="d-flex flex-row page">
@@ -190,9 +197,9 @@ function QuestionContent({ user = uu, question }: QuestionPageProps) {
                     disabled={!timerActive}
                 />
                 <h2 className="player-name">
-                    {user.madeUpNames.toUpperCase()}
+                    {player.madeUpNames.toUpperCase()}
                 </h2>
-                <PowerSection pageState={state} powerBank={user.powerBank} />
+                <PowerSection pageState={state} powerBank={player.powerBank} />
                 <Button className="home" variant="secondary" onClick={goHome}>
                     <img
                         src={
@@ -205,19 +212,21 @@ function QuestionContent({ user = uu, question }: QuestionPageProps) {
             </div>
             <div id="details">
                 <Header text={question.query} />
-                {question instanceof Question_MC ? (
-                    <MultipleChoiceSection
-                        pageState={state}
-                        question={question}
-                        onAnswer={answerQuestion}
-                    />
-                ) : (
-                    <TextSection
-                        pageState={state}
-                        question={question}
-                        onAnswer={answerQuestion}
-                    />
-                )}
+                <div className="answer-section">
+                    {question instanceof Question_MC ? (
+                        <MultipleChoiceSection
+                            pageState={state}
+                            question={question}
+                            onAnswer={answerQuestion}
+                        />
+                    ) : (
+                        <TextSection
+                            pageState={state}
+                            question={question}
+                            onAnswer={answerQuestion}
+                        />
+                    )}
+                </div>
             </div>
         </div>
     );
