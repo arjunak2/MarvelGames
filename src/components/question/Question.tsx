@@ -184,6 +184,7 @@ function QuestionContent({ question }: QuestionPageProps) {
         linkPowers();
     }, [player]);
 
+    const isMaster = false;
     return (
         <div className="d-flex flex-row page">
             <div id="banner">
@@ -200,15 +201,21 @@ function QuestionContent({ question }: QuestionPageProps) {
                     {player.madeUpNames.toUpperCase()}
                 </h2>
                 <PowerSection pageState={state} powerBank={player.powerBank} />
-                <Button className="home" variant="secondary" onClick={goHome}>
-                    <img
-                        src={
-                            "https://www.svgrepo.com/show/22031/home-icon-silhouette.svg"
-                        }
-                        width="30"
-                        height="30"
-                    />
-                </Button>
+                {isMaster && (
+                    <Button
+                        className="home"
+                        variant="secondary"
+                        onClick={goHome}
+                    >
+                        <img
+                            src={
+                                "https://www.svgrepo.com/show/22031/home-icon-silhouette.svg"
+                            }
+                            width="30"
+                            height="30"
+                        />
+                    </Button>
+                )}
             </div>
             <div id="details">
                 <Header text={question.query} />

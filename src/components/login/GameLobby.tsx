@@ -5,23 +5,13 @@ import { Icons, Symbols } from "../../assets";
 import { useSelector } from "src/store";
 import { ModalActions } from "src/types/Modal";
 import { TeamNames, Teams } from "src/types/Team";
+import "../../styles/Lobby.scss";
 
 //@ts-ignore
 // import generator from "uigradients";
 
 const Lobby = () => {
     return <></>;
-};
-
-const EditIcon = ({ onClick }: { onClick: () => void }) => {
-    return (
-        <Symbols.Edit
-            className="mt-3"
-            onClick={onClick}
-            height={40}
-            width={40}
-        />
-    );
 };
 
 const PlayerCard = ({
@@ -37,19 +27,17 @@ const PlayerCard = ({
     const shade = player.color;
     const ICON = Icons[player.icon];
     return (
-        <div
-            ref={cardRef}
-            className={`col p-5 ${shade}`}
-            style={{
-                borderRadius: "2rem",
-                height: "fit-content",
-                // height: "60vh",
-                maxWidth: "75%",
-            }}
-        >
-            <h3 style={{ marginBottom: 20 }}>{player.madeUpNames}</h3>
-            <ICON width={"100%"} height={"80%"} />
-            {self && <EditIcon onClick={modalActions.show} />}
+        <div ref={cardRef} className={`col p-5 ${shade} player-card`}>
+            <h3 className="player-card-name">{player.madeUpNames}</h3>
+            <ICON className="player-icon" />
+            {self && (
+                <Symbols.Edit
+                    className="mt-3 edit-icon"
+                    onClick={modalActions.show}
+                    height={40}
+                    width={40}
+                />
+            )}
         </div>
     );
 };
@@ -79,10 +67,12 @@ const TeamSection = ({
         );
     });
     return (
-        <div className="col">
+        <div className="col d-flex flex-column">
             <h2>{teamName}</h2>
-            <div className="container-fluid">
-                <div className="row gap-3 justify-content-center">{PLAYER_CARDS}</div>
+            <div className="container-fluid d-flex" style={{ flex: 1 }}>
+                <div className="card-container row gap-3 justify-content-center">
+                    {PLAYER_CARDS}
+                </div>
             </div>
         </div>
     );
@@ -95,7 +85,7 @@ export const GameLobby = ({ modalActions }: { modalActions: ModalActions }) => {
     const PLAYERS = Object.values(players);
 
     return (
-        <>
+        <div className="d-flex flex-column" style={{ height: "100vh" }}>
             <h1
                 style={{
                     fontSize: "4rem",
@@ -106,7 +96,7 @@ export const GameLobby = ({ modalActions }: { modalActions: ModalActions }) => {
             >
                 {"Lobby"}
             </h1>
-            <div className="container-fluid">
+            <div className="container-fluid d-flex" style={{ flex: 1 }}>
                 <div className="row">
                     {Teams.map((teamName) => (
                         <TeamSection
@@ -117,7 +107,7 @@ export const GameLobby = ({ modalActions }: { modalActions: ModalActions }) => {
                     ))}
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 

@@ -24,7 +24,7 @@ import {
     QuestionPageData,
     initialState as initialQuestionPageState,
 } from "../types/PageData";
-import { PlayerRaw } from "../types/Player";
+import { PlayerRaw, samplePlayersData } from "../types/Player";
 
 const HOST = "http://localhost:3000";
 const PORT = 5000;
@@ -50,7 +50,7 @@ const CLIENTS: { [id: string]: Socket } = {};
 
 let CURRENT_SCREEN: ScreenNames = "GAME_BOARD";
 let QUESTION_PAGE_DATE: QuestionPageData = initialQuestionPageState;
-let PLAYERS: { [id: string]: PlayerRaw } = {};
+let PLAYERS: { [id: string]: PlayerRaw } = samplePlayersData;
 
 let TEAMS_DATA: TeamsDataType = intialTeamsData;
 

@@ -35,7 +35,11 @@ function App({ currentScreen }: { currentScreen?: ScreenNames }) {
         });
     }, []);
 
-    return <div className="App">{renderScreen(currentScreen)}</div>;
+    return (
+        <div className="App">
+            {renderScreen(currentScreen)}
+        </div>
+    );
 }
 
 export default App;

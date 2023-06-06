@@ -16,7 +16,7 @@ const root = ReactDOM.createRoot(
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <App currentScreen="GAME_BOARD" />,
+        element: <App currentScreen="LOGIN" />,
     },
     {
         path: "/question/:questionId",
