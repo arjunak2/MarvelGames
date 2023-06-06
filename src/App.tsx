@@ -9,17 +9,18 @@ import { ScreenNames } from "./types/Screens";
 import { useDispatch } from "./store";
 import { playerInfoActions } from "./store/PlayerInfoSlice";
 
-function renderScreen(currentScreen: ScreenNames) {
+function renderScreen(currentScreen?: ScreenNames) {
     switch (currentScreen) {
         case "GAME_BOARD":
             return <GameBoard />;
         case "QUESTION":
             return <QuestionPage />;
         case "LOGIN":
+        default:
             return <LoginPage />;
     }
 }
-function App() {
+function App({ currentScreen }: { currentScreen?: ScreenNames }) {
     const dispatch = useDispatch();
     useEffect(() => {
         socket.on("connect", () => {
@@ -34,7 +35,7 @@ function App() {
         });
     }, []);
 
-    return <div className="App">{renderScreen("GAME_BOARD")}</div>;
+    return <div className="App">{renderScreen(currentScreen)}</div>;
 }
 
 export default App;

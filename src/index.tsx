@@ -16,11 +16,11 @@ const root = ReactDOM.createRoot(
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <App />,
+        element: <App currentScreen="GAME_BOARD" />,
     },
     {
         path: "/question/:questionId",
-        element: <QuestionPage />,
+        element: <App currentScreen="QUESTION" />,
     },
 ]);
 root.render(
