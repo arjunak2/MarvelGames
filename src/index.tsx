@@ -19,6 +19,10 @@ const router = createBrowserRouter([
         element: <App currentScreen="LOGIN" />,
     },
     {
+        path: "/GameBoard",
+        element: <App currentScreen="GAME_BOARD" />,
+    },
+    {
         path: "/question/:questionId",
         element: <App currentScreen="QUESTION" />,
     },

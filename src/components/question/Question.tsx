@@ -82,11 +82,6 @@ export function QuestionPage() {
         socket.on("questionPageDataSet", (questionPageData) => {
             dispatch(questionPageActions.setQuestionPageData(questionPageData));
         });
-        socket.on("transitionToGameBoard", () => {
-            socket.emit("updateQuestionPageData", QuestionPageActions.RESET());
-            dispatch(questionPageActions.reset());
-            navigate(`/`);
-        });
     }, []);
 
     if (question) {
@@ -202,7 +197,6 @@ function QuestionContent({ question }: QuestionPageProps) {
                     {player.madeUpNames.toUpperCase()}
                 </h2>
                 <PowerSection pageState={state} powerBank={player.powerBank} />
-                <HomeButton visible={isMaster} onClick={goHome} />
             </div>
             <div id="details">
                 <Header text={question.query} />
@@ -221,6 +215,7 @@ function QuestionContent({ question }: QuestionPageProps) {
                         />
                     )}
                 </div>
+                <HomeButton visible={true} onClick={goHome} />
             </div>
         </div>
     );

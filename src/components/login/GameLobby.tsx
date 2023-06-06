@@ -7,6 +7,7 @@ import { ModalActions } from "src/types/Modal";
 import { TeamNames, Teams } from "src/types/Team";
 import "../../styles/Lobby.scss";
 import { HomeButton } from "../HomeButton";
+import { socket } from "src/utils/WebSocket";
 
 //@ts-ignore
 // import generator from "uigradients";
@@ -85,6 +86,10 @@ export const GameLobby = ({ modalActions }: { modalActions: ModalActions }) => {
     });
     const PLAYERS = Object.values(players);
 
+    const start = () => {
+        socket.emit("navigate", { name: "GAME_BOARD" });
+    };
+
     return (
         <div className="d-flex flex-column" style={{ height: "100vh" }}>
             <h1
@@ -108,7 +113,7 @@ export const GameLobby = ({ modalActions }: { modalActions: ModalActions }) => {
                     ))}
                 </div>
             </div>
-            <HomeButton visible={true} onClick={() => {}} />
+            <HomeButton visible={true} onClick={start} />
         </div>
     );
 };

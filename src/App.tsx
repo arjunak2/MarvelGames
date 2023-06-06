@@ -8,6 +8,11 @@ import { socket } from "./utils/WebSocket";
 import { ScreenNames } from "./types/Screens";
 import { useDispatch } from "./store";
 import { playerInfoActions } from "./store/PlayerInfoSlice";
+import {
+    QuestionPageActions,
+    questionPageActions,
+} from "./store/QuestionPageSlice";
+import { useNavigate } from "react-router-dom";
 
 function renderScreen(currentScreen?: ScreenNames) {
     switch (currentScreen) {
@@ -22,6 +27,7 @@ function renderScreen(currentScreen?: ScreenNames) {
 }
 function App({ currentScreen }: { currentScreen?: ScreenNames }) {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     useEffect(() => {
         socket.on("connect", () => {
             console.log(`WebSocket connection established! Id:${socket.id}`);
@@ -33,13 +39,14 @@ function App({ currentScreen }: { currentScreen?: ScreenNames }) {
         socket.on("sendAllPlayerInfo", (players) => {
             dispatch(playerInfoActions.updateAllPlayerInfo(players));
         });
+        socket.on("transitionToGameBoard", () => {
+            socket.emit("updateQuestionPageData", QuestionPageActions.RESET());
+            dispatch(questionPageActions.reset());
+            navigate(`/GameBoard`);
+        });
     }, []);
 
-    return (
-        <div className="App">
-            {renderScreen(currentScreen)}
-        </div>
-    );
+    return <div className="App">{renderScreen(currentScreen)}</div>;
 }
 
 export default App;
