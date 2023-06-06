@@ -44,7 +44,11 @@ export class Player implements PlayerRaw {
 }
 
 export function mapJsonToPlayer(json: Player) {
-    return plainToClass(Player, json);
+    const PLAYER = plainToClass(Player, json);
+    PLAYER.powerBank[Powers.TIME_STOP].activate = () => {};
+    PLAYER.powerBank[Powers.DOUBLE].activate = () => {};
+    PLAYER.powerBank[Powers.HINT].activate = () => {};
+    return PLAYER;
 }
 
 export interface Players {
