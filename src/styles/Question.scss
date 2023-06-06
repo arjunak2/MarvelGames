@@ -70,7 +70,7 @@ $sw-text: #f493a5;
     width: 100%;
     display: flex;
     justify-content: center;
-    height: 10%;
+    // height: 10%;
     border-radius: 0px;
     font-family: "Poppins";
     color: $sw-text;
@@ -87,10 +87,12 @@ $sw-text: #f493a5;
     flex: 1;
     align-items: center;
     justify-content: center;
+    padding: 10px;
 }
 
 #playerSection .powerCotainer .powerIcon {
     max-width: 70%;
+    margin-bottom: 10px;
 }
 
 #playerSection .powerCotainer .btn.btn-warning {
