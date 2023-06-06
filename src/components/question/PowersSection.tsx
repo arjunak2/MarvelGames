@@ -46,7 +46,7 @@ export function PowerButton({ power, powerBank, disabled }: PowerButtonProps) {
             value={power}
         >
             <Icon className="powerIcon" height={"50%"} width={"100%"} />
-            <h5>{`${powerCount} x`}</h5>
+            <h5>{`${powerCount}`}</h5>
         </Button>
     );
 }
