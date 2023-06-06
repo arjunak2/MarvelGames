@@ -29,6 +29,7 @@ import { Teams } from "src/types/Team";
 import BannerImage from "../../assets/questions/500/SW_Banner2.png";
 import WebFont from "webfontloader";
 import "../../fonts/Dream-Avenue.ttf";
+import { HomeButton } from "../HomeButton";
 
 interface QuestionPageProps {
     question: Question;
@@ -201,21 +202,7 @@ function QuestionContent({ question }: QuestionPageProps) {
                     {player.madeUpNames.toUpperCase()}
                 </h2>
                 <PowerSection pageState={state} powerBank={player.powerBank} />
-                {isMaster && (
-                    <Button
-                        className="home"
-                        variant="secondary"
-                        onClick={goHome}
-                    >
-                        <img
-                            src={
-                                "https://www.svgrepo.com/show/22031/home-icon-silhouette.svg"
-                            }
-                            width="30"
-                            height="30"
-                        />
-                    </Button>
-                )}
+                <HomeButton visible={isMaster} onClick={goHome} />
             </div>
             <div id="details">
                 <Header text={question.query} />

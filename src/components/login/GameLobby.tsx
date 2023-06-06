@@ -6,6 +6,7 @@ import { useSelector } from "src/store";
 import { ModalActions } from "src/types/Modal";
 import { TeamNames, Teams } from "src/types/Team";
 import "../../styles/Lobby.scss";
+import { HomeButton } from "../HomeButton";
 
 //@ts-ignore
 // import generator from "uigradients";
@@ -107,6 +108,7 @@ export const GameLobby = ({ modalActions }: { modalActions: ModalActions }) => {
                     ))}
                 </div>
             </div>
+            <HomeButton visible={true} onClick={() => {}} />
         </div>
     );
 };
