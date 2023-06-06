@@ -5,11 +5,6 @@
     font-weight: bold;
 }
 
-$transition-speed: 200ms;
-.answer-choice.hovered {
-    transform: scale(1.1);
-    transition: $transition-speed;
-}
 
 $sw-text: #f493a5;
 #root {
@@ -52,6 +47,7 @@ $sw-text: #f493a5;
     align-items: center;
     background-color: #8f1739;
     padding-top: 2rem;
+    max-width: 20%;
 }
 
 #playerSection .player-name {
@@ -115,11 +111,21 @@ $sw-text: #f493a5;
 
 #details {
     background-color: #271426;
-    padding: 10px 5% 10px 5%;
+    padding: 20px 5% 20px 5%;
     color: $sw-text;
+    display: flex;
+    flex-direction: column;
 }
 
 #details .title {
     font-weight: 500;
-    font-size: 4vw;
+    font-size: 3.8vw;
 }
+
+#details .answer-section {
+    align-self: center;
+    flex-grow: 1;
+    display: flex;
+    width: 100%;
+}
+
