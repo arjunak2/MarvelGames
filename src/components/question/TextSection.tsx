@@ -5,6 +5,7 @@ import { QuestionPageState } from "../../types/QuestionPage";
 import { useSelector } from "src/store";
 import { socket } from "src/utils/WebSocket";
 import { QuestionPageActions } from "src/store/QuestionPageSlice";
+import "../../styles/TextEntry.scss";
 
 export function TextSection({
     question,
@@ -21,8 +22,9 @@ export function TextSection({
     const pageComplete = pageState === QuestionPageState.COMPLETED;
     const inputRef: React.RefObject<HTMLInputElement> = useRef(null);
     return (
-        <>
+        <div className="text-section">
             <Form.Control
+                className="text-entry"
                 ref={inputRef}
                 placeholder="Enter text"
                 aria-label="Username"
@@ -44,6 +46,7 @@ export function TextSection({
                 value={chosenAnswer || textInputUpdate}
             />
             <Button
+                className="text-entry-submit"
                 type="submit"
                 onClick={() => {
                     const chosenAnswer = inputRef.current?.value;
@@ -53,7 +56,7 @@ export function TextSection({
             >
                 Submit
             </Button>
-        </>
+        </div>
     );
 }
 export default TextSection;

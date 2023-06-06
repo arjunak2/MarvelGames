@@ -6,6 +6,7 @@ import { ButtonVariant } from "react-bootstrap/esm/types";
 import { useDispatch, useSelector } from "src/store";
 import { QuestionPageActions } from "src/store/QuestionPageSlice";
 import { socket } from "src/utils/WebSocket";
+import "../../styles/MultipleChoice.scss";
 
 interface AnswerProps extends ButtonProps {
     text: string;
@@ -112,18 +113,7 @@ export function MultipleChoiceSection({
             );
         }
     );
-    return (
-        <Container>
-            <Row>
-                <Col>{AnswerChoices[0]}</Col>
-                <Col>{AnswerChoices[1]}</Col>
-            </Row>
-            <Row>
-                <Col>{AnswerChoices[2]}</Col>
-                <Col>{AnswerChoices[3]}</Col>
-            </Row>
-        </Container>
-    );
+    return <div className="mc-section">{AnswerChoices}</div>;
 }
 
 export default MultipleChoiceSection;
