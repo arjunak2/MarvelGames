@@ -1,0 +1,37 @@
+$transition-speed: 200ms;
+
+.text-section {
+    width: 100%;
+    font-family: "Poppins";
+    padding: 0px 10% 40px 10%;
+    align-self: center;
+}
+
+.text-section .text-entry {
+    border-radius: 0px;
+    background-color: white;
+    font-size: 20px;
+    padding: 10px 16px 10px 16px;
+}
+
+.text-section .text-entry-submit {
+    border-radius: 0px;
+    font-size: 20px;
+    margin-top: 30px;
+    padding: 8px 20px 8px 20px;
+    font-family: "Cinzel";
+    background-color: #8f1739;
+    border: 0px;
+}
+
+.text-section .text-entry.is-valid {
+    background-color: #b1dac7;
+    color: #022e1a;
+    border-width: 4px;
+}
+
+.text-section .text-entry.is-invalid {
+    background-color: rgb(110, 48, 55);
+    color: #d51313;
+    border-width: 4px;
+}
