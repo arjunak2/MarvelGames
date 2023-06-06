@@ -32,11 +32,11 @@ $sw-text: #f493a5;
     width: 100%;
 }
 
-.points {
+#banner .points {
     z-index: 10;
     color: #d3556a;
     position: relative;
-    bottom: 15vh;
+    bottom: 10vw;
     margin: 0px;
     width: 100%;
     text-align: center;
@@ -78,6 +78,19 @@ $sw-text: #f493a5;
 
 #playerSection .powerCotainer h5 {
     color: $sw-text;
+}
+
+#playerSection .powerCotainer .btn {
+    display: flex;
+    flex-direction: column;
+    fill: $sw-text;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+#playerSection .powerCotainer .powerIcon {
+    max-width: 70%;
 }
 
 #playerSection .powerCotainer .btn.btn-warning {
