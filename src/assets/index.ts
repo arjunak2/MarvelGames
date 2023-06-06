@@ -16,8 +16,11 @@ import { ReactComponent as Thor } from "./thor.svg";
 import { ReactComponent as Wolverine } from "./wolverine.svg";
 import { ReactComponent as WolverineCute } from "./wolverine_cute.svg";
 
-
 import { ReactComponent as Edit } from "./edit-svgrepo-com.svg";
+import { ReactComponent as Double } from "./powers/double.svg";
+import { ReactComponent as TimeStop } from "./powers/timestop2.svg";
+import { ReactComponent as Hint } from "./powers/hint.svg";
+import { Powers } from "src/types/Powers";
 
 export const Icons = {
     Avengers,
@@ -48,8 +51,10 @@ export type IconType = React.FunctionComponent<
 >;
 
 export const Symbols = {
-    Edit
-} 
-
+    Edit,
+    [Powers.DOUBLE]: Double,
+    [Powers.TIME_STOP]: TimeStop,
+    [Powers.HINT]: Hint,
+};
 
 export type SymbolNames = keyof typeof Symbol;

@@ -8,6 +8,7 @@ import {
     ButtonGroup,
 } from "react-bootstrap";
 import { produce } from "immer";
+import { IconType, Symbols } from "src/assets";
 
 interface PowerSectionProps {
     powerBank: PowerBank;
@@ -36,16 +37,7 @@ export function PowerButton({ power, powerBank, disabled }: PowerButtonProps) {
         console.log(`Activating ${power}`);
     };
 
-    const pickIcon = (): string => {
-        switch (power) {
-            case Powers.DOUBLE:
-                return "https://www.svgrepo.com/show/511879/double-window-1503.svg";
-            case Powers.HINT:
-                return "https://www.svgrepo.com/show/425736/spellbook-magic.svg";
-            case Powers.TIME_STOP:
-                return "https://www.svgrepo.com/show/511171/timer-close.svg";
-        }
-    };
+    const Icon = Symbols[power]
     return (
         <Button
             variant="warning"
@@ -53,7 +45,7 @@ export function PowerButton({ power, powerBank, disabled }: PowerButtonProps) {
             disabled={isPowerDisabled}
             value={power}
         >
-            <img src={pickIcon()} width="30" height="30" />
+            <Icon className="powerIcon" height={"50%"} width={"100%"} />
             <h5>{`${powerCount} x`}</h5>
         </Button>
     );
