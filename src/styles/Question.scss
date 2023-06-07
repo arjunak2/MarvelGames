@@ -119,17 +119,23 @@ $sw-text: #f493a5;
     color: $sw-text;
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
+    height: 100vh;
 }
 
 #details .title {
     font-weight: 500;
-    font-size: 3.8vw;
+    font-size: 3.5vw;
+    flex-grow: 1;
+    max-height: 60%;
+    overflow-y: auto;
 }
 
 #details .answer-section {
     align-self: center;
-    flex-grow: 1;
+    // flex-grow: 1;
     display: flex;
+    flex-grow: 1;
     width: 100%;
     flex-direction: column;
 }
