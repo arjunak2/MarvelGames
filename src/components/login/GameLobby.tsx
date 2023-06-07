@@ -86,9 +86,14 @@ export const GameLobby = ({ modalActions }: { modalActions: ModalActions }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        socket.on("pageUpdate", (data) => {
+        const pageUpdateListener = () => {
             goToGameBoard();
-        });
+        };
+        socket.on("pageUpdate", pageUpdateListener);
+
+        return ()=>{
+            socket.off("pageUpdate", pageUpdateListener)
+        }
     }, []);
     const { players } = useSelector((state) => {
         return state.playerInfo;

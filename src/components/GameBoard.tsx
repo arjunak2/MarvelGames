@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Tile from "./Tile";
@@ -140,6 +140,13 @@ export function GameBoard() {
                 <TableRow row={3} data={gBoard} />
                 <TableRow row={4} data={gBoard} />
                 <TableRow row={5} data={gBoard} />
+                <Button
+                    onClick={() => {
+                        socket.emit("nextTurn");
+                    }}
+                >
+                    {"Hey"}
+                </Button>
             </Container>
             <InfoColumn />
         </div>
