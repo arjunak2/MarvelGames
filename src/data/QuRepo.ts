@@ -92,7 +92,7 @@ export const QUESTIONS_DB: { [id: string]: Question } = {
         QuestionCategory.CATEGORY_3,
         "Don't Freeze.",
         { A: "T'Challa", B: "Shuri", C: "M'baku", D: "Okoye" },
-        "T'Challa"
+        "Okoye"
     ),
     [QuestionCategory.CATEGORY_3 + "-" + Points.Four]: new Question_Text(
         Points.Four,
