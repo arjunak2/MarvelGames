@@ -72,7 +72,7 @@ const TeamSection = ({
         <div className="col d-flex flex-column">
             <h2>{teamName}</h2>
             <div className="container-fluid d-flex" style={{ flex: 1 }}>
-                <div className="card-container row gap-3 justify-content-center">
+                <div className="card-container row gap-5 justify-content-center">
                     {PLAYER_CARDS}
                 </div>
             </div>
@@ -87,6 +87,7 @@ export const GameLobby = ({ modalActions }: { modalActions: ModalActions }) => {
     const PLAYERS = Object.values(players);
 
     const start = () => {
+        socket.emit("start");
         socket.emit("navigate", { name: "GAME_BOARD" });
     };
 
@@ -102,8 +103,11 @@ export const GameLobby = ({ modalActions }: { modalActions: ModalActions }) => {
             >
                 {"Lobby"}
             </h1>
-            <div className="container-fluid d-flex" style={{ flex: 1 }}>
-                <div className="row">
+            <div
+                className="container-fluid d-flex"
+                style={{ flex: 1, width: "100%", justifyContent: "center" }}
+            >
+                <div className="row" style={{ width: "100%" }}>
                     {Teams.map((teamName) => (
                         <TeamSection
                             teamName={teamName}
