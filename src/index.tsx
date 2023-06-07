@@ -8,6 +8,8 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { QuestionPage } from "./components/question/Question";
 import store from "./store";
+import { GameBoard } from "./components/GameBoard";
+import LoginPage from "./components/login/LoginPage";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
@@ -16,15 +18,22 @@ const root = ReactDOM.createRoot(
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <App currentScreen="LOGIN" />,
-    },
-    {
-        path: "/GameBoard",
-        element: <App currentScreen="GAME_BOARD" />,
-    },
-    {
-        path: "/question/:questionId",
-        element: <App currentScreen="QUESTION" />,
+        element: <App />,
+        children: [
+            {
+                index: true,
+                // path: "/login",
+                element: <LoginPage />,
+            },
+            {
+                path: "/GameBoard",
+                element: <GameBoard />,
+            },
+            {
+                path: "/question/:questionId",
+                element: <QuestionPage />,
+            },
+        ],
     },
 ]);
 root.render(

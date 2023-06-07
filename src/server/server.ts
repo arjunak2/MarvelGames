@@ -129,6 +129,12 @@ io.on("connection", (socket) => {
     CLIENTS[userId] = socket;
     socket.emit("updateBoard", GameBoard);
     emitToAllClients("sendAllPlayerInfo", PLAYERS);
+    if (CURRENT_PLAYER != undefined && CURRENT_PLAYER != "")
+        emitToAllClients("pageUpdate", {
+            currentPlayer: CURRENT_PLAYER,
+            currentTeam: CURRENT_TEAM,
+            currentScreen: CURRENT_SCREEN,
+        });
 
     socket.on("start", () => {
         generateTeams();

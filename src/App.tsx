@@ -12,7 +12,8 @@ import {
     QuestionPageActions,
     questionPageActions,
 } from "./store/QuestionPageSlice";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
+import { pageActions } from "./store/PageSlice";
 
 function renderScreen(currentScreen?: ScreenNames) {
     switch (currentScreen) {
@@ -44,9 +45,12 @@ function App({ currentScreen }: { currentScreen?: ScreenNames }) {
             dispatch(questionPageActions.reset());
             navigate(`/GameBoard`);
         });
+        socket.on("pageUpdate", (data) => {
+            dispatch(pageActions.updateAll(data));
+        });
     }, []);
 
-    return <div className="App">{renderScreen(currentScreen)}</div>;
+    return <div className="App"><Outlet/></div>;
 }
 
 export default App;

@@ -87,7 +87,6 @@ export const GameLobby = ({ modalActions }: { modalActions: ModalActions }) => {
 
     useEffect(() => {
         socket.on("pageUpdate", (data) => {
-            dispatch(pageActions.updateAll(data));
             goToGameBoard();
         });
     }, []);
