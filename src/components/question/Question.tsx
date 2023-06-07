@@ -24,7 +24,7 @@ import {
 } from "src/store/QuestionPageSlice";
 import { QuestionPageState } from "src/types/QuestionPage";
 import "../../styles/Question.scss";
-import { initialState } from "src/types/PageData";
+import { QuestionPageData, initialState } from "src/types/PageData";
 import { Teams } from "src/types/Team";
 import BannerImage from "../../assets/questions/500/SW_Banner2.png";
 import WebFont from "webfontloader";
@@ -53,6 +53,31 @@ export function QuestionPage() {
         socket.emit("retrieveQuestion", questionId as string);
     };
     useEffect(() => {
+        const EventListeners = {
+            sendQuestion: (receivedQuestion: Question) => {
+                console.log("Question fetched");
+                const QUESTION = mapJsonToQuestion(receivedQuestion);
+                if (question === undefined) setQuestion(QUESTION);
+            },
+            questionPageDataUpdated: (
+                questionPageDataUpdate: Partial<QuestionPageData>
+            ) => {
+                console.log(
+                    "Question Page data updated",
+                    JSON.stringify(questionPageDataUpdate)
+                );
+                dispatch(
+                    questionPageActions.updateQuestionPageData(
+                        questionPageDataUpdate
+                    )
+                );
+            },
+            questionPageDataSet: (questionPageData: QuestionPageData) => {
+                dispatch(
+                    questionPageActions.setQuestionPageData(questionPageData)
+                );
+            },
+        };
         if (
             question instanceof Question ||
             passedInQuestion instanceof Question
@@ -61,27 +86,23 @@ export function QuestionPage() {
         else {
             fetchQuestion();
         }
-        socket.on("sendQuestion", (receivedQuestion) => {
-            console.log("Question fetched");
-            const QUESTION = mapJsonToQuestion(receivedQuestion);
-            if (question === undefined) setQuestion(QUESTION);
-        });
-
-        socket.on("questionPageDataUpdated", (questionPageDataUpdate) => {
-            console.log(
-                "Question Page data updated",
-                JSON.stringify(questionPageDataUpdate)
+        socket.on("sendQuestion", EventListeners.sendQuestion);
+        socket.on(
+            "questionPageDataUpdated",
+            EventListeners.questionPageDataUpdated
+        );
+        socket.on("questionPageDataSet", EventListeners.questionPageDataSet);
+        return () => {
+            socket.off("sendQuestion", EventListeners.sendQuestion);
+            socket.off(
+                "questionPageDataUpdated",
+                EventListeners.questionPageDataUpdated
             );
-            dispatch(
-                questionPageActions.updateQuestionPageData(
-                    questionPageDataUpdate
-                )
+            socket.off(
+                "questionPageDataSet",
+                EventListeners.questionPageDataSet
             );
-        });
-
-        socket.on("questionPageDataSet", (questionPageData) => {
-            dispatch(questionPageActions.setQuestionPageData(questionPageData));
-        });
+        };
     }, []);
 
     if (question) {
