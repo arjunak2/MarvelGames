@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import Col from "react-bootstrap/Col";
-import Logo from "../public/assets/logo.svg";
 import Row from "react-bootstrap/Row";
 import Tile from "./Tile";
 import "../styles/GameBoard.scss";
@@ -20,10 +19,13 @@ import { GBData } from "../data/GameBoard";
 import { QUESTIONS_DB } from "../data/QuRepo";
 import { redirect, useNavigate } from "react-router-dom";
 import { plainToClass } from "class-transformer";
-import { useDispatch } from "src/store";
+import { useDispatch, useSelector } from "src/store";
 import { questionPageActions } from "src/store/QuestionPageSlice";
-// const  = require("../types/Question");
-// console.log(JSON.stringify(QUESTIONS_DB));
+import { Icons, Symbols } from "src/assets";
+import { Powers } from "src/types/Powers";
+import { Loader } from "./Loader";
+import { Teams } from "src/types/Team";
+
 function TableHeaderRow({ data }: { data: IGameBoard }) {
     const categories = Object.keys(data);
     const CategoryElements = categories.map((category) => (
@@ -66,11 +68,54 @@ function TileCell({
     );
 }
 
+function PlayerCard() {}
+
+function ScoreCard() {}
+function InfoColumn() {
+    const player = useSelector((state) => {
+        let { currentPlayer } = state.page;
+        let player = state.playerInfo.players[currentPlayer];
+
+        return player;
+    });
+    const ICON = Icons[player.icon];
+    const POWERS = Object.entries(player.powerBank).map(([power, values]) => {
+        const PowerIcon = Symbols[power as Powers];
+        return (
+            <div className="power">
+                <PowerIcon width={50} height={50} className="icon" />
+                <h3 className="count">{values.count}</h3>
+            </div>
+        );
+    });
+    return (
+        <div className={`info-column`}>
+            <div className={`player-card  ${player.color}`}>
+                <h1 className="player">{`${player.madeUpNames}`}</h1>
+                <ICON className="player-icon" />
+                <div className="power-bank">{POWERS}</div>
+            </div>
+            <div className="score-card">
+                <div className="team team-1">
+                    <h3>{Teams[0]}</h3>
+                    <h3 className="score">{`400`}</h3>
+                </div>
+                <div className="team team-2">
+                    <h3>{Teams[1]}</h3>
+                    <h3 className="score">{`8000`}</h3>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 export function GameBoard() {
     const [gBoard, setGBoard] = useState<IGameBoard>(GBData);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
+    const { currentPlayer } = useSelector((state) => {
+        return state.page;
+    });
     useEffect(() => {
         socket.on("updateBoard", (gBoard) => {
             console.log("UPDATING BOARD");
@@ -78,20 +123,17 @@ export function GameBoard() {
         });
         socket.on("transitionToQuestion", (question) => {
             console.log("Question selected!");
-            dispatch(questionPageActions.setQuestion(question))
+            dispatch(questionPageActions.setQuestion(question));
             const QUESTION = mapJsonToQuestion(question);
             navigate(`/question/${question.id}`, {
                 state: { question: QUESTION },
             });
         });
     }, []);
+    if (currentPlayer == undefined || currentPlayer == "") return <Loader />;
     return (
-        <>
-            <div>
-                <img src={Logo} height={50}></img>
-                <div>Player 1</div>
-            </div>
-            <Container>
+        <div className="grid-container">
+            <Container className="game-board">
                 <TableHeaderRow data={gBoard} />
                 <TableRow row={1} data={gBoard} />
                 <TableRow row={2} data={gBoard} />
@@ -99,6 +141,7 @@ export function GameBoard() {
                 <TableRow row={4} data={gBoard} />
                 <TableRow row={5} data={gBoard} />
             </Container>
-        </>
+            <InfoColumn />
+        </div>
     );
 }
