@@ -29,6 +29,7 @@ export interface ClientToServerEvents {
     updatePlayerData: (data: PlayerRaw) => void;
     start: () => void;
     nextTurn: () => void;
+    updatePage: (data: PageSlice) => void;
 }
 
 export interface InterServerEvents {

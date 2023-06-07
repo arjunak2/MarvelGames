@@ -26,21 +26,25 @@ import {
     ScreenNames,
 } from "../types/Screens";
 import {
+    PageSlice,
     QuestionPageData,
     initialState as initialQuestionPageState,
 } from "../types/PageData";
 import { Player, PlayerRaw, samplePlayersData } from "../types/Player";
 const CLIENTS: { [id: string]: Socket } = {};
 
-let CURRENT_SCREEN: ScreenNames = "LOGIN";
 let QUESTION_PAGE_DATE: QuestionPageData = initialQuestionPageState;
 let PLAYERS: { [id: string]: PlayerRaw } = samplePlayersData;
-let TEAMS_DATA: TeamsDataType = intialTeamsData;
 let CURRENT_TEAM_INDEX = 0;
-let CURRENT_TEAM = Teams[CURRENT_TEAM_INDEX];
-let CURRENT_PLAYER = "";
 let TURNS: string[] = [];
 let TURN_INDEX = 0;
+
+let PAGE_DATA: PageSlice = {
+    currentPlayer: "",
+    currentTeam: Teams[CURRENT_TEAM_INDEX],
+    currentScreen: "LOGIN",
+    teamData: intialTeamsData,
+};
 
 const HOST = "http://localhost:3000";
 const PORT = 5000;
@@ -64,7 +68,7 @@ httpServer.listen(PORT, () => {
 
 function updateScreen(screen: ScreenNames) {
     console.log(`Updating the screen to ${screen}`);
-    CURRENT_SCREEN = screen;
+    PAGE_DATA.currentScreen = screen;
 }
 export const emitToAllClients: typeof io.emit = (ev, ...args) => {
     Object.values(CLIENTS).forEach((ss) => {
@@ -101,27 +105,23 @@ function readQuestion(questionId: string) {
 function generateTeams() {
     // Adding members to teams
     Object.values(PLAYERS).forEach((player) => {
-        TEAMS_DATA[player.team].players.push(player.id);
+        PAGE_DATA.teamData[player.team].players.push(player.id);
     });
-    CURRENT_PLAYER = TEAMS_DATA[Teams[CURRENT_TEAM_INDEX]].players[0];
+    PAGE_DATA.currentPlayer =
+        PAGE_DATA.teamData[Teams[CURRENT_TEAM_INDEX]].players[0];
 
-    emitToAllClients("pageUpdate", {
-        currentPlayer: CURRENT_PLAYER,
-        currentTeam: CURRENT_TEAM,
-        currentScreen: CURRENT_SCREEN,
-        teamData: TEAMS_DATA,
-    });
+    emitToAllClients("pageUpdate", PAGE_DATA);
     createTurnOrder();
 }
 
 function createTurnOrder() {
     let INDEX = 0;
     const UPPER_BOUND =
-        TEAMS_DATA[Teams[0]].players.length +
-        TEAMS_DATA[Teams[1]].players.length;
+        PAGE_DATA.teamData[Teams[0]].players.length +
+        PAGE_DATA.teamData[Teams[1]].players.length;
     while (INDEX < UPPER_BOUND) {
         Teams.forEach((team) => {
-            let { players } = TEAMS_DATA[team];
+            let { players } = PAGE_DATA.teamData[team];
             if (players.length <= INDEX) return;
             else {
                 TURNS.push(players[INDEX]);
@@ -138,16 +138,11 @@ function nextTurn() {
     const NEW_TEAM = PLAYERS[NEW_PLAYER].team;
 
     TURN_INDEX = NEW_TURN_INDEX;
-    CURRENT_PLAYER = NEW_PLAYER;
-    CURRENT_TEAM = NEW_TEAM;
+    PAGE_DATA.currentPlayer = NEW_PLAYER;
+    PAGE_DATA.currentTeam = NEW_TEAM;
 
     console.log(`Next Turn. ${NEW_PLAYER} from ${NEW_TEAM}`);
-    emitToAllClients("pageUpdate", {
-        currentPlayer: NEW_PLAYER,
-        currentTeam: NEW_TEAM,
-        currentScreen: CURRENT_SCREEN,
-        teamData: TEAMS_DATA,
-    });
+    emitToAllClients("pageUpdate", PAGE_DATA);
 }
 
 function setUpListeners(
@@ -202,7 +197,7 @@ function setUpListeners(
         const question = readQuestion(questionId);
         console.log("Sending back question", question);
 
-        if (CURRENT_SCREEN === "GAME_BOARD") {
+        if (PAGE_DATA.currentScreen === "GAME_BOARD") {
             Object.values(CLIENTS).forEach((ss) => {
                 ss.emit("sendQuestion", question);
             });
@@ -225,6 +220,11 @@ function setUpListeners(
         // emitToAllClients("playersUpdated", playerDataUpdate);
         emitToAllClients("sendAllPlayerInfo", PLAYERS);
     });
+
+    socket.on("updatePage", (pageSlice) => {
+        PAGE_DATA = pageSlice
+        emitToAllClients("pageUpdate", pageSlice);
+    });
 }
 
 io.on("connection", (socket) => {
@@ -238,16 +238,11 @@ io.on("connection", (socket) => {
 
     // update page info
     emitToAllClients("sendAllPlayerInfo", PLAYERS);
-    if (CURRENT_PLAYER != undefined && CURRENT_PLAYER != "") {
-        emitToAllClients("pageUpdate", {
-            currentPlayer: CURRENT_PLAYER,
-            currentTeam: CURRENT_TEAM,
-            currentScreen: CURRENT_SCREEN,
-            teamData: TEAMS_DATA,
-        });
+    if (PAGE_DATA.currentPlayer != undefined && PAGE_DATA.currentPlayer != "") {
+        emitToAllClients("pageUpdate", PAGE_DATA);
     }
     // send question info
-    if (CURRENT_SCREEN === "QUESTION") {
+    if (PAGE_DATA.currentScreen === "QUESTION") {
     }
 
     // set up socket listeners
