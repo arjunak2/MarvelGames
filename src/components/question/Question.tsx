@@ -30,6 +30,7 @@ import BannerImage from "../../assets/questions/500/SW_Banner2.png";
 import WebFont from "webfontloader";
 import "../../fonts/Dream-Avenue.ttf";
 import { HomeButton } from "../HomeButton";
+import { Loader } from "../Loader";
 
 interface QuestionPageProps {
     question: Question;
@@ -38,8 +39,6 @@ interface QuestionPageProps {
 function Header({ text }: { text: string }) {
     return <h1 className={"title"}>{text.toLocaleUpperCase()}</h1>;
 }
-
-const uu = new Player("Sajiberjabber", "angel_care", "Hulk", Teams[0]);
 
 export function QuestionPage() {
     const [question, setQuestion] = useState(undefined as Question | undefined);
@@ -112,21 +111,7 @@ export function QuestionPage() {
     }
 }
 
-function Loader() {
-    return (
-        <div className="d-flex justify-content-center align-items-center vh-100 vw-100">
-            <Spinner
-                animation="border"
-                role="status"
-                variant="primary"
-                style={{ height: "30vh", width: "30vh" }}
-            />
-        </div>
-    );
-}
-
 function QuestionContent({ question }: QuestionPageProps) {
-    const currentPlayerId = "GwenStacy-9e4alf";
     const { state, timerActive, points, chosenAnswer } = useSelector(
         (store) => {
             return store.questionPage;
@@ -134,7 +119,7 @@ function QuestionContent({ question }: QuestionPageProps) {
     );
 
     const player = useSelector((store) => {
-        const playerRaw = store.playerInfo.players[currentPlayerId];
+        const playerRaw = store.playerInfo.players[store.page.currentPlayer];
         return mapJsonToPlayer(playerRaw as Player);
     });
     const dispatch = useDispatch();

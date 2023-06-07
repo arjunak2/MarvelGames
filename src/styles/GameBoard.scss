@@ -83,15 +83,23 @@ $card-border-radius: 3rem;
     display: flex;
     align-items: center;
     justify-content: space-around;
+    padding: 20px;
 }
 
 .score-card .team.team-1 {
     // background-color: rgb(108, 61, 145);
     background-image: linear-gradient(135deg, #72b5bb 30%, #1d4547 130%);
     color: rgb(23, 75, 75);
+
+    background-image: linear-gradient(180deg, #051325 30%, #1d4547 140%);
+    color: rgb(16 105 105 / 92%);
+    
+
 }
 .score-card .team.team-2 {
     background-image: linear-gradient(270deg, #602f44 0%, #3e1124 130%);
+    color: #945870;
+    background-image: linear-gradient(180deg, #361f39 0%, #1e1031 50% , #0d0723 100%);
     color: #945870;
 }
 

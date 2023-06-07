@@ -109,6 +109,7 @@ function generateTeams() {
         currentPlayer: CURRENT_PLAYER,
         currentTeam: CURRENT_TEAM,
         currentScreen: CURRENT_SCREEN,
+        teamData: TEAMS_DATA,
     });
     createTurnOrder();
 }
@@ -145,6 +146,7 @@ function nextTurn() {
         currentPlayer: NEW_PLAYER,
         currentTeam: NEW_TEAM,
         currentScreen: CURRENT_SCREEN,
+        teamData: TEAMS_DATA,
     });
 }
 
@@ -241,6 +243,7 @@ io.on("connection", (socket) => {
             currentPlayer: CURRENT_PLAYER,
             currentTeam: CURRENT_TEAM,
             currentScreen: CURRENT_SCREEN,
+            teamData: TEAMS_DATA,
         });
     }
     // send question info

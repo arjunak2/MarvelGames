@@ -8,6 +8,7 @@ const initialState: PageSlice = {
     currentPlayer: "",
     currentTeam: "",
     currentScreen: "LOGIN",
+    teamData: intialTeamsData,
 };
 export const pageSlice = createSlice({
     name: "page",

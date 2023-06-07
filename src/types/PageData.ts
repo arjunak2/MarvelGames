@@ -1,6 +1,7 @@
 import { Points, QuestionType } from "./Question";
 import { QuestionPageState } from "./QuestionPage";
 import { ScreenNames } from "./Screens";
+import { TeamsDataType } from "./Team";
 
 export const initialState: QuestionPageData = {
     state: QuestionPageState.INITIAL,
@@ -24,4 +25,5 @@ export interface PageSlice {
     currentPlayer: string;
     currentTeam: string;
     currentScreen: ScreenNames;
+    teamData: TeamsDataType;
 }

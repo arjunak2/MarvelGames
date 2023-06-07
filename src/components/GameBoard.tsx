@@ -72,11 +72,11 @@ function PlayerCard() {}
 
 function ScoreCard() {}
 function InfoColumn() {
-    const player = useSelector((state) => {
+    const { player, teamData } = useSelector((state) => {
         let { currentPlayer } = state.page;
         let player = state.playerInfo.players[currentPlayer];
-
-        return player;
+        const { teamData } = state.page;
+        return { player, teamData };
     });
     const ICON = Icons[player.icon];
     const POWERS = Object.entries(player.powerBank).map(([power, values]) => {
@@ -98,11 +98,11 @@ function InfoColumn() {
             <div className="score-card">
                 <div className="team team-1">
                     <h3>{Teams[0]}</h3>
-                    <h3 className="score">{`400`}</h3>
+                    <h3 className="score">{`${teamData[Teams[0]].score}`}</h3>
                 </div>
                 <div className="team team-2">
                     <h3>{Teams[1]}</h3>
-                    <h3 className="score">{`8000`}</h3>
+                    <h3 className="score">{`${teamData[Teams[1]].score}`}</h3>
                 </div>
             </div>
         </div>
@@ -140,13 +140,6 @@ export function GameBoard() {
                 <TableRow row={3} data={gBoard} />
                 <TableRow row={4} data={gBoard} />
                 <TableRow row={5} data={gBoard} />
-                <Button
-                    onClick={() => {
-                        socket.emit("nextTurn");
-                    }}
-                >
-                    {"Hey"}
-                </Button>
             </Container>
             <InfoColumn />
         </div>
