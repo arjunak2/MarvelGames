@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import questionPageReducer from "./QuestionPageSlice";
 import playerInfoReducer from "./PlayerInfoSlice";
+import pageReducer from "./PageSlice";
 import {
     TypedUseSelectorHook,
     useDispatch as useReduxDispatch,
@@ -11,6 +12,7 @@ const store = configureStore({
     reducer: {
         questionPage: questionPageReducer,
         playerInfo: playerInfoReducer,
+        page: pageReducer,
     },
 });
 

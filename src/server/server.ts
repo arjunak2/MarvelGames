@@ -24,7 +24,17 @@ import {
     QuestionPageData,
     initialState as initialQuestionPageState,
 } from "../types/PageData";
-import { PlayerRaw, samplePlayersData } from "../types/Player";
+import { Player, PlayerRaw, samplePlayersData } from "../types/Player";
+const CLIENTS: { [id: string]: Socket } = {};
+
+let CURRENT_SCREEN: ScreenNames = "LOGIN";
+let QUESTION_PAGE_DATE: QuestionPageData = initialQuestionPageState;
+let PLAYERS: { [id: string]: PlayerRaw } = samplePlayersData;
+let TEAMS_DATA: TeamsDataType = intialTeamsData;
+let CURRENT_TEAM_INDEX = 0;
+let CURRENT_PLAYER_INDEX = 0;
+let CURRENT_TEAM = Teams[CURRENT_TEAM_INDEX];
+let CURRENT_PLAYER = "";
 
 const HOST = "http://localhost:3000";
 const PORT = 5000;
@@ -45,14 +55,6 @@ const io = new Server<
 httpServer.listen(PORT, () => {
     console.info(`Server started on ${PORT}`);
 });
-
-const CLIENTS: { [id: string]: Socket } = {};
-
-let CURRENT_SCREEN: ScreenNames = "GAME_BOARD";
-let QUESTION_PAGE_DATE: QuestionPageData = initialQuestionPageState;
-let PLAYERS: { [id: string]: PlayerRaw } = samplePlayersData;
-
-let TEAMS_DATA: TeamsDataType = intialTeamsData;
 
 function updateScreen(screen: ScreenNames) {
     console.log(`Updating the screen to ${screen}`);
@@ -90,6 +92,37 @@ function readQuestion(questionId: string) {
     return QUESTIONS_DB[questionId];
 }
 
+function generateTeams() {
+    // Adding members to teams
+    Object.values(PLAYERS).forEach((player, index) => {
+        TEAMS_DATA[player.team].players.push(player.id);
+    });
+    CURRENT_PLAYER =
+        TEAMS_DATA[Teams[CURRENT_TEAM_INDEX]].players[CURRENT_PLAYER_INDEX];
+
+    emitToAllClients("pageUpdate", {
+        currentPlayer: CURRENT_PLAYER,
+        currentTeam: CURRENT_TEAM,
+        currentScreen: CURRENT_SCREEN,
+    });
+}
+
+function nextTurn() {
+    const teamBoundary = Teams.length;
+    const playerBoundary = TEAMS_DATA[Teams[CURRENT_TEAM_INDEX]].players.length;
+    CURRENT_TEAM_INDEX = (CURRENT_TEAM_INDEX + 1) % teamBoundary;
+    CURRENT_PLAYER_INDEX = (CURRENT_PLAYER_INDEX + 1) % playerBoundary;
+    let CURRENT_TEAM = Teams[CURRENT_TEAM_INDEX];
+    CURRENT_PLAYER = TEAMS_DATA[CURRENT_TEAM].players[CURRENT_PLAYER_INDEX];
+
+    console.log(`Next Turn. ${CURRENT_PLAYER} from ${CURRENT_TEAM}`);
+    emitToAllClients("pageUpdate", {
+        currentPlayer: CURRENT_PLAYER,
+        currentTeam: CURRENT_TEAM,
+        currentScreen: CURRENT_SCREEN,
+    });
+}
+
 io.on("connection", (socket) => {
     console.log(`Received a new connection from ${socket.id}`);
     const userId = uuidv4();
@@ -97,6 +130,9 @@ io.on("connection", (socket) => {
     socket.emit("updateBoard", GameBoard);
     emitToAllClients("sendAllPlayerInfo", PLAYERS);
 
+    socket.on("start", () => {
+        generateTeams();
+    });
     socket.on("button", (data) => {
         console.log("The Server received this.");
         socket.emit("inform", `Hello, you sent -> "message"`);
@@ -130,6 +166,10 @@ io.on("connection", (socket) => {
         }
     });
 
+    socket.on("nextTurn", () => {
+        nextTurn();
+    });
+
     socket.on("retrieveQuestion", (questionId) => {
         const question = readQuestion(questionId);
         console.log("Sending back question", question);
@@ -155,7 +195,6 @@ io.on("connection", (socket) => {
         const targetPlayer = playerDataUpdate.id;
         PLAYERS[targetPlayer] = playerDataUpdate;
         // emitToAllClients("playersUpdated", playerDataUpdate);
-        TEAMS_DATA[playerDataUpdate.team].players.add(targetPlayer);
         emitToAllClients("sendAllPlayerInfo", PLAYERS);
     });
 });

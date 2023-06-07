@@ -1,5 +1,6 @@
 import { Points, QuestionType } from "./Question";
 import { QuestionPageState } from "./QuestionPage";
+import { ScreenNames } from "./Screens";
 
 export const initialState: QuestionPageData = {
     state: QuestionPageState.INITIAL,
@@ -17,4 +18,10 @@ export interface QuestionPageData {
     hoveredAnswerChoice?: string;
     chosenAnswer?: string;
     textInputUpdate?: string;
+}
+
+export interface PageSlice {
+    currentPlayer: string;
+    currentTeam: string;
+    currentScreen: ScreenNames;
 }

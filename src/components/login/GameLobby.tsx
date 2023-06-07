@@ -8,6 +8,8 @@ import { TeamNames, Teams } from "src/types/Team";
 import "../../styles/Lobby.scss";
 import { HomeButton } from "../HomeButton";
 import { socket } from "src/utils/WebSocket";
+import { useDispatch } from "react-redux";
+import { pageActions } from "src/store/PageSlice";
 
 //@ts-ignore
 // import generator from "uigradients";
@@ -81,13 +83,25 @@ const TeamSection = ({
 };
 
 export const GameLobby = ({ modalActions }: { modalActions: ModalActions }) => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        socket.on("pageUpdate", (data) => {
+            dispatch(pageActions.updateAll(data));
+            goToGameBoard();
+        });
+    }, []);
     const { players } = useSelector((state) => {
         return state.playerInfo;
     });
+
     const PLAYERS = Object.values(players);
 
     const start = () => {
         socket.emit("start");
+    };
+
+    const goToGameBoard = () => {
         socket.emit("navigate", { name: "GAME_BOARD" });
     };
 

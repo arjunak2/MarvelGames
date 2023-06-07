@@ -2,7 +2,7 @@ import { GameBoardNavData, QuestionNavData } from "../types/Screens";
 import { Tileinfo, IGameBoard } from "../types/GameBoard";
 import { Question } from "../types/Question";
 import { PlayerRaw } from "../types/Player";
-import { QuestionPageData } from "../types/PageData";
+import { PageSlice, QuestionPageData } from "../types/PageData";
 export interface ServerToClientEvents {
     noArg: () => void;
     inform: (info: string) => void;
@@ -15,6 +15,7 @@ export interface ServerToClientEvents {
     transition: (data?: Question) => void;
     questionPageDataUpdated: (data: Partial<QuestionPageData>) => void;
     questionPageDataSet: (data: QuestionPageData) => void;
+    pageUpdate: (data: PageSlice) => void;
 }
 
 export interface ClientToServerEvents {
@@ -26,6 +27,8 @@ export interface ClientToServerEvents {
     updateQuestionPageData: (data: Partial<QuestionPageData>) => void;
     setQuestionPageData: (data: QuestionPageData) => void;
     updatePlayerData: (data: PlayerRaw) => void;
+    start: () => void;
+    nextTurn: () => void;
 }
 
 export interface InterServerEvents {

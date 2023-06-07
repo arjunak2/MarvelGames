@@ -2,7 +2,7 @@ export const Teams = ["Avengers", "Marvels"] as const;
 export type TeamNames = (typeof Teams)[number];
 export interface Team {
     name: TeamNames;
-    players: Set<string>;
+    players: string[];
     score: number;
 }
 
@@ -13,12 +13,12 @@ export type TeamsDataType = {
 export const intialTeamsData: TeamsDataType = {
     [Teams[0]]: {
         name: Teams[0],
-        players: new Set<string>(),
+        players: [],
         score: 0,
     },
     [Teams[1]]: {
         name: Teams[1],
-        players: new Set<string>(),
+        players: [],
         score: 0,
     },
 };
