@@ -3,7 +3,12 @@ import http from "http";
 import { Server, Socket } from "socket.io";
 import { IGameBoard } from "../types/GameBoard";
 import { QUESTIONS_DB } from "../data/QuRepo";
-import { Teams, TeamsDataType, intialTeamsData } from "../types/Team";
+import {
+    TeamNames,
+    Teams,
+    TeamsDataType,
+    intialTeamsData,
+} from "../types/Team";
 let GameBoard: IGameBoard = require("../data/GameBoard").GBData;
 import { GBData } from "../data/GameBoard";
 
@@ -32,9 +37,10 @@ let QUESTION_PAGE_DATE: QuestionPageData = initialQuestionPageState;
 let PLAYERS: { [id: string]: PlayerRaw } = samplePlayersData;
 let TEAMS_DATA: TeamsDataType = intialTeamsData;
 let CURRENT_TEAM_INDEX = 0;
-let CURRENT_PLAYER_INDEX = 0;
 let CURRENT_TEAM = Teams[CURRENT_TEAM_INDEX];
 let CURRENT_PLAYER = "";
+let TURNS: string[] = [];
+let TURN_INDEX = 0;
 
 const HOST = "http://localhost:3000";
 const PORT = 5000;
@@ -94,31 +100,50 @@ function readQuestion(questionId: string) {
 
 function generateTeams() {
     // Adding members to teams
-    Object.values(PLAYERS).forEach((player, index) => {
+    Object.values(PLAYERS).forEach((player) => {
         TEAMS_DATA[player.team].players.push(player.id);
     });
-    CURRENT_PLAYER =
-        TEAMS_DATA[Teams[CURRENT_TEAM_INDEX]].players[CURRENT_PLAYER_INDEX];
+    CURRENT_PLAYER = TEAMS_DATA[Teams[CURRENT_TEAM_INDEX]].players[0];
 
     emitToAllClients("pageUpdate", {
         currentPlayer: CURRENT_PLAYER,
         currentTeam: CURRENT_TEAM,
         currentScreen: CURRENT_SCREEN,
     });
+    createTurnOrder();
+}
+
+function createTurnOrder() {
+    let INDEX = 0;
+    const UPPER_BOUND =
+        TEAMS_DATA[Teams[0]].players.length +
+        TEAMS_DATA[Teams[1]].players.length;
+    while (INDEX < UPPER_BOUND) {
+        Teams.forEach((team) => {
+            let { players } = TEAMS_DATA[team];
+            if (players.length <= INDEX) return;
+            else {
+                TURNS.push(players[INDEX]);
+            }
+        });
+        INDEX++;
+    }
 }
 
 function nextTurn() {
-    const teamBoundary = Teams.length;
-    const playerBoundary = TEAMS_DATA[Teams[CURRENT_TEAM_INDEX]].players.length;
-    CURRENT_TEAM_INDEX = (CURRENT_TEAM_INDEX + 1) % teamBoundary;
-    CURRENT_PLAYER_INDEX = (CURRENT_PLAYER_INDEX + 1) % playerBoundary;
-    let CURRENT_TEAM = Teams[CURRENT_TEAM_INDEX];
-    CURRENT_PLAYER = TEAMS_DATA[CURRENT_TEAM].players[CURRENT_PLAYER_INDEX];
+    const UPPER_BOUND = TURNS.length;
+    const NEW_TURN_INDEX = (TURN_INDEX + 1) % UPPER_BOUND;
+    const NEW_PLAYER = TURNS[NEW_TURN_INDEX];
+    const NEW_TEAM = PLAYERS[NEW_PLAYER].team;
 
-    console.log(`Next Turn. ${CURRENT_PLAYER} from ${CURRENT_TEAM}`);
+    TURN_INDEX = NEW_TURN_INDEX;
+    CURRENT_PLAYER = NEW_PLAYER;
+    CURRENT_TEAM = NEW_TEAM;
+
+    console.log(`Next Turn. ${NEW_PLAYER} from ${NEW_TEAM}`);
     emitToAllClients("pageUpdate", {
-        currentPlayer: CURRENT_PLAYER,
-        currentTeam: CURRENT_TEAM,
+        currentPlayer: NEW_PLAYER,
+        currentTeam: NEW_TEAM,
         currentScreen: CURRENT_SCREEN,
     });
 }
@@ -139,7 +164,7 @@ io.on("connection", (socket) => {
     socket.on("start", () => {
         generateTeams();
     });
-    socket.on("button", (data) => {
+    socket.on("button", () => {
         console.log("The Server received this.");
         socket.emit("inform", `Hello, you sent -> "message"`);
     });

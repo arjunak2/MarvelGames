@@ -91,5 +91,5 @@ export const samplePlayersData: Players = {
             hint: { count: 3 },
         },
         team: Teams[0],
-    },
+    }
 };
