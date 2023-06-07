@@ -5,10 +5,13 @@
     font-weight: bold;
 }
 
-
 $sw-text: #f493a5;
 #root {
     height: 100vh;
+}
+
+.page-disabled {
+    pointer-events: none;
 }
 
 .page {
@@ -130,4 +133,3 @@ $sw-text: #f493a5;
     width: 100%;
     flex-direction: column;
 }
-

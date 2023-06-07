@@ -9,35 +9,67 @@ import {
 } from "react-bootstrap";
 import { produce } from "immer";
 import { IconType, Symbols } from "src/assets";
+import { socket } from "src/utils/WebSocket";
+import { QuestionPageActions } from "src/store/QuestionPageSlice";
+import { Player } from "src/types/Player";
+import { useSelector } from "src/store";
+import { Points } from "src/types/Question";
+import { cloneDeep } from "lodash";
 
 interface PowerSectionProps {
-    powerBank: PowerBank;
+    player: Player;
     pageState: QuestionPageState;
+    points: Points;
 }
 interface PowerButtonProps {
     power: Powers;
-    powerBank: PowerBank;
+    player: Player;
     disabled?: boolean;
+    points: Points;
 }
 
-export function PowerButton({ power, powerBank, disabled }: PowerButtonProps) {
+export function PowerButton({
+    power,
+    player,
+    points,
+    disabled,
+}: PowerButtonProps) {
+    const { powerBank } = player;
+
     const [activated, setActivated] = useState(false);
+    const activatePowers = {
+        [Powers.TIME_STOP]: () => {
+            socket.emit(
+                "updateQuestionPageData",
+                QuestionPageActions.TIME_STOP()
+            );
+        },
+        [Powers.DOUBLE]: () => {
+            socket.emit(
+                "updateQuestionPageData",
+                QuestionPageActions.SET_POINTS(points * 2)
+            );
+        },
+        [Powers.HINT]: () => {},
+    };
     const powerCount = powerBank[power].count;
     const powerDepleted = powerCount <= 0;
     const isPowerDisabled = disabled || powerDepleted || activated;
 
     const updatePowerCount = () => {
-        powerBank[power].count--;
+        const updatedPlayer = cloneDeep(player);
+        updatedPlayer.powerBank[power].count--;
+        socket.emit("updatePlayerData", updatedPlayer);
         console.log(`Updating power bank to:`, powerBank);
     };
     const activate = () => {
         updatePowerCount();
-        powerBank[power].activate();
+        activatePowers[power]();
         setActivated(true);
         console.log(`Activating ${power}`);
     };
 
-    const Icon = Symbols[power]
+    const Icon = Symbols[power];
     return (
         <Button
             variant="warning"
@@ -51,24 +83,27 @@ export function PowerButton({ power, powerBank, disabled }: PowerButtonProps) {
     );
 }
 
-export function PowerSection({ powerBank, pageState }: PowerSectionProps) {
+export function PowerSection({ player, pageState, points }: PowerSectionProps) {
     const areAllPowersDisabled = pageState === QuestionPageState.COMPLETED;
     return (
         <ButtonGroup className="powerCotainer">
             <PowerButton
                 power={Powers.DOUBLE}
-                powerBank={powerBank}
+                player={player}
                 disabled={areAllPowersDisabled}
+                points={points}
             />
             <PowerButton
                 power={Powers.TIME_STOP}
-                powerBank={powerBank}
+                player={player}
                 disabled={areAllPowersDisabled}
+                points={points}
             />
             <PowerButton
                 power={Powers.HINT}
-                powerBank={powerBank}
+                player={player}
                 disabled={areAllPowersDisabled}
+                points={points}
             />
         </ButtonGroup>
     );

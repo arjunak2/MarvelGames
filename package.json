@@ -20,6 +20,7 @@
         "express": "^4.18.2",
         "fuse.js": "^6.6.2",
         "immer": "^10.0.1",
+        "lodash": "^4.17.21",
         "react": "^18.2.0",
         "react-bootstrap": "^2.7.2",
         "react-countdown-circle-timer": "^3.1.0",
@@ -66,6 +67,7 @@
         ]
     },
     "devDependencies": {
+        "@types/lodash": "^4.14.195",
         "@types/uuid": "^9.0.1",
         "babel-cli": "^6.26.0",
         "babel-preset-env": "^1.7.0",

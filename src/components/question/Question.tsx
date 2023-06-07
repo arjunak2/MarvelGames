@@ -122,6 +122,9 @@ function QuestionContent({ question }: QuestionPageProps) {
         const playerRaw = store.playerInfo.players[store.page.currentPlayer];
         return mapJsonToPlayer(playerRaw as Player);
     });
+    const isCurrentPlayerActive = useSelector((store) => {
+        return store.playerInfo.id == store.page.currentPlayer;
+    });
     const dispatch = useDispatch();
 
     const complete = () => {
@@ -152,21 +155,6 @@ function QuestionContent({ question }: QuestionPageProps) {
         socket.emit("navigate", { name: "GAME_BOARD" });
     };
 
-    const linkPowers = () => {
-        player.powerBank.timestop.activate = () => {
-            socket.emit(
-                "updateQuestionPageData",
-                QuestionPageActions.TIME_STOP()
-            );
-        };
-        player.powerBank.double.activate = () => {
-            socket.emit(
-                "updateQuestionPageData",
-                QuestionPageActions.SET_POINTS(points * 2)
-            );
-        };
-        player.powerBank.hint.activate = () => {};
-    };
     useEffect(() => {
         WebFont.load({
             google: {
@@ -182,13 +170,15 @@ function QuestionContent({ question }: QuestionPageProps) {
             },
         });
     }, []);
-    useEffect(() => {
-        linkPowers();
-    }, [player]);
+    useEffect(() => {}, [player]);
 
     const isMaster = false;
     return (
-        <div className="d-flex flex-row page">
+        <div
+            className={`d-flex flex-row page ${
+                !isCurrentPlayerActive && "page-disabled"
+            }`}
+        >
             <div id="banner">
                 <Image src={BannerImage} />
                 <h2 className="points">{points}</h2>
@@ -202,7 +192,11 @@ function QuestionContent({ question }: QuestionPageProps) {
                 <h2 className="player-name">
                     {player.madeUpNames.toUpperCase()}
                 </h2>
-                <PowerSection pageState={state} powerBank={player.powerBank} />
+                <PowerSection
+                    pageState={state}
+                    player={player}
+                    points={points}
+                />
             </div>
             <div id="details">
                 <Header text={question.query} />
