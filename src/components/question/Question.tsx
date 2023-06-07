@@ -31,6 +31,7 @@ import WebFont from "webfontloader";
 import "../../fonts/Dream-Avenue.ttf";
 import { HomeButton } from "../HomeButton";
 import { Loader } from "../Loader";
+import { cloneDeep } from "lodash";
 
 interface QuestionPageProps {
     question: Question;
@@ -122,19 +123,27 @@ function QuestionContent({ question }: QuestionPageProps) {
         const playerRaw = store.playerInfo.players[store.page.currentPlayer];
         return mapJsonToPlayer(playerRaw as Player);
     });
-    const isCurrentPlayerActive = useSelector((store) => {
+
+    const pageData = useSelector((store) => {
+        return store.page;
+    });
+    const isCurrentPlayerSelf = useSelector((store) => {
         return store.playerInfo.id == store.page.currentPlayer;
     });
     const dispatch = useDispatch();
 
-    const complete = () => {
+    const complete = (chosenAns: string) => {
         console.log("Moving to Completed state");
         // @TODO updateScore
-        if (chosenAnswer) {
-            console.log(`Player submited this answer: ${chosenAnswer}`);
-            if (question.validateAnswer(chosenAnswer)) {
+        if (chosenAns) {
+            console.log(`Player submited this answer: ${chosenAns}`);
+            if (question.validateAnswer(chosenAns)) {
                 console.log(`The answer is correct`);
                 question.updateScore(points);
+
+                let updatedPageData = cloneDeep(pageData);
+                updatedPageData.teamData[player.team].score += points;
+                socket.emit("updatePage", updatedPageData);
             } else {
                 console.log(`The answer is incorrect`);
             }
@@ -147,6 +156,7 @@ function QuestionContent({ question }: QuestionPageProps) {
             "updateQuestionPageData",
             QuestionPageActions.COMPLETE(chosenAnswer)
         );
+        complete(chosenAnswer);
     };
     const timesUp = () => {
         socket.emit("updateQuestionPageData", QuestionPageActions.TIMES_UP());
@@ -176,7 +186,7 @@ function QuestionContent({ question }: QuestionPageProps) {
     return (
         <div
             className={`d-flex flex-row page ${
-                !isCurrentPlayerActive && "page-disabled"
+                !isCurrentPlayerSelf && "page-disabled"
             }`}
         >
             <div id="banner">

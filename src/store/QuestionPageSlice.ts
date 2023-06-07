@@ -32,7 +32,7 @@ export const QuestionPageActions = {
         timerActive: false,
     }),
     SET_POINTS: (points: number): Partial<QuestionPageData> => ({ points }),
-    RESET: (): Partial<QuestionPageData> => initialState,
+    RESET: (): QuestionPageData => initialState,
 };
 
 export const questionPageSlice = createSlice({

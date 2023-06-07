@@ -162,16 +162,16 @@ function setUpListeners(
     });
 
     socket.on("select", (question, category) => {
-        console.log(
-            `${socket.id} is hovering over the ${question.points} tile for ${category}`
-        );
+        // console.log(
+        //     `${socket.id} is hovering over the ${question.points} tile for ${category}`
+        // );
         GameBoard[category][question.points].isHovered = true;
         updateBoard();
     });
     socket.on("deselect", (question, category) => {
-        console.log(
-            `${socket.id} is leaving the ${question.points} tile for ${category}`
-        );
+        // console.log(
+        //     `${socket.id} is leaving the ${question.points} tile for ${category}`
+        // );
         GameBoard[category][question.points].isHovered = false;
         updateBoard();
     });
@@ -207,22 +207,38 @@ function setUpListeners(
     });
     socket.on("updateQuestionPageData", (dataUpdate) => {
         QUESTION_PAGE_DATE = { ...QUESTION_PAGE_DATE, ...dataUpdate };
+        console.log(
+            `Updating server QUESTION_PAGE_DATA to ${JSON.stringify(
+                QUESTION_PAGE_DATE
+            )}`
+        );
+        if (QUESTION_PAGE_DATE.chosenAnswer) {
+            console.log(
+                `Question ${QUESTION_PAGE_DATE.questionId} was answered with:${QUESTION_PAGE_DATE.chosenAnswer}`
+            );
+        }
         emitToAllClients("questionPageDataUpdated", dataUpdate);
     });
 
     socket.on("setQuestionPageData", (questionPageData) => {
         QUESTION_PAGE_DATE = questionPageData;
+        console.log(
+            `Setting server QUESTION_PAGE_DATA to ${JSON.stringify(
+                QUESTION_PAGE_DATE
+            )}`
+        );
     });
 
     socket.on("updatePlayerData", (playerDataUpdate) => {
         const targetPlayer = playerDataUpdate.id;
         PLAYERS[targetPlayer] = playerDataUpdate;
         // emitToAllClients("playersUpdated", playerDataUpdate);
+        console.log(`Updating Player Data to `, JSON.stringify(PLAYERS));
         emitToAllClients("sendAllPlayerInfo", PLAYERS);
     });
 
     socket.on("updatePage", (pageSlice) => {
-        PAGE_DATA = pageSlice
+        PAGE_DATA = pageSlice;
         emitToAllClients("pageUpdate", pageSlice);
     });
 }

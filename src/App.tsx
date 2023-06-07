@@ -41,7 +41,7 @@ function App({ currentScreen }: { currentScreen?: ScreenNames }) {
             dispatch(playerInfoActions.updateAllPlayerInfo(players));
         });
         socket.on("transitionToGameBoard", () => {
-            socket.emit("updateQuestionPageData", QuestionPageActions.RESET());
+            socket.emit("setQuestionPageData", QuestionPageActions.RESET());
             dispatch(questionPageActions.reset());
             navigate(`/GameBoard`);
         });
