@@ -148,19 +148,14 @@ function nextTurn() {
     });
 }
 
-io.on("connection", (socket) => {
-    console.log(`Received a new connection from ${socket.id}`);
-    const userId = uuidv4();
-    CLIENTS[userId] = socket;
-    socket.emit("updateBoard", GameBoard);
-    emitToAllClients("sendAllPlayerInfo", PLAYERS);
-    if (CURRENT_PLAYER != undefined && CURRENT_PLAYER != "")
-        emitToAllClients("pageUpdate", {
-            currentPlayer: CURRENT_PLAYER,
-            currentTeam: CURRENT_TEAM,
-            currentScreen: CURRENT_SCREEN,
-        });
-
+function setUpListeners(
+    socket: Socket<
+        ClientToServerEvents,
+        ServerToClientEvents,
+        InterServerEvents,
+        SocketData
+    >
+) {
     socket.on("start", () => {
         generateTeams();
     });
@@ -228,6 +223,32 @@ io.on("connection", (socket) => {
         // emitToAllClients("playersUpdated", playerDataUpdate);
         emitToAllClients("sendAllPlayerInfo", PLAYERS);
     });
+}
+
+io.on("connection", (socket) => {
+    // register client
+    console.log(`Received a new connection from ${socket.id}`);
+    const userId = uuidv4();
+    CLIENTS[userId] = socket;
+
+    // update gameboard
+    socket.emit("updateBoard", GameBoard);
+
+    // update page info
+    emitToAllClients("sendAllPlayerInfo", PLAYERS);
+    if (CURRENT_PLAYER != undefined && CURRENT_PLAYER != "") {
+        emitToAllClients("pageUpdate", {
+            currentPlayer: CURRENT_PLAYER,
+            currentTeam: CURRENT_TEAM,
+            currentScreen: CURRENT_SCREEN,
+        });
+    }
+    // send question info
+    if (CURRENT_SCREEN === "QUESTION") {
+    }
+
+    // set up socket listeners
+    setUpListeners(socket);
 });
 
 app.get("/test", () => {
