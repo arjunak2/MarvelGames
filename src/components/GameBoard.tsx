@@ -130,6 +130,7 @@ export function GameBoard() {
                 state: { question: QUESTION },
             });
         });
+        socket.emit("getGameBoard")
     }, []);
     if (currentPlayer == undefined || currentPlayer == "") return <Loader />;
     return (

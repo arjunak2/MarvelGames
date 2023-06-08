@@ -44,8 +44,24 @@ export const QUESTIONS_DB: { [id: string]: Question } = {
         },
         "Titan"
     ),
-    [QuestionCategory.CATEGORY_1 + "-" + Points.Four]: defaultMCQuestion,
-    [QuestionCategory.CATEGORY_1 + "-" + Points.Five]: defaultMCQuestion,
+    [QuestionCategory.CATEGORY_1 + "-" + Points.Four]: new Question_MC(
+        Points.Four,
+        QuestionCategory.CATEGORY_1,
+        "What is the name of the prison that Team Cap get locked up in?",
+        {
+            A: "The Kiln",
+            B: "Damage Control Supermax",
+            C: "Bankroft",
+            D: "The Raft",
+        },
+        "The Raft"
+    ),
+    [QuestionCategory.CATEGORY_1 + "-" + Points.Five]: new Question_Text(
+        Points.Five,
+        QuestionCategory.CATEGORY_1,
+        "Where was the first Infinity stone found?",
+        "Germany"
+    ),
 
     [QuestionCategory.CATEGORY_2 + "-" + Points.One]: new Question_MC(
         Points.One,
@@ -109,7 +125,7 @@ export const QUESTIONS_DB: { [id: string]: Question } = {
         { A: "Math", B: "Super-strength", C: "Spider-sense", D: "Webs" },
         "Webs"
     ),
-    [QuestionCategory.CATEGORY_4 + "-" + Points.Two]:  new Question_MC(
+    [QuestionCategory.CATEGORY_4 + "-" + Points.Two]: new Question_MC(
         Points.Two,
         QuestionCategory.CATEGORY_4,
         "Whose technology did vulture use to create his wing suit?",

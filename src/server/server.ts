@@ -156,6 +156,9 @@ function setUpListeners(
     socket.on("start", () => {
         generateTeams();
     });
+    socket.on("getGameBoard", () => {
+        socket.emit("updateBoard", GameBoard);
+    });
     socket.on("button", () => {
         console.log("The Server received this.");
         socket.emit("inform", `Hello, you sent -> "message"`);

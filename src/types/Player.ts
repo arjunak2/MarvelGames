@@ -26,8 +26,8 @@ export class Player implements PlayerRaw {
     id: string;
     powerBank: PowerBank = {
         [Powers.TIME_STOP]: { count: 2, activate: () => {} },
-        [Powers.DOUBLE]: { count: 1, activate: () => {} },
-        [Powers.HINT]: { count: 3, activate: () => {} },
+        [Powers.DOUBLE]: { count: 3, activate: () => {} },
+        [Powers.HINT]: { count: 1, activate: () => {} },
     };
     constructor(
         public madeUpNames: string,

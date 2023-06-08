@@ -30,6 +30,7 @@ export interface ClientToServerEvents {
     start: () => void;
     nextTurn: () => void;
     updatePage: (data: PageSlice) => void;
+    getGameBoard: () => void;
 }
 
 export interface InterServerEvents {
