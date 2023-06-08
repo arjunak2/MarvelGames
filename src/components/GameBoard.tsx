@@ -117,6 +117,9 @@ export function GameBoard() {
     const { currentPlayer } = useSelector((state) => {
         return state.page;
     });
+    const isCurrentPlayerSelf = useSelector((store) => {
+        return store.playerInfo.id == store.page.currentPlayer;
+    });
     useEffect(() => {
         socket.on("updateBoard", (gBoard) => {
             console.log("UPDATING BOARD");
@@ -130,11 +133,15 @@ export function GameBoard() {
                 state: { question: QUESTION },
             });
         });
-        socket.emit("getGameBoard")
+        socket.emit("getGameBoard");
     }, []);
     if (currentPlayer == undefined || currentPlayer == "") return <Loader />;
     return (
-        <div className="grid-container">
+        <div
+            className={`grid-container ${
+                !isCurrentPlayerSelf && "page-disabled"
+            }`}
+        >
             <Container className="game-board">
                 <TableHeaderRow data={gBoard} />
                 <TableRow row={1} data={gBoard} />

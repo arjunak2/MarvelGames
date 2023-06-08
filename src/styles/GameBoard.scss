@@ -9,6 +9,10 @@ $card-border-radius: 3rem;
     transition-duration: 200ms;
 }
 
+.page-disabled {
+    pointer-events: none;
+}
+
 .game-board {
     display: flex;
     flex-direction: column;
