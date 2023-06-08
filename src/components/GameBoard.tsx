@@ -117,8 +117,11 @@ export function GameBoard() {
     const { currentPlayer } = useSelector((state) => {
         return state.page;
     });
-    const isCurrentPlayerSelf = useSelector((store) => {
-        return store.playerInfo.id == store.page.currentPlayer;
+    const { isCurrentPlayerSelf, isGrandMaster } = useSelector((store) => {
+        let isCurrentPlayerSelf =
+            store.playerInfo.id == store.page.currentPlayer;
+        let isGrandMaster = store.playerInfo.id == "master";
+        return { isCurrentPlayerSelf, isGrandMaster };
     });
     useEffect(() => {
         socket.on("updateBoard", (gBoard) => {
@@ -139,7 +142,7 @@ export function GameBoard() {
     return (
         <div
             className={`grid-container ${
-                !isCurrentPlayerSelf && "page-disabled"
+                !isCurrentPlayerSelf && !isGrandMaster && "page-disabled"
             }`}
         >
             <Container className="game-board">

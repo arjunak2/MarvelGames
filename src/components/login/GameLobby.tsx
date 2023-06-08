@@ -91,12 +91,14 @@ export const GameLobby = ({ modalActions }: { modalActions: ModalActions }) => {
         };
         socket.on("pageUpdate", pageUpdateListener);
 
-        return ()=>{
-            socket.off("pageUpdate", pageUpdateListener)
-        }
+        return () => {
+            socket.off("pageUpdate", pageUpdateListener);
+        };
     }, []);
-    const { players } = useSelector((state) => {
-        return state.playerInfo;
+    const { players, isGrandMaster } = useSelector((store) => {
+        let { players } = store.playerInfo;
+        let isGrandMaster = store.playerInfo.id == "master";
+        return { players, isGrandMaster };
     });
 
     const PLAYERS = Object.values(players);
@@ -135,7 +137,7 @@ export const GameLobby = ({ modalActions }: { modalActions: ModalActions }) => {
                     ))}
                 </div>
             </div>
-            <HomeButton visible={true} onClick={start} />
+            {isGrandMaster && <HomeButton visible={true} onClick={start} />}
         </div>
     );
 };

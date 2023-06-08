@@ -127,10 +127,12 @@ function QuestionContent({ question }: QuestionPageProps) {
     const pageData = useSelector((store) => {
         return store.page;
     });
-    const isCurrentPlayerSelf = useSelector((store) => {
-        return store.playerInfo.id == store.page.currentPlayer;
+    const { isCurrentPlayerSelf, isGrandMaster } = useSelector((store) => {
+        let isCurrentPlayerSelf =
+            store.playerInfo.id == store.page.currentPlayer;
+        let isGrandMaster = store.playerInfo.id == "master";
+        return { isCurrentPlayerSelf, isGrandMaster };
     });
-    const dispatch = useDispatch();
 
     const complete = (chosenAns: string) => {
         console.log("Moving to Completed state");
@@ -190,7 +192,7 @@ function QuestionContent({ question }: QuestionPageProps) {
     return (
         <div
             className={`d-flex flex-row page ${
-                !isCurrentPlayerSelf && "page-disabled"
+                !isCurrentPlayerSelf && !isGrandMaster && "page-disabled"
             }`}
         >
             <div id="banner">
@@ -229,7 +231,7 @@ function QuestionContent({ question }: QuestionPageProps) {
                         />
                     )}
                 </div>
-                <HomeButton visible={true} onClick={goHome} />
+                {isGrandMaster && <HomeButton visible={true} onClick={goHome} />}
             </div>
         </div>
     );
