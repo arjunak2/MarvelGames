@@ -30,7 +30,7 @@ export const QUESTIONS_DB: { [id: string]: Question } = {
             C: "India",
             D: "Taiwan",
         },
-        "Dazzler"
+        "South Korea"
     ),
     [QuestionCategory.CATEGORY_1 + "-" + Points.Three]: new Question_MC(
         Points.Three,
@@ -75,8 +75,20 @@ export const QUESTIONS_DB: { [id: string]: Question } = {
         },
         "Eternals"
     ),
-    [QuestionCategory.CATEGORY_2 + "-" + Points.Two]: defaultMCQuestion,
-    [QuestionCategory.CATEGORY_2 + "-" + Points.Three]: defaultMCQuestion,
+    [QuestionCategory.CATEGORY_2 + "-" + Points.Two]: new Question_MC(
+        Points.Two,
+        QuestionCategory.CATEGORY_2,
+        "How is Killmonger related to T'Challa?",
+        { A: "Half-brother", B: "Cousin", C: "Ex-friend", D: "Not Related" },
+        "Brother"
+    ),
+    [QuestionCategory.CATEGORY_2 + "-" + Points.Three]: new Question_MC(
+        Points.Three,
+        QuestionCategory.CATEGORY_3,
+        "Which character does not have a doctorate?",
+        { A: "Hank Pym", B: "Jane Foster", C: "Tony Stark", D: "She-hulk" },
+        "Tony Stark"
+    ),
     [QuestionCategory.CATEGORY_2 + "-" + Points.Four]: new Question_MC(
         Points.Four,
         QuestionCategory.CATEGORY_2,
@@ -89,7 +101,12 @@ export const QUESTIONS_DB: { [id: string]: Question } = {
         },
         "Dazzler"
     ),
-    [QuestionCategory.CATEGORY_2 + "-" + Points.Five]: defaultMCQuestion,
+    [QuestionCategory.CATEGORY_2 + "-" + Points.Five]: new Question_Text(
+        Points.Five,
+        QuestionCategory.CATEGORY_2,
+        "What is the name of Moon Knight's 3 altar?",
+        "Jake Lockley"
+    ),
 
     [QuestionCategory.CATEGORY_3 + "-" + Points.One]: new Question_Text(
         Points.One,
@@ -100,9 +117,10 @@ export const QUESTIONS_DB: { [id: string]: Question } = {
     [QuestionCategory.CATEGORY_3 + "-" + Points.Two]: new Question_Text(
         Points.Two,
         QuestionCategory.CATEGORY_3,
-        "Ain't no thing like me, 'cept me",
-        "Rocket"
+        "You throw another Moon at me... and I'm gonna lose it",
+        "Iron Man"
     ),
+
     [QuestionCategory.CATEGORY_3 + "-" + Points.Three]: new Question_MC(
         Points.Three,
         QuestionCategory.CATEGORY_3,
@@ -113,10 +131,16 @@ export const QUESTIONS_DB: { [id: string]: Question } = {
     [QuestionCategory.CATEGORY_3 + "-" + Points.Four]: new Question_Text(
         Points.Four,
         QuestionCategory.CATEGORY_3,
-        "Time to Work For a living",
-        "Tony Stark"
+        "Ain't no thing like me, 'cept me",
+        "Rocket"
     ),
-    [QuestionCategory.CATEGORY_3 + "-" + Points.Five]: defaultMCQuestion,
+
+    [QuestionCategory.CATEGORY_3 + "-" + Points.Five]: new Question_Text(
+        Points.Five,
+        QuestionCategory.CATEGORY_3,
+        "Avengers... time to Work For a living",
+        "Iron Man"
+    ),
 
     [QuestionCategory.CATEGORY_4 + "-" + Points.One]: new Question_MC(
         Points.One,
@@ -132,9 +156,36 @@ export const QUESTIONS_DB: { [id: string]: Question } = {
         { A: "Chitauri", B: "Ultron", C: "Iron Man", D: "Asgardian" },
         "Chitauri"
     ),
-    [QuestionCategory.CATEGORY_4 + "-" + Points.Three]: defaultMCQuestion,
-    [QuestionCategory.CATEGORY_4 + "-" + Points.Four]: defaultMCQuestion,
-    [QuestionCategory.CATEGORY_4 + "-" + Points.Five]: defaultMCQuestion,
+    [QuestionCategory.CATEGORY_4 + "-" + Points.Three]: new Question_MC(
+        Points.Three,
+        QuestionCategory.CATEGORY_4,
+        "Which character has NOT received U.S. military training?",
+        {
+            A: "Black Widow",
+            B: "Hank Pym",
+            C: "Mark Spector",
+            D: "Killmonger",
+        },
+        "Black Widow"
+    ),
+    [QuestionCategory.CATEGORY_4 + "-" + Points.Four]: new Question_Text(
+        Points.Four,
+        QuestionCategory.CATEGORY_4,
+        "What is the purple infinity stone?",
+        "Power"
+    ),
+    [QuestionCategory.CATEGORY_4 + "-" + Points.Five]: new Question_MC(
+        Points.Five,
+        QuestionCategory.CATEGORY_4,
+        "Which character did NOT help create the time travel suits in Endgame",
+        {
+            A: "Bruce Banner",
+            B: "Rocket",
+            C: "Tony Stark",
+            D: "Ant Man",
+        },
+        "Bruce Banner"
+    ),
 
     [QuestionCategory.CATEGORY_5 + "-" + Points.One]: new Question_MC(
         Points.One,
