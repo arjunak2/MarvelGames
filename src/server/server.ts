@@ -34,16 +34,18 @@ import { Player, PlayerRaw, samplePlayersData } from "../types/Player";
 const CLIENTS: { [id: string]: Socket } = {};
 
 let QUESTION_PAGE_DATE: QuestionPageData = initialQuestionPageState;
-let PLAYERS: { [id: string]: PlayerRaw } = samplePlayersData;
+let PLAYERS: { [id: string]: PlayerRaw } = {};
 let CURRENT_TEAM_INDEX = 0;
-let TURNS: string[] = [];
-let TURN_INDEX = 0;
 
 let PAGE_DATA: PageSlice = {
     currentPlayer: "",
     currentTeam: Teams[CURRENT_TEAM_INDEX],
     currentScreen: "LOGIN",
     teamData: intialTeamsData,
+};
+let ITERATOR = {
+    [Teams[0]]: 0,
+    [Teams[1]]: 1,
 };
 
 const HOST = "http://localhost:3000";
@@ -111,35 +113,20 @@ function generateTeams() {
         PAGE_DATA.teamData[Teams[CURRENT_TEAM_INDEX]].players[0];
 
     emitToAllClients("pageUpdate", PAGE_DATA);
-    createTurnOrder();
-}
-
-function createTurnOrder() {
-    let INDEX = 0;
-    const UPPER_BOUND =
-        PAGE_DATA.teamData[Teams[0]].players.length +
-        PAGE_DATA.teamData[Teams[1]].players.length;
-    while (INDEX < UPPER_BOUND) {
-        Teams.forEach((team) => {
-            let { players } = PAGE_DATA.teamData[team];
-            if (players.length <= INDEX) return;
-            else {
-                TURNS.push(players[INDEX]);
-            }
-        });
-        INDEX++;
-    }
 }
 
 function nextTurn() {
-    const UPPER_BOUND = TURNS.length;
-    const NEW_TURN_INDEX = (TURN_INDEX + 1) % UPPER_BOUND;
-    const NEW_PLAYER = TURNS[NEW_TURN_INDEX];
-    const NEW_TEAM = PLAYERS[NEW_PLAYER].team;
+    const NEW_TEAM_INDEX = (CURRENT_TEAM_INDEX + 1) % Teams.length;
+    const NEW_TEAM = Teams[NEW_TEAM_INDEX];
+    const NEW_PLAYER_INDEX =
+        (ITERATOR[NEW_TEAM] + 1) % PAGE_DATA.teamData[NEW_TEAM].players.length;
+    const NEW_PLAYER = PAGE_DATA.teamData[NEW_TEAM].players[NEW_PLAYER_INDEX];
 
-    TURN_INDEX = NEW_TURN_INDEX;
     PAGE_DATA.currentPlayer = NEW_PLAYER;
     PAGE_DATA.currentTeam = NEW_TEAM;
+
+    CURRENT_TEAM_INDEX = NEW_TEAM_INDEX;
+    ITERATOR[NEW_TEAM] = NEW_PLAYER_INDEX;
 
     console.log(`Next Turn. ${NEW_PLAYER} from ${NEW_TEAM}`);
     emitToAllClients("pageUpdate", PAGE_DATA);

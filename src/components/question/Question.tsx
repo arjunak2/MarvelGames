@@ -161,8 +161,12 @@ function QuestionContent({ question }: QuestionPageProps) {
     const timesUp = () => {
         socket.emit("updateQuestionPageData", QuestionPageActions.TIMES_UP());
     };
+    const nextTurn = () => {
+        socket.emit("nextTurn");
+    };
     const goHome = () => {
         socket.emit("navigate", { name: "GAME_BOARD" });
+        nextTurn();
     };
 
     useEffect(() => {
