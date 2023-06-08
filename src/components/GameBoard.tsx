@@ -63,6 +63,7 @@ function TileCell({
                 category={category}
                 text={tileInfo.points}
                 isHovered={tileInfo.isHovered}
+                isAnswered={tileInfo.isAnswered}
             />
         </Col>
     );

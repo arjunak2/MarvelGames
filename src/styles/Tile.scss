@@ -1,4 +1,4 @@
-$transition-speed: 200ms; 
+$transition-speed: 200ms;
 .tile-body {
     width: auto;
     background: #4c9b80;
@@ -13,6 +13,12 @@ $transition-speed: 200ms;
 .tile-body.selected {
     background: #366e5b;
     transform: scale(1.1);
+    transition: $transition-speed;
+    cursor: pointer;
+}
+
+.tile-body.answered {
+    background: #42474552;
     transition: $transition-speed;
 }
 

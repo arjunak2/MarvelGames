@@ -186,6 +186,8 @@ function setUpListeners(
             QUESTION_PAGE_DATE.points = question.points;
             QUESTION_PAGE_DATE.questionType = question.type;
             emitToAllClients("transitionToQuestion", question);
+            GameBoard[question.category][question.points].isAnswered = true;
+            updateBoard();
         }
     });
 

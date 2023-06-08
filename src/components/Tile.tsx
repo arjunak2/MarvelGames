@@ -10,17 +10,21 @@ interface TileProps {
     tileInfo: Tileinfo;
     category: string;
     isHovered?: boolean;
+    isAnswered?: boolean;
 }
 
-function Tile({ text, tileInfo, category, isHovered }: TileProps) {
+function Tile({ text, tileInfo, category, isHovered, isAnswered }: TileProps) {
     const onHoverTile = () => {
+        if (isAnswered) return;
         console.log("SELECTED");
         socket.emit("select", tileInfo, category);
     };
     const onLeaveTile = () => {
+        if (isAnswered) return;
         socket.emit("deselect", tileInfo, category);
     };
     const onClickTile = () => {
+        if (isAnswered) return;
         console.log("Tile Pressed", tileInfo);
         socket.emit("deselect", tileInfo, category);
         socket.emit("navigate", {
@@ -31,7 +35,9 @@ function Tile({ text, tileInfo, category, isHovered }: TileProps) {
     return (
         <div
             className={`tile-body rounded shadow-sm --bs-success-text
-            ${isHovered ? "selected" : false}`}
+            ${isHovered ? "selected" : false}
+            ${isAnswered ? "answered" : false}
+            `}
             onMouseOver={onHoverTile}
             onMouseLeave={onLeaveTile}
             onClick={onClickTile}
