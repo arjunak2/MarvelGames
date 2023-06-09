@@ -18,16 +18,14 @@ export const LoginPage = () => {
         show: () => setModalVisibility(true),
         toggle: () => setModalVisibility(!modalVisibile),
     };
-    const loggedInPlayer = id ? players[id] : undefined;
+    const loggedInPlayer = id ? players[id]: undefined
     return (
         <>
-            {modalVisibile && (
-                <LoginModal
-                    visible={modalVisibile}
-                    modalActions={modalActions}
-                    loggedInPlayer={loggedInPlayer}
-                />
-            )}
+            <LoginModal
+                visible={modalVisibile}
+                modalActions={modalActions}
+                loggedInPlayer={loggedInPlayer}
+            />
             <GameLobby modalActions={modalActions} />
         </>
     );

@@ -36,26 +36,26 @@ export const LoginModal = ({
     modalActions,
     loggedInPlayer,
 }: LoginModalProps) => {
-    const { id: id } = useSelector((state) => {
+    const {
+        id: id,
+        madeUpNames,
+        color,
+        icon,
+        team,
+    } = useSelector((state) => {
         return state.playerInfo;
     });
     const dispatch = useDispatch();
+    const name = madeUpNames;
 
-    const [name, setName] = useState<string | undefined>(
-        loggedInPlayer?.madeUpNames || ""
-    );
-    const [color, setColor] = useState<GradientName | undefined>(
-        loggedInPlayer?.color
-    );
-    const [icon, setIcon] = useState<IconNames | undefined>(
-        loggedInPlayer?.icon
-    );
-
-    const [team, setTeam] = useState<TeamNames | undefined>(
-        loggedInPlayer?.team
-    );
-
-    const registerPlayer = () => {};
+    const setIcon = (icon: IconNames) =>
+        dispatch(playerInfoActions.set({ icon: icon }));
+    const setTeam = (team: TeamNames) =>
+        dispatch(playerInfoActions.set({ team: team }));
+    const setName = (name: string) =>
+        dispatch(playerInfoActions.set({ madeUpNames: name }));
+    const setColor = (color: GradientName) =>
+        dispatch(playerInfoActions.set({ color: color }));
 
     const submit = () => {
         const dataEntered = name && color && icon && team && true;
