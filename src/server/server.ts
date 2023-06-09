@@ -245,9 +245,9 @@ io.on("connection", (socket) => {
     socket.emit("updateBoard", GameBoard);
 
     // update page info
-    emitToAllClients("sendAllPlayerInfo", PLAYERS);
+    socket.emit("sendAllPlayerInfo", PLAYERS);
     if (PAGE_DATA.currentPlayer != undefined && PAGE_DATA.currentPlayer != "") {
-        emitToAllClients("pageUpdate", PAGE_DATA);
+        socket.emit("pageUpdate", PAGE_DATA);
     }
     // send question info
     if (PAGE_DATA.currentScreen === "QUESTION") {
