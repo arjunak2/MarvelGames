@@ -111,6 +111,8 @@ function generateTeams() {
     });
     PAGE_DATA.currentPlayer =
         PAGE_DATA.teamData[Teams[CURRENT_TEAM_INDEX]].players[0];
+    if (PAGE_DATA.currentPlayer === undefined)
+        PAGE_DATA.currentPlayer = PAGE_DATA.teamData[Teams[0]].players[0];
 
     emitToAllClients("pageUpdate", PAGE_DATA);
 }

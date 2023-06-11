@@ -94,7 +94,7 @@ export const GameLobby = ({ modalActions }: { modalActions: ModalActions }) => {
 
     useEffect(() => {
         const pageUpdateListener = () => {
-            if (currentPlayer) goToGameBoard();
+            goToGameBoard();
         };
         socket.on("pageUpdate", pageUpdateListener);
 
