@@ -132,6 +132,7 @@ export const GameLobby = ({ modalActions }: { modalActions: ModalActions }) => {
                 <div className="row" style={{ width: "100%" }}>
                     {Teams.map((teamName) => (
                         <TeamSection
+                            key={teamName}
                             teamName={teamName}
                             players={PLAYERS}
                             modalActions={modalActions}
