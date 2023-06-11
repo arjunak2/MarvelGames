@@ -85,9 +85,16 @@ const TeamSection = ({
 export const GameLobby = ({ modalActions }: { modalActions: ModalActions }) => {
     const dispatch = useDispatch();
 
+    const { players, isGrandMaster, currentPlayer } = useSelector((store) => {
+        let { players } = store.playerInfo;
+        let isGrandMaster = store.playerInfo.id == "master";
+        let { currentPlayer } = store.page;
+        return { players, isGrandMaster, currentPlayer };
+    });
+
     useEffect(() => {
         const pageUpdateListener = () => {
-            goToGameBoard();
+            if (currentPlayer) goToGameBoard();
         };
         socket.on("pageUpdate", pageUpdateListener);
 
@@ -95,11 +102,6 @@ export const GameLobby = ({ modalActions }: { modalActions: ModalActions }) => {
             socket.off("pageUpdate", pageUpdateListener);
         };
     }, []);
-    const { players, isGrandMaster } = useSelector((store) => {
-        let { players } = store.playerInfo;
-        let isGrandMaster = store.playerInfo.id == "master";
-        return { players, isGrandMaster };
-    });
 
     const PLAYERS = Object.values(players);
 
