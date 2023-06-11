@@ -23,7 +23,7 @@ import {
     questionPageActions,
 } from "src/store/QuestionPageSlice";
 import { QuestionPageState } from "src/types/QuestionPage";
-import "../../styles/Question.scss";
+import "../../styles/question/Question.scss";
 import { QuestionPageData, initialState } from "src/types/PageData";
 import { Teams } from "src/types/Team";
 import BannerImage from "../../assets/questions/500/SW_Banner2.png";
@@ -37,8 +37,27 @@ interface QuestionPageProps {
     question: Question;
 }
 
-function Header({ text }: { text: string }) {
-    return <h1 className={"title"}>{text.toLocaleUpperCase()}</h1>;
+function pointToClass(points: Points): string {
+    switch (points) {
+        case Points.One:
+            return "one";
+        case Points.Two:
+            return "two";
+        case Points.Three:
+            return "three";
+        case Points.Four:
+            return "four";
+        case Points.Five:
+            return "five";
+    }
+}
+
+function Header({ text, points }: { text: string; points: Points }) {
+    return (
+        <h1 className={`title ${pointToClass(points)}`}>
+            {text.toLocaleUpperCase()}
+        </h1>
+    );
 }
 
 export function QuestionPage() {
@@ -171,67 +190,59 @@ function QuestionContent({ question }: QuestionPageProps) {
         nextTurn();
     };
 
-    useEffect(() => {
-        WebFont.load({
-            google: {
-                families: [
-                    "Poppins",
-                    "Chilanka",
-                    "Playfair Display",
-                    "Cinzel",
-                    "Prata",
-                    "Marcellus",
-                    "Spectral",
-                ],
-            },
-        });
-    }, []);
     useEffect(() => {}, [player]);
 
     const isMaster = false;
+    const pointClass = pointToClass(points);
     return (
         <div
-            className={`d-flex flex-row page ${
+            className={`page ${
                 !isCurrentPlayerSelf && !isGrandMaster && "page-disabled"
-            }`}
+            } ${pointClass}`}
         >
-            <div id="banner">
-                <Image src={BannerImage} />
-                <h2 className="points">{points}</h2>
-            </div>
-            <div id="playerSection">
-                <Timer
-                    pageState={state}
-                    timesUp={timesUp}
-                    disabled={!timerActive}
+            <div id={`banner`} className={`${pointClass}`}>
+                <Image
+                    src={require(`../../assets/questions/${points}/banner.png`)}
                 />
-                <h2 className="player-name">
-                    {player.madeUpNames.toUpperCase()}
-                </h2>
-                <PowerSection
-                    pageState={state}
-                    player={player}
-                    points={points}
-                />
+                <h2 className={`points ${pointClass}`}>{points}</h2>
             </div>
-            <div id="details">
-                <Header text={question.query} />
-                <div className="answer-section">
-                    {question instanceof Question_MC ? (
-                        <MultipleChoiceSection
-                            pageState={state}
-                            question={question}
-                            onAnswer={answerQuestion}
-                        />
-                    ) : (
-                        <TextSection
-                            pageState={state}
-                            question={question}
-                            onAnswer={answerQuestion}
-                        />
+            <div className={`rest ${pointClass}`}>
+                <div id={`playerSection`} className={`${pointClass}`}>
+                    <Timer
+                        pageState={state}
+                        timesUp={timesUp}
+                        disabled={!timerActive}
+                    />
+                    <h2 className={`player-name ${pointClass}`}>
+                        {player.madeUpNames.toUpperCase()}
+                    </h2>
+                    <PowerSection
+                        pageState={state}
+                        player={player}
+                        points={points}
+                    />
+                </div>
+                <div id={`details`} className={`${pointClass}`}>
+                    <Header text={question.query} points={points} />
+                    <div className={`answer-section ${pointClass}`}>
+                        {question instanceof Question_MC ? (
+                            <MultipleChoiceSection
+                                pageState={state}
+                                question={question}
+                                onAnswer={answerQuestion}
+                            />
+                        ) : (
+                            <TextSection
+                                pageState={state}
+                                question={question}
+                                onAnswer={answerQuestion}
+                            />
+                        )}
+                    </div>
+                    {isGrandMaster && (
+                        <HomeButton visible={true} onClick={goHome} />
                     )}
                 </div>
-                {isGrandMaster && <HomeButton visible={true} onClick={goHome} />}
             </div>
         </div>
     );

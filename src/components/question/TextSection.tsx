@@ -5,7 +5,7 @@ import { QuestionPageState } from "../../types/QuestionPage";
 import { useSelector } from "src/store";
 import { socket } from "src/utils/WebSocket";
 import { QuestionPageActions } from "src/store/QuestionPageSlice";
-import "../../styles/TextEntry.scss";
+import "../../styles/question/TextEntry.scss";
 
 export function TextSection({
     question,

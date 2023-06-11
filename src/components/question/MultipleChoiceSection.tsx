@@ -6,7 +6,7 @@ import { ButtonVariant } from "react-bootstrap/esm/types";
 import { useDispatch, useSelector } from "src/store";
 import { QuestionPageActions } from "src/store/QuestionPageSlice";
 import { socket } from "src/utils/WebSocket";
-import "../../styles/MultipleChoice.scss";
+import "../../styles/question/MultipleChoice.scss";
 
 interface AnswerProps extends ButtonProps {
     text: string;
