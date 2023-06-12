@@ -23,38 +23,41 @@ import {
     questionPageActions,
 } from "src/store/QuestionPageSlice";
 import { QuestionPageState } from "src/types/QuestionPage";
-import "../../styles/question/Question.scss";
 import { QuestionPageData, initialState } from "src/types/PageData";
 import { Teams } from "src/types/Team";
 import BannerImage from "../../assets/questions/500/SW_Banner2.png";
+import Banner100 from "../../assets/questions/100/banner.png";
+import Banner300 from "../../assets/questions/300/banner.png";
+import Banner500 from "../../assets/questions/500/banner.png";
 import WebFont from "webfontloader";
 import "../../fonts/Dream-Avenue.ttf";
 import { HomeButton } from "../HomeButton";
 import { Loader } from "../Loader";
 import { cloneDeep } from "lodash";
+import "../../styles/question/Question.scss";
+import "../../styles/question/300.scss";
+import "../../styles/question/500.scss";
 
 interface QuestionPageProps {
     question: Question;
 }
 
-function pointToClass(points: Points): string {
+function pointData(points: Points) {
     switch (points) {
         case Points.One:
-            return "one";
         case Points.Two:
-            return "two";
+            return { class: "one", banner: Banner100 };
         case Points.Three:
-            return "three";
         case Points.Four:
-            return "four";
+            return { class: "three", banner: Banner300 };
         case Points.Five:
-            return "five";
+            return { class: "five", banner: Banner500 };
     }
 }
 
 function Header({ text, points }: { text: string; points: Points }) {
     return (
-        <h1 className={`title ${pointToClass(points)}`}>
+        <h1 className={`title ${pointData(points).class}`}>
             {text.toLocaleUpperCase()}
         </h1>
     );
@@ -153,6 +156,17 @@ function QuestionContent({ question }: QuestionPageProps) {
         return { isCurrentPlayerSelf, isGrandMaster };
     });
 
+    const timerSize = (): number => {
+        switch (points) {
+            case Points.One:
+            case Points.Two:
+            case Points.Three:
+                return 150;
+            case Points.Four:
+            case Points.Five:
+                return 200;
+        }
+    };
     const complete = (chosenAns: string) => {
         console.log("Moving to Completed state");
         // @TODO updateScore
@@ -193,7 +207,7 @@ function QuestionContent({ question }: QuestionPageProps) {
     useEffect(() => {}, [player]);
 
     const isMaster = false;
-    const pointClass = pointToClass(points);
+    const { class: pointClass, banner } = pointData(points);
     return (
         <div
             className={`page ${
@@ -201,9 +215,7 @@ function QuestionContent({ question }: QuestionPageProps) {
             } ${pointClass}`}
         >
             <div id={`banner`} className={`${pointClass}`}>
-                <Image
-                    src={require(`../../assets/questions/${points}/banner.png`)}
-                />
+                <Image src={banner} />
                 <h2 className={`points ${pointClass}`}>{points}</h2>
             </div>
             <div className={`rest ${pointClass}`}>
