@@ -10,7 +10,7 @@ export const GradientOption = ({ gradient }: { gradient: GradientName }) => {
         <Dropdown.Item
             eventKey={gradient}
             as="button"
-            className={`d-flex flex-row align-items-center rounded-4 m-2 p-2 ${gradient}`}
+            className={`d-flex flex-row align-items-center rounded-4 mt-3 p-2 ${gradient}`}
         >
             <div
                 className={`rounded-circle ${gradient}`}
