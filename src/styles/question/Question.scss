@@ -1,5 +1,5 @@
-@import url("./300.scss");
-@import url("./500.scss");
+// @import url("./300.scss");
+// @import url("./500.scss");
 @font-face {
     font-family: "DreamAvenue";
     src: local("DreamAvenue"),
@@ -124,13 +124,6 @@ $loki-text: #cdb082;
 #playerSection .powerCotainer .btn.btn-warning {
     background-color: transparent;
     border: 0px;
-}
-
-#playerSection .powerCotainer .btn.btn-warning:disabled {
-    background-color: #8b193a7f;
-}
-#playerSection .powerCotainer .btn.btn-warning:hover {
-    background-color: #8b193a7f;
 }
 
 #playerSection .home {

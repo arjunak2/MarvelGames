@@ -13,7 +13,7 @@ $loki-color-3: #c5c5c5;
     flex-direction: column;
 }
 #banner.three {
-    background-image: linear-gradient(120deg, #cdb082 0%, #806944 100%);
+    // background-image: linear-gradient(120deg, #cdb082 0%, #806944 100%);
     // background-image: linear-gradient(120deg, #1f3532 0%, #0f1b19 100%);
     color: $loki-color-1;
 }
@@ -36,9 +36,60 @@ $loki-color-3: #c5c5c5;
 #playerSection.three {
     order: 2;
     flex-direction: row;
-    max-height: 25%;
+    flex-grow: 0;
+    max-height: 200px;
     color: $loki-color-2;
+    background-color: #f2f2f2;
+    padding: 0px;
+    position: relative;
 }
+
+#playerSection.three .divider {
+    width: 250px;
+    height: 7px;
+    background: $loki-color-1;
+    position: absolute;
+    left: calc(50% - 250px * 1 / 2);
+    z-index: 10;
+    top: 0px;
+}
+#playerSection.three::before {
+    content: "";
+    width: 250px;
+    height: 7px;
+    background: $loki-color-1;
+    position: absolute;
+    left: calc(50% - 250px * 1 / 2);
+    z-index: 10;
+    top: 0px;
+}
+
+#playerSection.three .powerCotainer {
+    background-color: transparent;
+    fill: white;
+    height: 60%;
+}
+
+#playerSection.three .powerCotainer .powerIcon {
+    max-width: 70%;
+    margin-bottom: 10px;
+}
+
+#playerSection.three .powerCotainer .btn {
+    fill: $loki-color-2;
+}
+
+#playerSection .powerCotainer .btn.btn-warning:disabled {
+    background-color: #b6b6b6;
+}
+#playerSection .powerCotainer .btn.btn-warning:hover {
+    background-color: #b6b6b6;
+}
+
+.player-name.three {
+    display: none;
+}
+
 #details.three {
     background-color: white;
     color: $loki-color-2;
@@ -74,10 +125,16 @@ $loki-color-3: #c5c5c5;
 }
 
 #details.three .answer-choice.hovered {
-    transform: scale(1.01);
-    background: linear-gradient(45deg, #dac8b0 0%, #d9b990 100%);
+    // transform: scale(1.01);
+    background: linear-gradient(45deg, #dac8b0 0%, #c39869 100%);
+    background: linear-gradient(45deg, rgb(234, 218, 198) 0%, #d9b990 100%);
     transition: 200ms;
     font-weight: 700;
-    color:#785f44;
+    color: #785f44;
     border-color: #896c4c;
+}
+
+.three .time {
+    font-family: "Cinzel";
+    font-size: 1.5rem;
 }

@@ -1,6 +1,13 @@
-import { TimeProps, CountdownCircleTimer } from "react-countdown-circle-timer";
+import {
+    TimeProps,
+    CountdownCircleTimer,
+    Props,
+    MultipleColors,
+    ColorHex,
+} from "react-countdown-circle-timer";
 import { QuestionPageState } from "../../types/QuestionPage";
 import "../../styles/question/Timer.scss";
+import { Points } from "src/types/Question";
 
 const TIMER_DURATION = 60;
 const SW = ["#e6e6e6", "#CB3966", "#e60017", "#4E192F", "#1F0815"];
@@ -9,9 +16,50 @@ interface TimerProps {
     pageState: QuestionPageState;
     timesUp: (chosenAnswer?: string) => void;
     disabled: boolean;
+    variant: Points;
 }
 
-export function Timer({ pageState, timesUp, disabled }: TimerProps) {
+type VariantData = Partial<Props> &
+    MultipleColors & {
+        fontSize: number;
+        maxFontSize: number;
+    };
+
+const getVariantData = (variant: Points): VariantData => {
+    switch (variant) {
+        case Points.One:
+        case Points.Two:
+        case Points.Three:
+        case Points.Four:
+            return {
+                size: 150,
+                colors: ["#cdb082", "#FFFFFF", "#3d3d3d"],
+                fontSize: 1.5,
+                maxFontSize: 4,
+                trailColor: "#f2f2f2",
+                colorsTime: [TIMER_DURATION, TIMER_DURATION / 2, 0],
+            };
+        case Points.Five:
+            return {
+                size: 200,
+                colors: ["#b05d6c", "#CB3966", "#FF7583", "#4E192F", "#1F0815"],
+                fontSize: 2,
+                maxFontSize: 7,
+                trailColor: "#2b2d33",
+                colorsTime: [
+                    TIMER_DURATION,
+                    (TIMER_DURATION * 2) / 3,
+                    (TIMER_DURATION * 1) / 2,
+                    (TIMER_DURATION * 2) / 5,
+                    0,
+                ],
+            };
+    }
+};
+
+export function Timer({ pageState, timesUp, disabled, variant }: TimerProps) {
+    const { size, colors, fontSize, maxFontSize, trailColor, colorsTime } =
+        getVariantData(variant);
     const renderCountDownText = ({
         remainingTime,
         color,
@@ -27,7 +75,9 @@ export function Timer({ pageState, timesUp, disabled }: TimerProps) {
                 style={{
                     color: color,
                     fontWeight: progress * 600 + 300,
-                    fontSize: `${progress * 5 + 2}rem`,
+                    fontSize: `${
+                        fontSize + (maxFontSize - fontSize) * progress
+                    }rem`,
                 }}
             >
                 {remainingTime}
@@ -41,20 +91,14 @@ export function Timer({ pageState, timesUp, disabled }: TimerProps) {
         <div className="clock">
             <CountdownCircleTimer
                 isPlaying={isPlaying}
-                trailColor={"#2b2d33"}
+                trailColor={trailColor}
                 strokeWidth={10}
                 strokeLinecap="square"
                 duration={TIMER_DURATION}
-                size={200}
-                colors={["#b05d6c", "#CB3966", "#FF7583", "#4E192F", "#1F0815"]}
+                size={size}
+                colors={colors}
                 // colors={["#50a696", "#4fb86b","#CB3966", "#520B19", "#F7B801", "#f44369", "#c5302e"]}
-                colorsTime={[
-                    TIMER_DURATION,
-                    (TIMER_DURATION * 2) / 3,
-                    (TIMER_DURATION * 1) / 2,
-                    (TIMER_DURATION * 2) / 5,
-                    0,
-                ]}
+                colorsTime={colorsTime}
                 onComplete={() => {
                     timesUp();
                     return { delay: 1 };

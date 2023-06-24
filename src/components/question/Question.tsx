@@ -155,18 +155,6 @@ function QuestionContent({ question }: QuestionPageProps) {
         let isGrandMaster = store.playerInfo.id == "master";
         return { isCurrentPlayerSelf, isGrandMaster };
     });
-
-    const timerSize = (): number => {
-        switch (points) {
-            case Points.One:
-            case Points.Two:
-            case Points.Three:
-                return 150;
-            case Points.Four:
-            case Points.Five:
-                return 200;
-        }
-    };
     const complete = (chosenAns: string) => {
         console.log("Moving to Completed state");
         // @TODO updateScore
@@ -224,6 +212,7 @@ function QuestionContent({ question }: QuestionPageProps) {
                         pageState={state}
                         timesUp={timesUp}
                         disabled={!timerActive}
+                        variant={points}
                     />
                     <h2 className={`player-name ${pointClass}`}>
                         {player.madeUpNames.toUpperCase()}
