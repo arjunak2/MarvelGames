@@ -34,10 +34,11 @@ const getVariantData = (variant: Points): VariantData => {
             return {
                 size: 150,
                 colors: ["#cdb082", "#FFFFFF", "#3d3d3d"],
-                fontSize: 1.5,
+                fontSize: 2,
                 maxFontSize: 4,
                 trailColor: "#f2f2f2",
                 colorsTime: [TIMER_DURATION, TIMER_DURATION / 2, 0],
+                strokeWidth: 7,
             };
         case Points.Five:
             return {
@@ -58,8 +59,15 @@ const getVariantData = (variant: Points): VariantData => {
 };
 
 export function Timer({ pageState, timesUp, disabled, variant }: TimerProps) {
-    const { size, colors, fontSize, maxFontSize, trailColor, colorsTime } =
-        getVariantData(variant);
+    const {
+        size,
+        colors,
+        fontSize,
+        maxFontSize,
+        trailColor,
+        colorsTime,
+        strokeWidth,
+    } = getVariantData(variant);
     const renderCountDownText = ({
         remainingTime,
         color,
@@ -92,7 +100,7 @@ export function Timer({ pageState, timesUp, disabled, variant }: TimerProps) {
             <CountdownCircleTimer
                 isPlaying={isPlaying}
                 trailColor={trailColor}
-                strokeWidth={10}
+                strokeWidth={strokeWidth || 10}
                 strokeLinecap="square"
                 duration={TIMER_DURATION}
                 size={size}

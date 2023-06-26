@@ -1,6 +1,6 @@
 $transition-speed: 300ms;
 $loki-color-1: #cdb082;
-$loki-color-2: #3d3d3d;
+$loki-color-2: hsl(0, 0%, 40%);
 $loki-color-3: #c5c5c5;
 
 .page.three {
@@ -21,7 +21,7 @@ $loki-color-3: #c5c5c5;
 #banner .points.three {
     color: transparent;
     text-shadow: none;
-    -webkit-text-stroke: 1px $loki-color-1;
+    -webkit-text-stroke: 1.2px $loki-color-1;
     font-family: DreamAvenue;
     text-align: left;
     rotate: -90deg;
@@ -30,7 +30,7 @@ $loki-color-3: #c5c5c5;
     font-size: 8vw;
     width: fit-content;
     bottom: 11.5vw;
-    left: -4%;
+    left: -6%;
 }
 
 #playerSection.three {
@@ -39,7 +39,7 @@ $loki-color-3: #c5c5c5;
     flex-grow: 0;
     max-height: 200px;
     color: $loki-color-2;
-    background-color: #f2f2f2;
+    background-color: #f9f9f9;
     padding: 0px;
     position: relative;
 }
@@ -55,11 +55,11 @@ $loki-color-3: #c5c5c5;
 }
 #playerSection.three::before {
     content: "";
-    width: 250px;
-    height: 7px;
+    width: 350px;
+    height: 4px;
     background: $loki-color-1;
     position: absolute;
-    left: calc(50% - 250px * 1 / 2);
+    left: calc(50% - 350px * 1 / 2);
     z-index: 10;
     top: 0px;
 }
@@ -67,16 +67,26 @@ $loki-color-3: #c5c5c5;
 #playerSection.three .powerCotainer {
     background-color: transparent;
     fill: white;
-    height: 60%;
+    height: 100%;
+    border-radius: 0px;
 }
 
 #playerSection.three .powerCotainer .powerIcon {
-    max-width: 70%;
+    max-width: 25%;
     margin-bottom: 10px;
 }
 
 #playerSection.three .powerCotainer .btn {
     fill: $loki-color-2;
+    flex-direction: row;
+    border-radius: 0px;
+}
+
+#playerSection .powerCotainer h5 {
+    color: $loki-color-2;
+    margin-left: 15px;
+    font-family: "Cinzel";
+    font-weight: 700;
 }
 
 #playerSection .powerCotainer .btn.btn-warning:disabled {
@@ -126,12 +136,14 @@ $loki-color-3: #c5c5c5;
 
 #details.three .answer-choice.hovered {
     // transform: scale(1.01);
-    background: linear-gradient(45deg, #dac8b0 0%, #c39869 100%);
-    background: linear-gradient(45deg, rgb(234, 218, 198) 0%, #d9b990 100%);
+    // background: linear-gradient(45deg, #dac8b0 0%, #c39869 100%);
+    // background: linear-gradient(45deg, rgb(234, 218, 198) 0%, #d9b990 100%);
     transition: 200ms;
     font-weight: 700;
-    color: #785f44;
-    border-color: #896c4c;
+    color: $loki-color-1;
+    border-color: $loki-color-1;
+    border-style: double;
+    border-width: thick;
 }
 
 .three .time {
