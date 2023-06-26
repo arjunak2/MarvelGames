@@ -1,5 +1,5 @@
 $transition-speed: 300ms;
-$loki-color-1: #cdb082;
+$loki-color-1: #ceaa70;
 $loki-color-2: hsl(0, 0%, 40%);
 $loki-color-3: #c5c5c5;
 
@@ -39,7 +39,7 @@ $loki-color-3: #c5c5c5;
     flex-grow: 0;
     max-height: 200px;
     color: $loki-color-2;
-    background-color: #f9f9f9;
+    background: hsl(0, 0%, 95%);
     padding: 0px;
     position: relative;
 }
@@ -55,24 +55,23 @@ $loki-color-3: #c5c5c5;
 }
 #playerSection.three::before {
     content: "";
-    width: 350px;
-    height: 4px;
+    width: 35%;
+    height: 6px;
     background: $loki-color-1;
     position: absolute;
-    left: calc(50% - 350px * 1 / 2);
+    left: calc(50% - 35% * 1 / 2);
     z-index: 10;
     top: 0px;
 }
 
 #playerSection.three .powerCotainer {
     background-color: transparent;
-    fill: white;
     height: 100%;
     border-radius: 0px;
 }
 
 #playerSection.three .powerCotainer .powerIcon {
-    max-width: 25%;
+    max-width: 30%;
     margin-bottom: 10px;
 }
 
@@ -101,16 +100,18 @@ $loki-color-3: #c5c5c5;
 }
 
 #details.three {
-    background-color: white;
+    background-color: transparent;
     color: $loki-color-2;
+}
+
+#details.three .title{
+    text-align: left;
 }
 
 #details.three .mc-section {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 3vh;
-    padding-left: 5%;
-    padding-right: 5%;
+    gap: 4vh;
 }
 
 .answer-section.three .answer-choice {
@@ -118,14 +119,14 @@ $loki-color-3: #c5c5c5;
     border: solid $loki-color-3;
     border-radius: 0px;
     color: $loki-color-2;
-    font-size: 1.5rem;
+    font-size: 3vh;
     font-family: "Cinzel";
-    border-width: 1px;
+    border-width: 2px;
     font-weight: 200;
 }
 
 #details.three .answer-choice.btn-primary {
-    background-color: white;
+    background-color: transparent;
 }
 
 #details.three .answer-choice.btn-success {
@@ -135,7 +136,6 @@ $loki-color-3: #c5c5c5;
 }
 
 #details.three .answer-choice.hovered {
-    // transform: scale(1.01);
     // background: linear-gradient(45deg, #dac8b0 0%, #c39869 100%);
     // background: linear-gradient(45deg, rgb(234, 218, 198) 0%, #d9b990 100%);
     transition: 200ms;
