@@ -56,11 +56,7 @@ function pointData(points: Points) {
 }
 
 function Header({ text, points }: { text: string; points: Points }) {
-    return (
-        <h1 className={`title ${pointData(points).class}`}>
-            {text.toLocaleUpperCase()}
-        </h1>
-    );
+    return <h1 className={`title ${pointData(points).class}`}>{text}</h1>;
 }
 
 export function QuestionPage() {
