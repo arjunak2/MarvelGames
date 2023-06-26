@@ -33,7 +33,7 @@ const getVariantData = (variant: Points): VariantData => {
         case Points.Four:
             return {
                 size: 150,
-                colors: ["#e4c798", "#FFFFFF", "#3d3d3d"],
+                colors: ["#d8bd92", "#FFFFFF", "#3d3d3d"],
                 fontSize: 2,
                 maxFontSize: 4,
                 trailColor: "#f2f2f2",
