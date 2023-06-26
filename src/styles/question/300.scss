@@ -56,8 +56,8 @@ $loki-color-3: #c5c5c5;
 #playerSection.three::before {
     content: "";
     width: 35%;
-    height: 3px;
-    background: $loki-color-1;
+    height: 5px;
+    background: linear-gradient(90deg, rgb(229 210 186) 0%, hsl(34 46% 67% / 1) 100%);
     position: absolute;
     left: calc(50% - 35% * 1 / 2);
     z-index: 10;
@@ -132,7 +132,16 @@ $loki-color-3: #c5c5c5;
 #details.three .answer-choice.btn-success {
     border-color: #1d5f44;
     border-width: 5px;
-    color: #1d5f44;
+    color: hsl(162, 74%, 15%);
+    background: hsl(162, 74%, 33%);
+    font-weight: 700;
+}
+
+#details.three .answer-choice.btn-danger {
+    color: #ad071b;
+    border-color: #d30820;
+    border-width: 5px;
+    font-weight: 700;
 }
 
 #details.three .answer-choice.hovered {
@@ -149,4 +158,9 @@ $loki-color-3: #c5c5c5;
 .three .time {
     font-family: "Cinzel";
     font-size: 1.5rem;
+}
+
+
+.three .text-section .text-entry-submit {
+    background-color: $loki-color-1;
 }
