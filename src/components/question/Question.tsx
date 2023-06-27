@@ -35,6 +35,7 @@ import { HomeButton } from "../HomeButton";
 import { Loader } from "../Loader";
 import { cloneDeep } from "lodash";
 import "../../styles/question/Question.scss";
+import "../../styles/question/100.scss";
 import "../../styles/question/300.scss";
 import "../../styles/question/500.scss";
 

@@ -1,0 +1,195 @@
+$transition-speed: 300ms;
+$cute-color-1: #80cfdb;
+$cute-color-2: #f6f3e4;
+$cute-color-blue-dark: #327c9b;
+
+// $loki-color-2: hsl(0, 0%, 40%);
+// $loki-color-3: #c5c5c5;
+
+.page.one {
+    font-family: "Poppins";
+}
+
+#banner.one {
+    // background-image: linear-gradient(120deg, #cdb082 0%, #806944 100%);
+    // background-image: linear-gradient(120deg, #1f3532 0%, #0f1b19 100%);
+    order: 3;
+}
+
+// #banner .points.one {
+//     color: transparent;
+//     text-shadow: none;
+//     -webkit-text-stroke: 1.2px $loki-color-1;
+//     font-family: DreamAvenue;
+//     text-align: left;
+//     rotate: -90deg;
+//     bottom: 0vw;
+//     margin: 0px;
+//     font-size: 8vw;
+//     width: fit-content;
+//     bottom: 11.5vw;
+//     left: -6%;
+// }
+
+#playerSection.one {
+    order: 2;
+    background-color: transparent;
+    justify-content: space-between;
+    max-width: 25%;
+    padding-top: 0px;
+}
+
+#playerSection.one .powerCotainer {
+    // background-color: rgb(228, 92, 160);
+    background-color: transparent;
+    // background-image: url("https://media.istockphoto.com/id/912278170/vector/abstract-pink-background-vector.jpg?s=612x612&w=0&k=20&c=NK-pdVZFiSRxg0iyGZIlJlAuA0uCDqDsKcF26_hlfJQ=");
+    background: radial-gradient(farthest-corner at 0px 0px, rgb(252 197 218) 0%, rgb(243 125 163) 60%, rgb(219 48 101) 100%);
+    // background-size: contain;
+    // height: 100%;
+    border-radius: 30px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    order: 2;
+    overflow: hidden;
+}
+
+#playerSection.one .powerCotainer .powerIcon {
+    // max-width: 30%;
+    // margin-bottom: 10px;
+}
+
+#playerSection.one .powerCotainer .btn {
+    // background-image: url("https://media.istockphoto.com/id/912278170/vector/abstract-pink-background-vector.jpg?s=612x612&w=0&k=20&c=NK-pdVZFiSRxg0iyGZIlJlAuA0uCDqDsKcF26_hlfJQ=");
+    background: rgba(255, 255, 255, 0);
+    border-style: solid;
+    fill: hsl(330, 75%, 40%);
+    flex-direction: row;
+    border-radius: 0px;
+}
+
+#playerSection.one .powerCotainer h5 {
+    color: hsl(330, 75%, 60%);
+    font-weight: 900;
+}
+
+// #playerSection .powerCotainer .btn.btn-warning:disabled {
+//     background-color: #b6b6b6;
+// }
+// #playerSection .powerCotainer .btn.btn-warning:hover {
+//     background-color: rgb(175, 43, 109);
+//     filter: saturate(1.3);
+// }
+
+#playerSection.one .powerCotainer .btn:hover {
+    // filter: brightness(1.05);
+    background: rgba(255, 255, 255, 0.3);
+    // background: rgba(255, 155, 202, 0.3);
+    // fill: white
+}
+
+.player-name.one {
+    display: none;
+}
+
+#details.one {
+    background-color: transparent;
+    color: $cute-color-1;
+    order: 1;
+    background-image: url("../../assets/questions/100/wave.png");
+    background-size: cover;
+    flex: 1 1 40%;
+    background-position-y: -3px;
+}
+
+#details.one .title {
+    text-align: left;
+    font-family: "Scrypta";
+    font-size: 9vh;
+    padding: 4px;
+
+    color: $cute-color-1;
+    text-shadow: 3px 3px #65a0d8;
+
+    color: #adf7f1;
+    text-shadow: 3px 3px #29c8cf;
+
+    // color: #99208f;
+    // text-shadow: 3px 3px #e3bda7;
+
+    color: #f6f3e4;
+    // text-shadow: 2px 2px #FD6155, 5px 5px #fd60557a;
+}
+
+#details.one .mc-section {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 4vh;
+}
+
+.answer-section.one .answer-choice {
+    max-width: 60%;
+    border-radius: 40px;
+    font-size: 3.5vh;
+    border-width: 0px;
+    font-weight: 700;
+    background: $cute-color-blue-dark;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+// #details.one .answer-choice.btn-primary {
+//     background-color: transparent;
+// }
+
+// #details.one .answer-choice.btn-success {
+//     border-color: #1d5f44;
+//     border-width: 5px;
+//     color: hsl(162, 74%, 15%);
+//     background: hsl(162, 74%, 33%);
+//     font-weight: 700;
+// }
+
+// #details.one .answer-choice.btn-danger {
+//     color: #ad071b;
+//     border-color: #d30820;
+//     border-width: 5px;
+//     font-weight: 700;
+// }
+
+#details.one .answer-choice.hovered {
+    // transform: scale(1.2);
+    animation: pop 0.4s;
+    // transition: 300ms ease;
+    font-weight: 900;
+    // border-color: $cute-color-blue-dark;
+    // border-width: thick;
+    background-color: hsl(174.98deg 100% 89.05%);
+    color: hsl(182, 100%, 39%);
+}
+
+@keyframes pop {
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes pop-entrance {
+    0% {
+        opacity: 0;
+        transform: scale(0.5, 0.5);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1, 1);
+    }
+}
+
+.one .time {
+    font-family: "BukhariScript";
+    font-size: 1.5rem;
+}
+
+// .one .text-section .text-entry-submit {
+//     background-color: $loki-color-1;
+// }

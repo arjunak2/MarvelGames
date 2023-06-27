@@ -29,6 +29,19 @@ const getVariantData = (variant: Points): VariantData => {
     switch (variant) {
         case Points.One:
         case Points.Two:
+            return {
+                size: 150,
+                colors: ["#327C9B", "#2DB1C4", "#ffffff"],
+                fontSize: 3,
+                maxFontSize: 3,
+                trailColor: "#f6f3e4",
+                colorsTime: [
+                    TIMER_DURATION,
+                    TIMER_DURATION / 3,
+                    (TIMER_DURATION * 2) / 3,
+                ],
+                strokeWidth: 10,
+            };
         case Points.Three:
         case Points.Four:
             return {

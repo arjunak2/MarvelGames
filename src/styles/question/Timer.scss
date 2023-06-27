@@ -8,6 +8,14 @@
     margin-right: 20%;
 }
 
+.one .clock {
+    padding: 2rem;
+    background-image: url("../../assets/questions/100/tealCloud.png");
+    background-size: cover;
+    background-position: center;
+    order: 1;
+}
+
 .time {
     font-size: 2rem;
     transition-duration: 200ms;

@@ -7,6 +7,40 @@
     font-weight: bold;
 }
 
+@font-face {
+    font-family: "BoogieBoys";
+    src: local("BoogieBoys"),
+        url("../../fonts/BoogieBoysRegular.otf") format("opentype");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "BoogieBoysShadow";
+    src: local("BoogieBoysShadow"),
+        url("../../fonts/BoogieBoysShadow.otf") format("opentype");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "BoogieBoysExtrude";
+    src: local("BoogieBoysExtrude"),
+        url("../../fonts/BoogieBoysExtrude.otf") format("opentype");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "BukhariScript";
+    src: local("BukhariScript"),
+        url("../../fonts/BukhariScript.ttf") format("truetype");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Scrypta";
+    src: local("Scrypta"), url("../../fonts/Scrypta.ttf") format("truetype");
+    font-weight: normal;
+}
+
 $sw-text: #f493a5;
 $loki-text: #cdb082;
 #root {
@@ -101,7 +135,6 @@ $loki-text: #cdb082;
     font-family: "Poppins";
     color: $sw-text;
 }
-
 
 #playerSection .powerCotainer .btn {
     display: flex;
