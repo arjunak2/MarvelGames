@@ -1,12 +1,12 @@
 $transition-speed: 300ms;
-$loki-color-1: #d8bd92;
-$loki-color-2: hsl(0, 0%, 40%);
-$loki-color-3: #c5c5c5;
+$loki-color-gold: #d8bd92;
+$loki-color-grey: hsl(0, 0%, 40%);
+$loki-color-grey-light: #c5c5c5;
 
 .page.three {
     // flex-direction: column;
     font-family: "DreamAvenue";
-    color: $loki-color-1;
+    color: $loki-color-gold;
 }
 
 .rest.three {
@@ -15,13 +15,13 @@ $loki-color-3: #c5c5c5;
 #banner.three {
     // background-image: linear-gradient(120deg, #cdb082 0%, #806944 100%);
     // background-image: linear-gradient(120deg, #1f3532 0%, #0f1b19 100%);
-    color: $loki-color-1;
+    color: $loki-color-gold;
 }
 
 #banner .points.three {
     color: transparent;
     text-shadow: none;
-    -webkit-text-stroke: 1.2px $loki-color-1;
+    -webkit-text-stroke: 1.2px $loki-color-gold;
     font-family: DreamAvenue;
     text-align: left;
     rotate: -90deg;
@@ -38,7 +38,7 @@ $loki-color-3: #c5c5c5;
     flex-direction: row;
     flex-grow: 0;
     max-height: 200px;
-    color: $loki-color-2;
+    color: $loki-color-grey;
     background: hsl(0, 0%, 97%);
     padding: 0px;
     position: relative;
@@ -47,7 +47,7 @@ $loki-color-3: #c5c5c5;
 #playerSection.three .divider {
     width: 250px;
     height: 7px;
-    background: $loki-color-1;
+    background: $loki-color-gold;
     position: absolute;
     left: calc(50% - 250px * 1 / 2);
     z-index: 10;
@@ -76,22 +76,22 @@ $loki-color-3: #c5c5c5;
 }
 
 #playerSection.three .powerCotainer .btn {
-    fill: $loki-color-2;
+    fill: $loki-color-grey;
     flex-direction: row;
     border-radius: 0px;
 }
 
-#playerSection .powerCotainer h5 {
-    color: $loki-color-2;
+#playerSection.three .powerCotainer h5 {
+    color: $loki-color-grey;
     margin-left: 15px;
-    font-family: "Cinzel";
+    font-family: "Expletus Sans";
     font-weight: 700;
 }
 
-#playerSection .powerCotainer .btn.btn-warning:disabled {
+#playerSection.three .powerCotainer .btn.btn-warning:disabled {
     background-color: #b6b6b6;
 }
-#playerSection .powerCotainer .btn.btn-warning:hover {
+#playerSection.three .powerCotainer .btn.btn-warning:hover {
     background-color: #b6b6b6;
 }
 
@@ -101,12 +101,12 @@ $loki-color-3: #c5c5c5;
 
 #details.three {
     background-color: transparent;
-    color: $loki-color-2;
+    color: $loki-color-grey;
 }
 
 #details.three .title{
     text-align: left;
-    // text-transform: uppercase;
+    text-transform: uppercase;
 }
 
 #details.three .mc-section {
@@ -117,9 +117,9 @@ $loki-color-3: #c5c5c5;
 
 .answer-section.three .answer-choice {
     width: 1fr;
-    border: solid $loki-color-3;
+    border: solid $loki-color-grey-light;
     border-radius: 0px;
-    color: $loki-color-2;
+    color: $loki-color-grey;
     font-size: 3vh;
     font-family: "Cinzel";
     border-width: 2px;
@@ -150,8 +150,8 @@ $loki-color-3: #c5c5c5;
     // background: linear-gradient(45deg, rgb(234, 218, 198) 0%, #d9b990 100%);
     transition: 200ms;
     font-weight: 700;
-    color: $loki-color-1;
-    border-color: $loki-color-1;
+    color: $loki-color-gold;
+    border-color: $loki-color-gold;
     border-style: double;
     border-width: thick;
 }
@@ -163,5 +163,5 @@ $loki-color-3: #c5c5c5;
 
 
 .three .text-section .text-entry-submit {
-    background-color: $loki-color-1;
+    background-color: $loki-color-gold;
 }
