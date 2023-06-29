@@ -33,14 +33,11 @@
     background-image: linear-gradient(
         45deg,
         #ff8177 0%,
-        #ff867a 0%,
-        #ff8c7f 21%,
-        #f99185 52%,
         #cf556c 78%,
-        #b12a5b 100%
+        #dc2b6b 100%
     );
-    color: #8b2047;
-    fill: #8b2047;
+    color: hsl(338 67% 34% / 1);
+    fill: hsl(338 67% 34% / 1);
 }
 
 /*006 Lady Lips*/
@@ -887,7 +884,11 @@
 
 /*161 Salt Mountain*/
 .salt_mountain {
-    background-image: linear-gradient(-225deg, #fffeff 0%, #d7fffe 100%);
+    background-image: linear-gradient(
+        -225deg,
+        hsl(0 0% 99% / 1) 30%,
+        #86e5e3 100%
+    );
     color: #21b3ae;
     fill: #21b3ae;
 }
@@ -962,7 +963,7 @@
 }
 
 .slate {
-    background-image: linear-gradient(25deg, #4a707a 20%, #7697a0 100%);
+    background-image: linear-gradient(25deg, #3b6b78 20%, #acc1c7 100%);
     color: #1e3640;
     fill: #1e3640;
 }
@@ -1029,7 +1030,7 @@
 }
 
 .morning_dew {
-    background-image: linear-gradient(45deg, #3d806f 0%, #a4e8af 80%);
+    background-image: linear-gradient(45deg, #0d7b8f 0%, #a4e8af 80%);
     color: #23483e;
     fill: #23483e;
 }
