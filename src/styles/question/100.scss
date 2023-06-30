@@ -3,9 +3,6 @@ $cute-color-1: #80cfdb;
 $cute-color-2: #f6f3e4;
 $cute-color-blue-dark: #327c9b;
 
-// $loki-color-2: hsl(0, 0%, 40%);
-// $loki-color-3: #c5c5c5;
-
 .page.one {
     font-family: "Poppins";
 }
@@ -16,25 +13,42 @@ $cute-color-blue-dark: #327c9b;
     order: 3;
 }
 
-// #banner .points.one {
-//     color: transparent;
-//     text-shadow: none;
-//     -webkit-text-stroke: 1.2px $loki-color-1;
-//     font-family: DreamAvenue;
-//     text-align: left;
-//     rotate: -90deg;
-//     bottom: 0vw;
-//     margin: 0px;
-//     font-size: 8vw;
-//     width: fit-content;
-//     bottom: 11.5vw;
-//     left: -6%;
-// }
+#banner .points.one {
+    font-family: "BukhariScript";
+    color: #fffbf6;
+    text-shadow: -7px -3px #a5dabd;
+    font-size: 18vh;
+    width: fit-content;
+    bottom: 90vh;
+    left: 30%;
+    line-height: 0px;
+    z-index: -10;
+    
+    // font-family: "BukhariScript";
+    // color: #f7759e;
+    // text-shadow: 3px 3px #f9f7db;
+    // font-size: 5vh;
+    // width: fit-content;
+    // bottom: 5vh;
+    // left: 77%;
+    // line-height: 0px;
+
+    // font-family: "BukhariScript";
+    // color: #ffffff;
+    // text-shadow: 7px -2px 0px #d563be;
+    // font-size: 5vh;
+    // width: fit-content;
+    // bottom: 54vh;
+    // left: 55%;
+    // line-height: 0px;
+    // z-index: 4;
+    // transform: rotate(7deg);
+}
 
 #playerSection.one {
     order: 2;
     background-color: transparent;
-    justify-content: space-between;
+    justify-content: flex-end;
     max-width: 25%;
     padding-top: 0px;
 }
@@ -42,14 +56,19 @@ $cute-color-blue-dark: #327c9b;
 #playerSection.one .powerCotainer {
     // background-color: rgb(228, 92, 160);
     background-color: transparent;
-    // background-image: url("https://media.istockphoto.com/id/912278170/vector/abstract-pink-background-vector.jpg?s=612x612&w=0&k=20&c=NK-pdVZFiSRxg0iyGZIlJlAuA0uCDqDsKcF26_hlfJQ=");
-    background: radial-gradient(farthest-corner at 0px 0px, rgb(252 197 218) 0%, rgb(243 125 163) 60%, rgb(219 48 101) 100%);
+    background-image: url("https://media.istockphoto.com/id/912278170/vector/abstract-pink-background-vector.jpg?s=612x612&w=0&k=20&c=NK-pdVZFiSRxg0iyGZIlJlAuA0uCDqDsKcF26_hlfJQ=");
+    // background: radial-gradient(
+    //     farthest-corner at 0px 0px,
+    //     hsl(337, 90%, 88%) 0%,
+    //     hsl(341, 83%, 72%) 60%,
+    //     hsl(341, 70%, 52%) 100%
+    // );
     // background-size: contain;
     // height: 100%;
     border-radius: 30px;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
-    order: 2;
+    order: 1;
     overflow: hidden;
 }
 
@@ -70,6 +89,7 @@ $cute-color-blue-dark: #327c9b;
 #playerSection.one .powerCotainer h5 {
     color: hsl(330, 75%, 60%);
     font-weight: 900;
+    margin-left: 10px;
 }
 
 // #playerSection .powerCotainer .btn.btn-warning:disabled {
@@ -92,13 +112,26 @@ $cute-color-blue-dark: #327c9b;
 }
 
 #details.one {
+    // background-color: transparent;
+    // color: #80cfdb;
+    // order: 1;
+    // background-image: url("../../assets/questions/100/hexagon.png");
+    // background-size: 100%;
+    // flex: 1 1 40%;
+    // /* background-position-y: -3px; */
+    // background-position-x: -160px;
+    // background-position-y: -200px;
+    // background-repeat: no-repeat;
+
     background-color: transparent;
-    color: $cute-color-1;
+    color: #80cfdb;
     order: 1;
-    background-image: url("../../assets/questions/100/wave.png");
-    background-size: cover;
+    background-image: url("../../assets/questions/100/hexagon.png");
+    background-size: 120%;
     flex: 1 1 40%;
-    background-position-y: -3px;
+    background-position-x: -160px;
+    background-position-y: -644px;
+    background-repeat: no-repeat;
 }
 
 #details.one .title {
@@ -111,30 +144,50 @@ $cute-color-blue-dark: #327c9b;
     text-shadow: 3px 3px #65a0d8;
 
     color: #adf7f1;
-    text-shadow: 3px 3px #29c8cf;
+    text-shadow: 3px 3px hsl(183, 81%, 38%);
 
     // color: #99208f;
     // text-shadow: 3px 3px #e3bda7;
 
     color: #f6f3e4;
     // text-shadow: 2px 2px #FD6155, 5px 5px #fd60557a;
+    width: 95%;
 }
 
 #details.one .mc-section {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 4vh;
+    width: 50%;
+}
+
+
+#details.one .answer-section{
+    align-items: flex-start;
 }
 
 .answer-section.one .answer-choice {
-    max-width: 60%;
-    border-radius: 40px;
-    font-size: 3.5vh;
+    // border-radius: 40px;
+    font-size: 3.2vh;
     border-width: 0px;
-    font-weight: 700;
-    background: $cute-color-blue-dark;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    // font-weight: 700;
+    background: white;
+    color: $cute-color-blue-dark;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    box-shadow: 0px 0px 20px rgba(125, 125, 125, 0.4);
+    font-family: "Belanosima";
+
+    // font-size: 3vh;
+    // border-width: 0px;
+    // font-weight: 700;
+    // background: #ffffff;
+    // padding-top: 12px;
+    // padding-bottom: 12px;
+    // box-shadow: 5px 5px #ebcea3;
+    border-radius: 13px;
+    // color: #ebcea3;
+    // box-shadow: 5px 5px 10px #28a7bd;
 }
 
 // #details.one .answer-choice.btn-primary {
@@ -165,6 +218,7 @@ $cute-color-blue-dark: #327c9b;
     // border-width: thick;
     background-color: hsl(174.98deg 100% 89.05%);
     color: hsl(182, 100%, 39%);
+    // box-shadow: 5px 5px 10px #28a7bd;
 }
 
 @keyframes pop {
@@ -193,3 +247,45 @@ $cute-color-blue-dark: #327c9b;
 // .one .text-section .text-entry-submit {
 //     background-color: $loki-color-1;
 // }
+
+.one .text-section {
+    width: 60%;
+    font-family: "Poppins";
+    padding: 0px;
+    align-self: flex-start;
+}
+
+.one .text-section .text-entry {
+    border-radius: 10px;
+    color: $cute-color-1;
+}
+.one .text-section .text-entry-submit {
+    background-color: $cute-color-2;
+    border-radius: 15px;
+    font-family: "Poppins";
+    color: #327c9b;
+    font-weight: bold;
+    padding: 10px 45px 10px 45px;
+}
+
+.one .text-section .text-entry-submit:hover {
+    background-color: hsl(180, 83%, 41%);
+    color: white;
+    animation: pop 0.4s;
+    // box-shadow: 0px 0px 25px hsl(180, 53%, 55%);
+    // border: solid 4px #327c9b;
+}
+
+.one .text-section .text-entry.is-invalid {
+    background-color: hsl(341, 100%, 82%);
+    border-color: hsl(341, 70%, 60%);
+    color: hsl(341, 60%, 52%);
+    border-width: 4px;
+}
+
+.one .text-section .text-entry.is-valid {
+    background-color: hsl(165, 63%, 57%);
+    border-color: hsla(182, 82%, 24%, 0.562);
+    color: hsl(184, 69%, 28%);
+    border-width: 4px;
+}

@@ -30,7 +30,7 @@ const getVariantData = (variant: Points): VariantData => {
         case Points.One:
         case Points.Two:
             return {
-                size: 150,
+                size: 175,
                 colors: ["#327C9B", "#2DB1C4", "#ffffff"],
                 fontSize: 3,
                 maxFontSize: 3,
@@ -40,7 +40,8 @@ const getVariantData = (variant: Points): VariantData => {
                     TIMER_DURATION / 3,
                     (TIMER_DURATION * 2) / 3,
                 ],
-                strokeWidth: 10,
+                strokeWidth: 13,
+                strokeLinecap: "round",
             };
         case Points.Three:
         case Points.Four:
@@ -80,6 +81,7 @@ export function Timer({ pageState, timesUp, disabled, variant }: TimerProps) {
         trailColor,
         colorsTime,
         strokeWidth,
+        strokeLinecap,
     } = getVariantData(variant);
     const renderCountDownText = ({
         remainingTime,
@@ -114,7 +116,7 @@ export function Timer({ pageState, timesUp, disabled, variant }: TimerProps) {
                 isPlaying={isPlaying}
                 trailColor={trailColor}
                 strokeWidth={strokeWidth || 10}
-                strokeLinecap="square"
+                strokeLinecap={strokeLinecap || "square"}
                 duration={TIMER_DURATION}
                 size={size}
                 colors={colors}

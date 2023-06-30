@@ -9,11 +9,17 @@
 }
 
 .one .clock {
-    padding: 2rem;
     background-image: url("../../assets/questions/100/tealCloud.png");
-    background-size: cover;
+    background-size: contain;
     background-position: center;
     order: 1;
+    background-repeat: no-repeat;
+    width: 95%;
+    // height: 225px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
 }
 
 .time {

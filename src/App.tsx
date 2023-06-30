@@ -78,6 +78,7 @@ function App({ currentScreen }: { currentScreen?: ScreenNames }) {
                     "Expletus Sans",
                     "Tilt Neon",
                     "Tilt Warp",
+                    "Belanosima"
                 ],
             },
         });
