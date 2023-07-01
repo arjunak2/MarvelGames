@@ -192,7 +192,7 @@ function QuestionContent({ question }: QuestionPageProps) {
     useEffect(() => {}, [player]);
 
     const isMaster = false;
-    const { class: pointClass, banner } = pointData(points);
+    const { class: pointClass, banner } = pointData(question.points);
     return (
         <div
             className={`page ${
@@ -209,7 +209,7 @@ function QuestionContent({ question }: QuestionPageProps) {
                         pageState={state}
                         timesUp={timesUp}
                         disabled={!timerActive}
-                        variant={points}
+                        variant={question.points}
                     />
                     <h2 className={`player-name ${pointClass}`}>
                         {player.madeUpNames.toUpperCase()}
@@ -221,7 +221,7 @@ function QuestionContent({ question }: QuestionPageProps) {
                     />
                 </div>
                 <div id={`details`} className={`${pointClass}`}>
-                    <Header text={question.query} points={points} />
+                    <Header text={question.query} points={question.points} />
                     <div className={`answer-section ${pointClass}`}>
                         {question instanceof Question_MC ? (
                             <MultipleChoiceSection
