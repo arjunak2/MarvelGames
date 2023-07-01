@@ -40,7 +40,7 @@ const getVariantData = (variant: Points): VariantData => {
                     TIMER_DURATION / 3,
                     (TIMER_DURATION * 2) / 3,
                 ],
-                strokeWidth: 13,
+                strokeWidth: 15,
                 strokeLinecap: "round",
             };
         case Points.Three:

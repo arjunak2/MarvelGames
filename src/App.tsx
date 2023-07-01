@@ -74,11 +74,10 @@ function App({ currentScreen }: { currentScreen?: ScreenNames }) {
                     "Amiri Quran",
                     "Scope One",
                     "Crimson Pro",
-                    "Grenze Gotisch",
                     "Expletus Sans",
                     "Tilt Neon",
                     "Tilt Warp",
-                    "Belanosima"
+                    "Pacifico"
                 ],
             },
         });

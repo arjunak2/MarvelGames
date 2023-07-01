@@ -40,6 +40,11 @@
     src: local("Scrypta"), url("../../fonts/Scrypta.ttf") format("truetype");
     font-weight: normal;
 }
+@font-face {
+    font-family: "Flicker";
+    src: local("Flicker"), url("../../fonts/Flicker.ttf") format("truetype");
+    font-weight: normal;
+}
 
 $sw-text: #f493a5;
 $loki-text: #cdb082;
