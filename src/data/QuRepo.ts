@@ -190,7 +190,7 @@ export const QUESTIONS_DB: { [id: string]: Question } = {
     [QuestionCategory.CATEGORY_5 + "-" + Points.One]: new Question_MC(
         Points.One,
         QuestionCategory.CATEGORY_5,
-        "What is the protein in your red blood cells that gives it its red color",
+        "What is the protein in your red blood cells that gives it its red color?",
         {
             A: "Platlets",
             B: "Lipids",
