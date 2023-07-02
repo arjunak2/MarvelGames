@@ -7,7 +7,7 @@ $card-border-radius: 1.5rem;
     flex-direction: column;
     justify-content: space-evenly;
     overflow: hidden;
-    box-shadow: 0 0 13px 1px #61616140;
+    // box-shadow: 0 0 13px 1px #61616140;
 }
 
 .score-card .team {
@@ -51,7 +51,7 @@ $card-border-radius: 1.5rem;
         hsl(47.08deg 76.57% 67.02%) 33%,
         #344765 10%
     );
-    color: rgb(255 255 255);
+    color: rgb(223 194 147);
     // background-image: linear-gradient(
     //     348deg,
     //     hsl(275 100% 6% / 1) 0%,
@@ -61,6 +61,10 @@ $card-border-radius: 1.5rem;
     // color: #945870;
 }
 
+
+.score-card .team.team-2 .score {
+    color: hsl(37, 54%, 53%);
+}
 .score-card .team .score {
     // border-color: #0000006c;
     // border-width: 0px 0px 0px 3px;

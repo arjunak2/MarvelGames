@@ -11,7 +11,7 @@ $transition-speed: 400ms;
     background: #f3f3f3;
     color: #5b5b5b;
     font-weight: 500;
-    font-size: 2.5rem;
+    font-size: 4vh;
     transition: 200ms;
     flex: 1 1;
     display: flex;
@@ -30,16 +30,7 @@ $transition-speed: 400ms;
     background-size: 230% 100%;
     background-position: right bottom;
 }
-.tile.Three {
-    background: linear-gradient(
-        to right,
-        #e6b76d 0%,
-        rgb(241, 225, 191) 50%,
-        #f3f3f3 50%
-    );
-    background-size: 230% 100%;
-    background-position: right bottom;
-}
+.tile.Three,
 .tile.Four {
     background: linear-gradient(
         to right,

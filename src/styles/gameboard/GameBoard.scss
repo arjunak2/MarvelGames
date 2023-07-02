@@ -23,6 +23,7 @@
     justify-content: center;
     font-family: "Geologica";
     flex: 1;
+    padding: 0px 4vw 0px 4vw;
 }
 
 .category {
@@ -31,7 +32,6 @@
     flex-direction: column;
     padding: 20px 15px 20px 15px;
     transition: 500ms;
-
 }
 .category:hover {
     background: rgba(218, 218, 218, 0.192);
