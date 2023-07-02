@@ -1,27 +1,90 @@
+.lobby-container {
+    font-family: "Geologica";
+    display: flex;
+    flex-direction: column;
+}
+
+.lobby-container .title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+    margin-bottom: 0px;
+    background: rgb(111, 128, 138);
+    padding: 10px;
+    font-weight: 100;
+    font-family: "Tilt Warp";
+}
+
+.lobby-content {
+    flex: 1;
+    width: 100%;
+    justify-content: center;
+    padding-bottom: 3vh;
+    display: flex;
+    flex-direction: row;
+    background: radial-gradient(circle, rgb(42 49 65) 0%, rgb(37 37 37) 92%);
+    background: radial-gradient(circle, rgb(59 59 59) 0%, rgb(39 39 39) 92%);
+    background: radial-gradient(
+        circle,
+        rgb(255 255 255) 40%,
+        rgb(239 239 239) 92%
+    );
+}
+.lobby-content .divider {
+    height: 50%;
+    width: 2px;
+    background: #88989c63;
+    align-self: center;
+}
 .team-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+.team-section .player-icon {
+    width: 90%;
+    height: fit-content;
+    flex-grow: 1;
+}
+.team-section h2 {
+    color: rgba(19, 45, 70, 0.56);
+    margin-bottom: 0px;
+    padding: 10px;
 }
 .card-container {
     flex: 1;
+    display: flex;
+    justify-content: center;
 }
 .card-container .player-card {
     border-radius: 2rem;
     min-height: fit-content;
     // height: 60v;
-    max-width: 45%;
+    max-width: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 10px 13px 2px #5a5a5a2d;
+    transition: 2s;
+    padding: 20px;
+}
+
+.card-container .player-card:hover {
+    transform: scale(1.03);
 }
 
 .player-card-name {
     margin-bottom: 20px;
     flex-grow: 0;
+    overflow-wrap: break-word;
+    font-family: "Mitr";
 }
 
-.team-section .player-icon {
-    width: 100%;
-    height: fit-content;
-    flex-grow: 1;
-}
 .edit-icon {
+    cursor: pointer;
+}
+.edit-icon:hover {
+    opacity: 0.7;
 }

@@ -31,7 +31,7 @@ const PlayerCard = ({
     const shade = player.color;
     const ICON = Icons[player.icon];
     return (
-        <div ref={cardRef} className={`col p-5 ${shade} player-card`}>
+        <div ref={cardRef} className={`${shade} player-card`}>
             <h3 className="player-card-name">{player.madeUpNames}</h3>
             <ICON className="player-icon" />
             {self && (
@@ -71,13 +71,9 @@ const TeamSection = ({
         );
     });
     return (
-        <div className="col d-flex flex-column">
+        <div className="team-section">
             <h2>{teamName}</h2>
-            <div className="container-fluid d-flex" style={{ flex: 1 }}>
-                <div className="card-container row gap-5 justify-content-center">
-                    {PLAYER_CARDS}
-                </div>
-            </div>
+            <div className="card-container">{PLAYER_CARDS}</div>
         </div>
     );
 };
@@ -114,31 +110,22 @@ export const GameLobby = ({ modalActions }: { modalActions: ModalActions }) => {
     };
 
     return (
-        <div className="d-flex flex-column" style={{ height: "100vh" }}>
-            <h1
-                style={{
-                    fontSize: "4rem",
-                    fontWeight: 700,
-                    color: "rgb(68 68 68)",
-                    marginBottom: 40,
-                }}
-            >
-                {"Lobby"}
-            </h1>
-            <div
-                className="container-fluid d-flex"
-                style={{ flex: 1, width: "100%", justifyContent: "center" }}
-            >
-                <div className="row" style={{ width: "100%" }}>
-                    {Teams.map((teamName) => (
-                        <TeamSection
-                            key={teamName}
-                            teamName={teamName}
-                            players={PLAYERS}
-                            modalActions={modalActions}
-                        />
-                    ))}
-                </div>
+        <div className="lobby-container" style={{ height: "100vh" }}>
+            <h1 className="title">{"Lobby"}</h1>
+            <div className="lobby-content">
+                <TeamSection
+                    key={Teams[0]}
+                    teamName={Teams[0]}
+                    players={PLAYERS}
+                    modalActions={modalActions}
+                />
+                <div className="divider"></div>
+                <TeamSection
+                    key={Teams[1]}
+                    teamName={Teams[1]}
+                    players={PLAYERS}
+                    modalActions={modalActions}
+                />
             </div>
             {isGrandMaster && <HomeButton visible={true} onClick={start} />}
         </div>
