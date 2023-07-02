@@ -85,7 +85,7 @@ export const QUESTIONS_DB: { [id: string]: Question } = {
     [QuestionCategory.CATEGORY_2 + "-" + Points.Three]: new Question_MC(
         Points.Three,
         QuestionCategory.CATEGORY_3,
-        "Which character does not have a doctorate?",
+        "Which character did not go to grad school?",
         { A: "Hank Pym", B: "Jane Foster", C: "Tony Stark", D: "She-hulk" },
         "Tony Stark"
     ),
