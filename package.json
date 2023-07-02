@@ -39,14 +39,17 @@
         "ws": "^8.12.1"
     },
     "scripts": {
-        "start": "react-scripts start",
+        "start": "concurrentlyProdStart",
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "compileServer": "tsc -p src/server/tsconfig.json -w",
         "launchServer": "nodemon -r esm ./src/server/dist/server/server.js",
+        "launchApp": "react-scripts start",
+        "launchProdServer": "node -r esm ./src/server/dist/server/server.js",
         "server": "yarn compileServer & yarn launchServer",
-        "concurrentlyServer": "concurrently --kill-others --names \"BUILD,RUN\" -c \"bgMagenta.bold,bgGreen.bold\" \"yarn compileServer\" \"yarn launchServer\""
+        "concurrentlyServer": "concurrently --kill-others --names \"BUILD,RUN\" -c \"bgMagenta.bold,bgGreen.bold\" \"yarn compileServer\" \"yarn launchServer\"",
+        "concurrentlyProdStart": "concurrently --kill-others --names \"BUILD,RUN\" -c \"bgMagenta.bold,bgGreen.bold\" \"yarn launchProdServer\" \"yarn start\""
     },
     "eslintConfig": {
         "extends": [

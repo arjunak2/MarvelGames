@@ -8,7 +8,7 @@
             "name": "App Start",
             "request": "launch",
             "runtimeArgs": [
-                "start",
+                "launchApp",
             ],
             "runtimeExecutable": "yarn",
             "skipFiles": [
