@@ -16,6 +16,7 @@ import { Loader } from "./Loader";
 import { Teams } from "src/types/Team";
 import "../styles/gameboard/GameBoard.scss";
 import "../styles/gameboard/InfoColumn.scss";
+import "../styles/gameboard/ScoreCard.scss";
 
 function Category({
     category,
