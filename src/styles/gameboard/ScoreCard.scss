@@ -46,8 +46,12 @@ $card-border-radius: 1.5rem;
     // color: rgba(104, 194, 199, 0.67);
 }
 .score-card .team.team-2 {
-    background-image: linear-gradient(240deg, hsl(0, 0%, 98%) 33%, #f0e098 10%);
-    color: rgb(196, 161, 21);
+    background-image: linear-gradient(
+        240deg,
+        hsl(47.08deg 76.57% 67.02%) 33%,
+        #344765 10%
+    );
+    color: rgb(255 255 255);
     // background-image: linear-gradient(
     //     348deg,
     //     hsl(275 100% 6% / 1) 0%,
