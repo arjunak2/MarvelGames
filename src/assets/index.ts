@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { ReactComponent as Avengers } from "./avengers.svg";
 import { ReactComponent as BlackPanther } from "./black_panther.svg";
 import { ReactComponent as BlackPantherCute } from "./black_panther_cute.svg";
