@@ -39,6 +39,10 @@ function App({ currentScreen }: { currentScreen?: ScreenNames }) {
             dispatch(playerInfoActions.updatePlayerInfo(playerData));
         });
         socket.on("sendAllPlayerInfo", (players) => {
+            const localId = localStorage.getItem("playerId");
+            if (localId && !players[localId] && localId != "master") {
+                localStorage.clear();
+            }
             dispatch(playerInfoActions.updateAllPlayerInfo(players));
         });
         socket.on("transitionToGameBoard", () => {
@@ -59,9 +63,6 @@ function App({ currentScreen }: { currentScreen?: ScreenNames }) {
                     "Prata",
                     "Marcellus",
                     "Spectral",
-                    "DM Serif Display",
-                    "Alice",
-                    "Bodoni Moda",
                     "Prata",
                     "Inknut Antiqua",
                     "Noto Serif",
@@ -85,7 +86,11 @@ function App({ currentScreen }: { currentScreen?: ScreenNames }) {
                     "Josefin Sans",
                     "Viga",
                     "Cairo",
-                    "Outfit"
+                    "Outfit",
+                    "Exo 2",
+                    "Geologica",
+                    "Mitr",
+                    "Rubik"
                 ],
             },
         });
