@@ -30,11 +30,12 @@
     display: flex;
     flex-direction: column;
     padding: 20px 15px 20px 15px;
+    transition: 500ms;
+
 }
 .category:hover {
     background: rgba(218, 218, 218, 0.192);
     // background: rgba(48, 70, 99, 0.192);
-    transition: 500ms;
     box-shadow: inset 3px 3px 10px 2px rgba(224, 224, 224, 0.671);
 }
 

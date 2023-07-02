@@ -43,6 +43,7 @@ $card-border-radius: 1.5rem;
     display: flex;
     flex-direction: column;
     // background-color: rgba(0, 0, 0, 0.31);
+    transition: 200ms;
 }
 
 .power-bank .power .count {
@@ -51,7 +52,6 @@ $card-border-radius: 1.5rem;
 .power-bank .power:hover {
     background-color: transparent;
     transform: scale(1.7);
-    transition: 200ms;
 }
 
 .power-bank .icon {
