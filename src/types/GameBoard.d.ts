@@ -7,9 +7,9 @@ interface Tileinfo {
     points: Points;
 }
 
-type GameBoardTile = {
+type CategoryTiles = {
     [index in Points]: Tileinfo;
 };
 export interface IGameBoard {
-    [category: string]: GameBoardTile;
+    [category: string]: CategoryTiles;
 }

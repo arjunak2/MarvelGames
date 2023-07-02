@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/Tile.scss";
+import "../styles/gameboard/Tile.scss";
 import { Points } from "../types/Question";
 import { socket } from "src/utils/WebSocket";
 import { Tileinfo } from "src/types/GameBoard";
@@ -34,9 +34,9 @@ function Tile({ text, tileInfo, category, isHovered, isAnswered }: TileProps) {
     };
     return (
         <div
-            className={`tile-body rounded shadow-sm --bs-success-text
-            ${isHovered ? "selected" : false}
-            ${isAnswered ? "answered" : false}
+            className={`tile ${Points[text]} ${
+                isHovered ? "selected" : false
+            } ${isAnswered ? "answered" : false}
             `}
             onMouseOver={onHoverTile}
             onMouseLeave={onLeaveTile}

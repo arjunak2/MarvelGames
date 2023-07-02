@@ -3,12 +3,8 @@ import { Container } from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Tile from "./Tile";
-import "../styles/GameBoard.scss";
-import {
-    Points,
-    mapJsonToQuestion,
-} from "../types/Question";
-import { IGameBoard, Tileinfo } from "../types/GameBoard";
+import { Points, QuestionCategory, mapJsonToQuestion } from "../types/Question";
+import { CategoryTiles, IGameBoard, Tileinfo } from "../types/GameBoard";
 import { socket } from "../utils/WebSocket";
 import { GBData } from "../data/GameBoard";
 import { useNavigate } from "react-router-dom";
@@ -18,30 +14,34 @@ import { Icons, Symbols } from "src/assets";
 import { Powers } from "src/types/Powers";
 import { Loader } from "./Loader";
 import { Teams } from "src/types/Team";
+import "../styles/gameboard/GameBoard.scss";
+import "../styles/gameboard/InfoColumn.scss";
 
-function TableHeaderRow({ data }: { data: IGameBoard }) {
-    const categories = Object.keys(data);
-    const CategoryElements = categories.map((category) => (
-        <Col key={category}>
-            <h2>{category}</h2>
-        </Col>
-    ));
-    return <Row className="g-2">{CategoryElements}</Row>;
-}
+function Category({
+    category,
+    categoryTiles,
+}: {
+    category: QuestionCategory;
+    categoryTiles: CategoryTiles;
+}) {
+    const Header = () => <h2 className="category-header">{category}</h2>;
 
-function TableRow({ data, row }: { data: IGameBoard; row: number }) {
-    const RowElements = [];
-    for (let category in data) {
-        RowElements.push(
+    const TILES = Object.values(categoryTiles).map((tileInfo) => {
+        return (
             <TileCell
-                key={`${category}_${row * 100}`}
+                key={tileInfo.id}
                 category={category}
-                tileInfo={data[category][(row * 100) as Points]}
+                tileInfo={tileInfo}
             />
         );
-    }
+    });
 
-    return <Row className="g-5">{RowElements}</Row>;
+    return (
+        <div className="category">
+            <Header />
+            <div className="tile-container">{TILES}</div>
+        </div>
+    );
 }
 
 function TileCell({
@@ -52,15 +52,13 @@ function TileCell({
     category: string;
 }) {
     return (
-        <Col>
-            <Tile
-                tileInfo={tileInfo}
-                category={category}
-                text={tileInfo.points}
-                isHovered={tileInfo.isHovered}
-                isAnswered={tileInfo.isAnswered}
-            />
-        </Col>
+        <Tile
+            tileInfo={tileInfo}
+            category={category}
+            text={tileInfo.points}
+            isHovered={tileInfo.isHovered}
+            isAnswered={tileInfo.isAnswered}
+        />
     );
 }
 
@@ -144,20 +142,42 @@ export function GameBoard() {
         socket.emit("getGameBoard");
     }, []);
     if (currentPlayer == undefined || currentPlayer == "") return <Loader />;
+    const CATEGORIES = Object.values(QuestionCategory).map((category) => {
+        return (
+            <Category
+                category={category as QuestionCategory}
+                categoryTiles={gBoard[category]}
+            />
+        );
+    });
     return (
         <div
-            className={`grid-container ${
+            className={`page-container ${
                 !isCurrentPlayerSelf && !isGrandMaster && "page-disabled"
             }`}
         >
-            <Container className="game-board">
-                <TableHeaderRow data={gBoard} />
-                <TableRow row={1} data={gBoard} />
-                <TableRow row={2} data={gBoard} />
-                <TableRow row={3} data={gBoard} />
-                <TableRow row={4} data={gBoard} />
-                <TableRow row={5} data={gBoard} />
-            </Container>
+            <div className="game-board">
+                <Category
+                    category={QuestionCategory.CATEGORY_1}
+                    categoryTiles={gBoard[QuestionCategory.CATEGORY_1]}
+                />
+                <Category
+                    category={QuestionCategory.CATEGORY_2}
+                    categoryTiles={gBoard[QuestionCategory.CATEGORY_2]}
+                />
+                <Category
+                    category={QuestionCategory.CATEGORY_3}
+                    categoryTiles={gBoard[QuestionCategory.CATEGORY_3]}
+                />
+                <Category
+                    category={QuestionCategory.CATEGORY_4}
+                    categoryTiles={gBoard[QuestionCategory.CATEGORY_4]}
+                />
+                <Category
+                    category={QuestionCategory.CATEGORY_5}
+                    categoryTiles={gBoard[QuestionCategory.CATEGORY_5]}
+                />
+            </div>
             <InfoColumn />
         </div>
     );

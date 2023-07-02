@@ -1,0 +1,77 @@
+$transition-speed: 400ms;
+
+.tile-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 15px;
+}
+.tile {
+    background: #f3f3f3;
+    color: #5b5b5b;
+    font-weight: 500;
+    font-size: 2.5rem;
+    transition: 200ms;
+    flex: 1 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    // box-shadow: 0px 0px 14px 5px #6d6d6d40;
+}
+.tile.One {
+    background: linear-gradient(to right, rgb(80, 173, 173) 50%, #f3f3f3 50%);
+    background-size: 230% 100%;
+    background-position: right bottom;
+}
+.tile.Two {
+    background: linear-gradient(to right, rgb(80, 173, 173) 50%, #f3f3f3 50%);
+    background-size: 230% 100%;
+    background-position: right bottom;
+}
+.tile.Three {
+    background: linear-gradient(
+        to right,
+        #e6b76d 0%,
+        rgb(241, 225, 191) 50%,
+        #f3f3f3 50%
+    );
+    background-size: 230% 100%;
+    background-position: right bottom;
+}
+.tile.Four {
+    background: linear-gradient(
+        to right,
+        #e6b76d 0%,
+        rgb(241, 225, 191) 50%,
+        #f3f3f3 50%
+    );
+    background-size: 230% 100%;
+    background-position: right bottom;
+}
+.tile.Five {
+    background: linear-gradient(to right, #d3556a 0%, #f493a5 50%, #f3f3f3 50%);
+    background-size: 230% 100%;
+    background-position: right bottom;
+}
+
+.tile.selected {
+    background-position: left bottom;
+    transform: scale(1.1);
+    transition: $transition-speed;
+    cursor: pointer;
+    color: white;
+    font-weight: 800;
+}
+
+.tile.answered {
+    background: #22222281;
+    transition: $transition-speed;
+    color: rgb(170, 170, 170);
+    font-weight: 500;
+}
+// .tile:hover {
+//     padding: 2rem 1rem 2rem 1rem;
+//     transition-duration:200ms
+// }
