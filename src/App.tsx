@@ -77,7 +77,15 @@ function App({ currentScreen }: { currentScreen?: ScreenNames }) {
                     "Expletus Sans",
                     "Tilt Neon",
                     "Tilt Warp",
-                    "Pacifico"
+                    "Pacifico",
+                    "Roboto",
+                    "Montserrat",
+                    "Lexend Deca",
+                    "Kanit",
+                    "Josefin Sans",
+                    "Viga",
+                    "Cairo",
+                    "Outfit"
                 ],
             },
         });

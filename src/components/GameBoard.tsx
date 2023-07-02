@@ -1,24 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { Button, Container } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { Container } from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Tile from "./Tile";
 import "../styles/GameBoard.scss";
 import {
     Points,
-    QuestionType,
-    Question_MC,
-    Question_Text,
-    defaultMCQuestion,
-    defaultTextQuestion,
     mapJsonToQuestion,
 } from "../types/Question";
 import { IGameBoard, Tileinfo } from "../types/GameBoard";
 import { socket } from "../utils/WebSocket";
 import { GBData } from "../data/GameBoard";
-import { QUESTIONS_DB } from "../data/QuRepo";
-import { redirect, useNavigate } from "react-router-dom";
-import { plainToClass } from "class-transformer";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "src/store";
 import { questionPageActions } from "src/store/QuestionPageSlice";
 import { Icons, Symbols } from "src/assets";
@@ -29,7 +22,9 @@ import { Teams } from "src/types/Team";
 function TableHeaderRow({ data }: { data: IGameBoard }) {
     const categories = Object.keys(data);
     const CategoryElements = categories.map((category) => (
-        <Col key={category}>{category}</Col>
+        <Col key={category}>
+            <h2>{category}</h2>
+        </Col>
     ));
     return <Row className="g-2">{CategoryElements}</Row>;
 }
@@ -69,15 +64,11 @@ function TileCell({
     );
 }
 
-function PlayerCard() {}
-
-function ScoreCard() {}
-function InfoColumn() {
-    const { player, teamData } = useSelector((state) => {
+function PlayerCard() {
+    const { player } = useSelector((state) => {
         let { currentPlayer } = state.page;
         let player = state.playerInfo.players[currentPlayer];
-        const { teamData } = state.page;
-        return { player, teamData };
+        return { player };
     });
     const ICON = Icons[player.icon];
     const POWERS = Object.entries(player.powerBank).map(([power, values]) => {
@@ -90,22 +81,36 @@ function InfoColumn() {
         );
     });
     return (
+        <div className={`player-card  ${player.color}`}>
+            <h1 className="player">{`${player.madeUpNames}`}</h1>
+            <ICON className="player-icon" />
+            <div className="power-bank">{POWERS}</div>
+        </div>
+    );
+}
+
+function ScoreCard() {
+    const { teamData } = useSelector((state) => {
+        return state.page;
+    });
+    return (
+        <div className="score-card">
+            <div className="team team-1">
+                <h3 className="teamName">{Teams[0]}</h3>
+                <h3 className="score">{`${teamData[Teams[0]].score}`}</h3>
+            </div>
+            <div className="team team-2">
+                <h3 className="teamName">{Teams[1]}</h3>
+                <h3 className="score">{`${teamData[Teams[1]].score}`}</h3>
+            </div>
+        </div>
+    );
+}
+function InfoColumn() {
+    return (
         <div className={`info-column`}>
-            <div className={`player-card  ${player.color}`}>
-                <h1 className="player">{`${player.madeUpNames}`}</h1>
-                <ICON className="player-icon" />
-                <div className="power-bank">{POWERS}</div>
-            </div>
-            <div className="score-card">
-                <div className="team team-1">
-                    <h3>{Teams[0]}</h3>
-                    <h3 className="score">{`${teamData[Teams[0]].score}`}</h3>
-                </div>
-                <div className="team team-2">
-                    <h3>{Teams[1]}</h3>
-                    <h3 className="score">{`${teamData[Teams[1]].score}`}</h3>
-                </div>
-            </div>
+            <PlayerCard />
+            <ScoreCard />
         </div>
     );
 }
