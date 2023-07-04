@@ -39,8 +39,9 @@
         "ws": "^8.12.1"
     },
     "scripts": {
-        "start": "concurrentlyProdStart",
+        "start": "yarn concurrentlyProdStart",
         "build": "react-scripts build",
+        "buildServer": "tsc -p src/server/tsconfig.json",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "compileServer": "tsc -p src/server/tsconfig.json -w",
@@ -49,7 +50,7 @@
         "launchProdServer": "node -r esm ./src/server/dist/server/server.js",
         "server": "yarn compileServer & yarn launchServer",
         "concurrentlyServer": "concurrently --kill-others --names \"BUILD,RUN\" -c \"bgMagenta.bold,bgGreen.bold\" \"yarn compileServer\" \"yarn launchServer\"",
-        "concurrentlyProdStart": "concurrently --kill-others --names \"BUILD,RUN\" -c \"bgMagenta.bold,bgGreen.bold\" \"yarn launchProdServer\" \"yarn start\""
+        "concurrentlyProdStart": "concurrently --kill-others --names \"BUILD,RUN\" -c \"bgMagenta.bold,bgGreen.bold\" \"npm run launchProdServer\" \"npm run launchApp\""
     },
     "eslintConfig": {
         "extends": [
