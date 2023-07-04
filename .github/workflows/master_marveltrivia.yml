@@ -23,8 +23,8 @@ jobs:
 
       - name: npm install, build, and test
         run: |
-          npm install
           npm install yarn
+          npm install
           yarn build --if-present
 
       - name: Upload artifact for deployment job
