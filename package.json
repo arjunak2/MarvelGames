@@ -39,7 +39,7 @@
         "ws": "^8.12.1"
     },
     "scripts": {
-        "start": "yarn -v",
+        "start": "concurrentlyProdStart",
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
