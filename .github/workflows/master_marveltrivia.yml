@@ -40,7 +40,6 @@ jobs:
                 })
               })
 
-
       - name: npm install, build, and test
         run: |
           npm install --global yarn
@@ -53,9 +52,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: node-app
-          path: |
-         .
-         !./node_modules
+          path: .
 
   deploy:
     runs-on: ubuntu-latest
