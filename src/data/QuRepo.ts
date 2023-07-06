@@ -80,7 +80,7 @@ export const QUESTIONS_DB: { [id: string]: Question } = {
         QuestionCategory.CATEGORY_2,
         "How is Killmonger related to T'Challa?",
         { A: "Half-brother", B: "Cousin", C: "Ex-friend", D: "Not Related" },
-        "Brother"
+        "Half-brother"
     ),
     [QuestionCategory.CATEGORY_2 + "-" + Points.Three]: new Question_MC(
         Points.Three,

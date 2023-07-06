@@ -45,7 +45,7 @@ let PAGE_DATA: PageSlice = {
 };
 let ITERATOR = {
     [Teams[0]]: 0,
-    [Teams[1]]: 1,
+    [Teams[1]]: 0,
 };
 
 const PORT = 5000;
