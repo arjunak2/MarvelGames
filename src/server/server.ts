@@ -48,7 +48,6 @@ let ITERATOR = {
     [Teams[1]]: 1,
 };
 
-const HOST = "http://localhost:3000";
 const PORT = 5000;
 const app = express();
 const httpServer = http.createServer(app);
@@ -59,7 +58,7 @@ const io = new Server<
     SocketData
 >(httpServer, {
     cors: {
-        origin: HOST,
+        origin: "*",
         methods: ["GET", "POST"],
     },
 });
