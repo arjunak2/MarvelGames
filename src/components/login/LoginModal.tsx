@@ -83,7 +83,7 @@ export const LoginModal = ({
                 <Modal.Title>{`Welcome ${name}`}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <h5>Enter your personelle details</h5>
+                <h5>Enter your personnel details</h5>
                 <InputGroup className="mb-3" size="lg">
                     <InputGroup.Text id="basic-addon1">Name</InputGroup.Text>
                     <Form.Control

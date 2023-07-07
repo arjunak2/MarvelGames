@@ -80,7 +80,7 @@ export const QUESTIONS_DB: { [id: string]: Question } = {
         QuestionCategory.CATEGORY_2,
         "How is Killmonger related to T'Challa?",
         { A: "Half-brother", B: "Cousin", C: "Ex-friend", D: "Not Related" },
-        "Half-brother"
+        "Cousin"
     ),
     [QuestionCategory.CATEGORY_2 + "-" + Points.Three]: new Question_MC(
         Points.Three,
@@ -152,7 +152,7 @@ export const QUESTIONS_DB: { [id: string]: Question } = {
     [QuestionCategory.CATEGORY_4 + "-" + Points.Two]: new Question_MC(
         Points.Two,
         QuestionCategory.CATEGORY_4,
-        "Whose technology did vulture NOT use to create his wing suit?",
+        "Whose technology did vulture use to create his wing suit?",
         { A: "Chitauri", B: "Ultron", C: "Iron Man", D: "Asgardian" },
         "Chitauri"
     ),
@@ -202,7 +202,7 @@ export const QUESTIONS_DB: { [id: string]: Question } = {
     [QuestionCategory.CATEGORY_5 + "-" + Points.Two]: new Question_MC(
         Points.Two,
         QuestionCategory.CATEGORY_5,
-        "Which bridge, was the longest in the world when it was built in 1937 and was featured in movies like X-men.",
+        "Which bridge, was the longest in the world when it was built and was in X-men: Last Stand and Shang-chi?",
         {
             A: "Golden Gate Bridge",
             B: "Tower Bridge",
