@@ -27,7 +27,9 @@ function Category({
 }) {
     const Header = () => <h2 className="category-header">{category}</h2>;
 
+    let isHovered = false;
     const TILES = Object.values(categoryTiles).map((tileInfo) => {
+        if (tileInfo.isHovered) isHovered = true;
         return (
             <TileCell
                 key={tileInfo.id}
@@ -38,7 +40,7 @@ function Category({
     });
 
     return (
-        <div className="category">
+        <div className={`category ${isHovered ? "selected" : ""}`}>
             <Header />
             <div className="tile-container">{TILES}</div>
         </div>

@@ -118,7 +118,7 @@ export const QUESTIONS_DB: { [id: string]: Question } = {
         Points.Two,
         QuestionCategory.CATEGORY_3,
         "You throw another Moon at me... and I'm gonna lose it",
-        "Iron Man"
+        "Tony Stark"
     ),
 
     [QuestionCategory.CATEGORY_3 + "-" + Points.Three]: new Question_MC(
@@ -139,7 +139,7 @@ export const QUESTIONS_DB: { [id: string]: Question } = {
         Points.Five,
         QuestionCategory.CATEGORY_3,
         "Avengers... time to Work For a living",
-        "Iron Man"
+        "Tony Stark"
     ),
 
     [QuestionCategory.CATEGORY_4 + "-" + Points.One]: new Question_MC(
@@ -152,7 +152,7 @@ export const QUESTIONS_DB: { [id: string]: Question } = {
     [QuestionCategory.CATEGORY_4 + "-" + Points.Two]: new Question_MC(
         Points.Two,
         QuestionCategory.CATEGORY_4,
-        "Whose technology did vulture use to create his wing suit?",
+        "Whose technology did vulture NOT use to create his wing suit?",
         { A: "Chitauri", B: "Ultron", C: "Iron Man", D: "Asgardian" },
         "Chitauri"
     ),

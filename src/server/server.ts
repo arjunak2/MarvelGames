@@ -10,7 +10,6 @@ import {
     intialTeamsData,
 } from "../types/Team";
 let GameBoard: IGameBoard = require("../data/GameBoard").GBData;
-import { GBData } from "../data/GameBoard";
 
 import { v4 as uuidv4 } from "uuid";
 import {
