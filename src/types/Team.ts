@@ -1,4 +1,4 @@
-export const Teams = ["Avengers", "Marvels"] as const;
+export const Teams = ["Avengers", "X-Men"] as const;
 export type TeamNames = (typeof Teams)[number];
 export interface Team {
     name: TeamNames;
