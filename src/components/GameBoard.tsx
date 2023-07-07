@@ -29,7 +29,7 @@ function Category({
 
     let isHovered = false;
     const TILES = Object.values(categoryTiles).map((tileInfo) => {
-        if (tileInfo.isHovered) isHovered = true;
+        if (tileInfo.isHovered && !tileInfo.isAnswered) isHovered = true;
         return (
             <TileCell
                 key={tileInfo.id}
