@@ -104,7 +104,7 @@ export const QUESTIONS_DB: { [id: string]: Question } = {
     [QuestionCategory.CATEGORY_2 + "-" + Points.Five]: new Question_Text(
         Points.Five,
         QuestionCategory.CATEGORY_2,
-        "What is the name of Moon Knight's 3 altar?",
+        "What is the name of Moon Knight's 3rd altar?",
         "Jake Lockley"
     ),
 
@@ -131,7 +131,7 @@ export const QUESTIONS_DB: { [id: string]: Question } = {
     [QuestionCategory.CATEGORY_3 + "-" + Points.Four]: new Question_Text(
         Points.Four,
         QuestionCategory.CATEGORY_3,
-        "What? Didn't see that coming",
+        "What? You didn't see that coming",
         "Quicksilver"
     ),
 
