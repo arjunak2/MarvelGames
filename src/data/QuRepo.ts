@@ -59,7 +59,7 @@ export const QUESTIONS_DB: { [id: string]: Question } = {
     [QuestionCategory.CATEGORY_1 + "-" + Points.Five]: new Question_Text(
         Points.Five,
         QuestionCategory.CATEGORY_1,
-        "Where was the first Infinity stone found?",
+        "In movie order, Where was the first Infinity stone found?",
         "Germany"
     ),
 
@@ -131,8 +131,8 @@ export const QUESTIONS_DB: { [id: string]: Question } = {
     [QuestionCategory.CATEGORY_3 + "-" + Points.Four]: new Question_Text(
         Points.Four,
         QuestionCategory.CATEGORY_3,
-        "Ain't no thing like me, 'cept me",
-        "Rocket"
+        "What? Didn't see that coming",
+        "Quicksilver"
     ),
 
     [QuestionCategory.CATEGORY_3 + "-" + Points.Five]: new Question_Text(
@@ -171,7 +171,7 @@ export const QUESTIONS_DB: { [id: string]: Question } = {
     [QuestionCategory.CATEGORY_4 + "-" + Points.Four]: new Question_Text(
         Points.Four,
         QuestionCategory.CATEGORY_4,
-        "What is the purple infinity stone?",
+        "What does the purple infinity stone represent?",
         "Power"
     ),
     [QuestionCategory.CATEGORY_4 + "-" + Points.Five]: new Question_MC(
