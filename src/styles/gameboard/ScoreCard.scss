@@ -1,8 +1,6 @@
 $card-border-radius: 1.5rem;
 .score-card {
-    flex: 1;
     border-radius: $card-border-radius;
-    margin-top: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -16,7 +14,7 @@ $card-border-radius: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    // padding: 20px;
+    padding: 20px 10px 20px 10px;
 }
 
 .score-card .team h3 {

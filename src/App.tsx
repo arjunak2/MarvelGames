@@ -90,7 +90,8 @@ function App({ currentScreen }: { currentScreen?: ScreenNames }) {
                     "Exo 2",
                     "Geologica",
                     "Mitr",
-                    "Rubik"
+                    "Rubik",
+                    "Barlow"
                 ],
             },
         });

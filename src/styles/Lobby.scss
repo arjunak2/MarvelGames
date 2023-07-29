@@ -1,18 +1,20 @@
 .lobby-container {
-    font-family: "Geologica";
+    font-family: "Expletus Sans";
     display: flex;
     flex-direction: column;
 }
 
 .lobby-container .title {
-    font-size: 3rem;
-    font-weight: 700;
-    color: rgb(255, 255, 255);
+    font-size: 8vh;
+    color: hsl(202 7% 37% / 1);
     margin-bottom: 0px;
-    background: rgb(111, 128, 138);
-    padding: 10px;
+    // background: hsl(202 11% 23% / 1);
+    padding: 15px 10px 15px 10px;
     font-weight: 100;
-    font-family: "Tilt Warp";
+    font-family: "Lexend Deca";
+    box-shadow: 0px 0px 20px 0px rgba(150, 150, 150, 0.425);
+    z-index: 10;
+    // text-shadow: 0px 0px 11px hsl(0deg 0% 0% / 18%);
 }
 
 .lobby-content {
@@ -26,8 +28,8 @@
     background: radial-gradient(circle, rgb(59 59 59) 0%, rgb(39 39 39) 92%);
     background: radial-gradient(
         circle,
-        rgb(255 255 255) 40%,
-        rgb(239 239 239) 92%
+        hsl(0, 0%, 100%) 40%,
+        hsl(0, 0%, 94%) 92%
     );
 }
 .lobby-content .divider {
@@ -50,7 +52,8 @@
 .team-section h2 {
     color: rgba(19, 45, 70, 0.56);
     margin-bottom: 0px;
-    padding: 10px;
+    padding: 20px 10px 20px 10px;
+    font-size: 4vh;
 }
 .card-container {
     flex: 1;
