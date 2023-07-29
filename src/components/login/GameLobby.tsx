@@ -58,7 +58,7 @@ const TeamSection = ({
     const { id } = useSelector((state) => {
         return state.playerInfo;
     });
-    const Title = <h2>{teamName}</h2>;
+    const Title = () => <h2>{teamName}</h2>;
     const TEAM_PLAYERS = players.filter((player) => player.team === teamName);
     const PLAYER_CARDS = TEAM_PLAYERS.map((player) => {
         return (
@@ -72,7 +72,7 @@ const TeamSection = ({
     });
     return (
         <div className="team-section">
-            <h2>{teamName}</h2>
+            <Title />
             <div className="card-container">{PLAYER_CARDS}</div>
         </div>
     );
@@ -111,7 +111,7 @@ export const GameLobby = ({ modalActions }: { modalActions: ModalActions }) => {
 
     return (
         <div className="lobby-container" style={{ height: "100vh" }}>
-            <h1 className="title">{"Lobby"}</h1>
+            <h1 className="title">{"LOBBY"}</h1>
             <div className="lobby-content">
                 <TeamSection
                     key={Teams[0]}

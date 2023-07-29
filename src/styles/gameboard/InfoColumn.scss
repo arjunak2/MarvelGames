@@ -5,6 +5,7 @@ $card-border-radius: 1.5rem;
     flex-direction: column;
     padding: 20px 30px 20px 0px;
     width: 18%;
+    row-gap: 20px;
 }
 .info-column .player-card {
     padding-top: 20px;
@@ -24,7 +25,8 @@ $card-border-radius: 1.5rem;
     overflow-wrap: break-word;
     margin-left: 40px;
     margin-right: 40px;
-    font-family: "Mitr";
+    font-family: "Kanit";
+    font-weight: 600;
     font-size: 4vh;
 }
 

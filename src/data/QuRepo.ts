@@ -66,7 +66,7 @@ export const QUESTIONS_DB: { [id: string]: Question } = {
     [QuestionCategory.CATEGORY_2 + "-" + Points.One]: new Question_MC(
         Points.One,
         QuestionCategory.CATEGORY_2,
-        "Which movie did Wong NOT appear in?",
+        "Which MCU property did Wong NOT appear in?",
         {
             A: "She-hulk",
             B: "Shang-Chi",

@@ -290,7 +290,7 @@
 /*063 Soft Cherish*/
 .soft_cherish {
     background-image: linear-gradient(
-        45deg,
+        106deg,
         #dbdcd7 0%,
         #dddcd7 24%,
         #e2c9cc 30%,
@@ -332,8 +332,8 @@
 /*070 Aqua Splash*/
 .aqua_splash {
     background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
-    color: #09322e;
-    fill: #09322e;
+    color: hsl(198 64% 21% / 1);
+    fill: hsl(198 64% 21% / 1);
 }
 
 /*071 Above Clouds*/
@@ -667,13 +667,13 @@
 /*118 Dense Water*/
 .dense_water {
     background-image: linear-gradient(
-        to right,
-        #3ab5b0 0%,
+        134deg,
+        #95c7c5 0%,
         #3d99be 31%,
-        #56317a 100%
+        #6a166f 100%
     );
-    color: #a5e6e9;
-    fill: #a5e6e9;
+    color: hsl(277 44% 28% / 1);
+    fill: hsl(277 44% 28% / 1);
 }
 
 /*119 Chemic Aqua*/
@@ -854,8 +854,8 @@
 /*151 Sun Veggie*/
 .sun_veggie {
     background-image: linear-gradient(-225deg, #20e2d7 0%, #f9fea5 100%);
-    color: #2b6643;
-    fill: #2b6643;
+    color: hsl(169 77% 31% / 1);
+    fill: #cbb888;
 }
 
 /*154 Grass Shampoo*/
@@ -896,8 +896,8 @@
 /*162 Perfect White*/
 .perfect_white {
     background-image: linear-gradient(-225deg, #e3fdf5 0%, #ffe6fa 100%);
-    color: #bf8eb8;
-    fill: #bf8eb8;
+    color: hsl(309 29% 58% / 1);
+    fill: hsl(309 29% 58% / 1);
 }
 
 /*164 Strict November*/
@@ -910,8 +910,8 @@
 /*165 Morning Salad*/
 .morning_salad {
     background-image: linear-gradient(-225deg, #b7f8db 0%, #50a7c2 100%);
-    color: #055a4c;
-    fill: #055a4c;
+    color: hsl(181 79% 23% / 1);
+    fill: hsl(181 79% 23% / 1);
 }
 
 /*169 Supreme Sky*/
@@ -958,8 +958,8 @@
 
 .apple_dew {
     background-image: linear-gradient(45deg, #cff4d2 20%, #56c596 100%);
-    color: #2f6a51;
-    fill: #2f6a51;
+    color: hsl(155 57% 35% / 1);
+    fill: hsl(155 57% 35% / 1);
 }
 
 .slate {
@@ -1020,13 +1020,13 @@
 
 .mauve {
     background-image: linear-gradient(45deg, #42275a 0%, #734b6d 80%);
-    color: #c399bf;
-    fill: #c399bf;
+    color: hsl(311.75deg 60.23% 17.78%);
+    fill: hsl(311.75deg 60.23% 17.78%);
 }
 .scorched_desert {
     background-image: linear-gradient(45deg, #54003e -10%, #e16f69 100%);
     color: #f8aeac;
-    fill: #f8aeac;
+    fill: #db8f8d;
 }
 
 .morning_dew {
@@ -1035,9 +1035,9 @@
     fill: #23483e;
 }
 .summer_orange {
-    background-image: linear-gradient(45deg, #feb47b 0%, #ff643f 100%);
-    color: #7b3321;
-    fill: #7b3321;
+    background-image: linear-gradient(101deg, #ffdec4 0%, hsl(19deg 95.48% 51.04%) 100%);
+    color: hsl(18 93% 47% / 1);
+    fill: hsl(18 93% 45% / 1);
 }
 
 .dark_forest {

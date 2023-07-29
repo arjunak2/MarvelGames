@@ -9,7 +9,7 @@ import { QuestionPageState } from "../../types/QuestionPage";
 import "../../styles/question/Timer.scss";
 import { Points } from "src/types/Question";
 
-const TIMER_DURATION = 60;
+const TIMER_DURATION = 30;
 const SW = ["#e6e6e6", "#CB3966", "#e60017", "#4E192F", "#1F0815"];
 
 interface TimerProps {
