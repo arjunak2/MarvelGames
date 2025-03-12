@@ -8,243 +8,190 @@ import {
 } from "../types/Question";
 
 export const QUESTIONS_DB: { [id: string]: Question } = {
-    [QuestionCategory.CATEGORY_1 + "-" + Points.One]: new Question_MC(
+    [QuestionCategory.CATEGORY_1 + "-" + Points.One]: new Question_Text(
         Points.One,
         QuestionCategory.CATEGORY_1,
-        "Which state has not been prominently featured in a MCU project?",
-        {
-            A: "New Jersey",
-            B: "New York",
-            C: "New Mexico",
-            D: "Pennsylvania",
-        },
-        "Pennsylvania"
+        "Where is Wanda from",
+        "Sokovia"
     ),
-    [QuestionCategory.CATEGORY_1 + "-" + Points.Two]: new Question_MC(
+    [QuestionCategory.CATEGORY_1 + "-" + Points.Two]: new Question_Text(
         Points.Two,
         QuestionCategory.CATEGORY_1,
-        "In which country did Ultron try to create Vision?",
-        {
-            A: "South Korea",
-            B: "China",
-            C: "India",
-            D: "Taiwan",
-        },
-        "South Korea"
+        "Black Widow and Hawkeye often reminisce about this city where they had their first mission together",
+        "Budapest"
     ),
-    [QuestionCategory.CATEGORY_1 + "-" + Points.Three]: new Question_MC(
+    [QuestionCategory.CATEGORY_1 + "-" + Points.Three]: new Question_Text(
         Points.Three,
         QuestionCategory.CATEGORY_1,
-        "What planet is Thanos from?",
-        {
-            A: "Sakaar",
-            B: "Titan",
-            C: "Warworld",
-            D: "Hala",
-        },
-        "Titan"
+        "What borough of New York is Steve Rogers from",
+        "Brooklyn"
     ),
-    [QuestionCategory.CATEGORY_1 + "-" + Points.Four]: new Question_MC(
+    [QuestionCategory.CATEGORY_1 + "-" + Points.Four]: new Question_Text(
         Points.Four,
         QuestionCategory.CATEGORY_1,
-        "What is the name of the prison that Team Cap get locked up in?",
-        {
-            A: "The Kiln",
-            B: "Damage Control Supermax",
-            C: "Bankroft",
-            D: "The Raft",
-        },
-        "The Raft"
+        "In Captain America: The Winter Soldier, S.H.I.E.L.D. operates from a central hub. What is the name of the iconic building that serves as S.H.I.E.L.D.'s headquarters in Washington D.C.",
+        "The Triskelion"
     ),
     [QuestionCategory.CATEGORY_1 + "-" + Points.Five]: new Question_Text(
         Points.Five,
         QuestionCategory.CATEGORY_1,
-        "In movie order, Where was the first Infinity stone found?",
-        "Germany"
+        "What is the name of the realm that the Dark Elves are from",
+        "Svartalfheim"
     ),
 
-    [QuestionCategory.CATEGORY_2 + "-" + Points.One]: new Question_MC(
+    [QuestionCategory.CATEGORY_2 + "-" + Points.One]: new Question_Text(
         Points.One,
         QuestionCategory.CATEGORY_2,
-        "Which MCU property did Wong NOT appear in?",
-        {
-            A: "She-hulk",
-            B: "Shang-Chi",
-            C: "Eternals",
-            D: "No Way Home",
-        },
-        "Eternals"
+        "What is the full name of Peggy Carter’s niece",
+        "Sharon Carter"
     ),
-    [QuestionCategory.CATEGORY_2 + "-" + Points.Two]: new Question_MC(
+    [QuestionCategory.CATEGORY_2 + "-" + Points.Two]: new Question_Text(
         Points.Two,
         QuestionCategory.CATEGORY_2,
-        "How is Killmonger related to T'Challa?",
-        { A: "Half-brother", B: "Cousin", C: "Ex-friend", D: "Not Related" },
-        "Cousin"
+        "Who made Captain America’s shield",
+        "Howard Stark"
     ),
-    [QuestionCategory.CATEGORY_2 + "-" + Points.Three]: new Question_MC(
+    [QuestionCategory.CATEGORY_2 + "-" + Points.Three]: new Question_Text(
         Points.Three,
         QuestionCategory.CATEGORY_2,
-        "Which character did not go to grad school?",
-        { A: "Hank Pym", B: "Jane Foster", C: "Tony Stark", D: "She-hulk" },
-        "Tony Stark"
+        "What is the full name of the Winter Soldier",
+        "James Buchanan Barnes"
     ),
-    [QuestionCategory.CATEGORY_2 + "-" + Points.Four]: new Question_MC(
+    [QuestionCategory.CATEGORY_2 + "-" + Points.Four]: new Question_Text(
         Points.Four,
         QuestionCategory.CATEGORY_2,
-        "Which marvel character did Taylor Swift almost play?",
-        {
-            A: "Emma Frost",
-            B: "Agent 13",
-            C: "Invisible Woman",
-            D: "Dazzler",
-        },
-        "Dazzler"
+        "What is the name of the scientist who helped create the Super Soldier Serum before being assassinated",
+        "Dr. Abraham Erskine"
     ),
     [QuestionCategory.CATEGORY_2 + "-" + Points.Five]: new Question_Text(
         Points.Five,
         QuestionCategory.CATEGORY_2,
-        "What is the name of Moon Knight's 3rd altar?",
-        "Jake Lockley"
+        "What is the name of the terrorist group that kidnaps Tony Stark in Iron Man",
+        "Ten Rings"
     ),
 
     [QuestionCategory.CATEGORY_3 + "-" + Points.One]: new Question_Text(
         Points.One,
         QuestionCategory.CATEGORY_3,
-        "Reality Is Often Disappointing. Now, Reality Can Be Whatever I Want.",
-        "Thanos"
+        "Do you guys just put the word 'quantum' in front of everything?",
+        "Scott Lang"
     ),
     [QuestionCategory.CATEGORY_3 + "-" + Points.Two]: new Question_Text(
         Points.Two,
         QuestionCategory.CATEGORY_3,
-        "You throw another Moon at me... and I'm gonna lose it",
-        "Tony Stark"
+        "On your left (in Avengers Endgame)",
+        "Sam Wilson"
     ),
 
-    [QuestionCategory.CATEGORY_3 + "-" + Points.Three]: new Question_MC(
+    [QuestionCategory.CATEGORY_3 + "-" + Points.Three]: new Question_Text(
         Points.Three,
         QuestionCategory.CATEGORY_3,
-        "Don't Freeze.",
-        { A: "T'Challa", B: "Shuri", C: "M'baku", D: "Okoye" },
-        "Okoye"
+        "Dread it, run from it, destiny arives all the same",
+        "Thanos"
     ),
     [QuestionCategory.CATEGORY_3 + "-" + Points.Four]: new Question_Text(
         Points.Four,
         QuestionCategory.CATEGORY_3,
-        "What? You didn't see that coming",
-        "Quicksilver"
+        "That's cute. Thanos has a retirement plan.",
+        "Tony Stark"
     ),
 
     [QuestionCategory.CATEGORY_3 + "-" + Points.Five]: new Question_Text(
         Points.Five,
         QuestionCategory.CATEGORY_3,
-        "Avengers... time to Work For a living",
-        "Tony Stark"
+        "People need to believe, and nowadays, they'll believe anything.",
+        "Mysterio"
     ),
 
-    [QuestionCategory.CATEGORY_4 + "-" + Points.One]: new Question_MC(
+    [QuestionCategory.CATEGORY_4 + "-" + Points.One]: new Question_Text(
         Points.One,
         QuestionCategory.CATEGORY_4,
-        "Which is not one of Spider-man's (Tom Holland) powers?",
-        { A: "Math", B: "Super-strength", C: "Spider-sense", D: "Webs" },
-        "Webs"
+        "What action did Thanos use to wipe out 50% of the universe",
+        "A snap"
     ),
-    [QuestionCategory.CATEGORY_4 + "-" + Points.Two]: new Question_MC(
+    [QuestionCategory.CATEGORY_4 + "-" + Points.Two]: new Question_Text(
         Points.Two,
         QuestionCategory.CATEGORY_4,
-        "Whose technology did vulture use to create his wing suit?",
-        { A: "Chitauri", B: "Ultron", C: "Iron Man", D: "Asgardian" },
-        "Chitauri"
+        "What is the primary ability granted by the Eye of Agamotto, as used by Doctor Strange",
+        "The ability to manipulate time?"
     ),
-    [QuestionCategory.CATEGORY_4 + "-" + Points.Three]: new Question_MC(
+    [QuestionCategory.CATEGORY_4 + "-" + Points.Three]: new Question_Text(
         Points.Three,
         QuestionCategory.CATEGORY_4,
-        "Which character has NOT received U.S. military training?",
-        {
-            A: "Black Widow",
-            B: "Hank Pym",
-            C: "Mark Spector",
-            D: "Killmonger",
-        },
-        "Black Widow"
+        "Where did Loki learn his magic from",
+        "Frigga"
     ),
     [QuestionCategory.CATEGORY_4 + "-" + Points.Four]: new Question_Text(
         Points.Four,
         QuestionCategory.CATEGORY_4,
-        "What does the purple infinity stone represent?",
-        "Power"
+        "Doctor Strange has used the Time Stone to view possible futures. How many futures did he see in Avengers: Infinity War",
+        "14,000,605"
     ),
-    [QuestionCategory.CATEGORY_4 + "-" + Points.Five]: new Question_MC(
+    [QuestionCategory.CATEGORY_4 + "-" + Points.Five]: new Question_Text(
         Points.Five,
         QuestionCategory.CATEGORY_4,
-        "Which character did NOT help create the time travel suits in Endgame",
-        {
-            A: "Bruce Banner",
-            B: "Rocket",
-            C: "Tony Stark",
-            D: "Ant Man",
-        },
-        "Bruce Banner"
+        "Name all characters who have wielded Mjolnir",
+        "Thor, Jane Foster, Steve Rogers, Vision"
     ),
 
     [QuestionCategory.CATEGORY_5 + "-" + Points.One]: new Question_MC(
         Points.One,
         QuestionCategory.CATEGORY_5,
-        "What is the protein in your red blood cells that gives it its red color?",
+        "How many primary color(s) are there?",
         {
-            A: "Platlets",
-            B: "Lipids",
-            C: "Fibronectin",
-            D: "Hemoglobin",
+            A: "One",
+            B: "Two",
+            C: "Three",
+            D: "Four",
         },
-        "Hemoglobin"
+        "Three"
     ),
     [QuestionCategory.CATEGORY_5 + "-" + Points.Two]: new Question_MC(
         Points.Two,
         QuestionCategory.CATEGORY_5,
-        "Which bridge, was the longest in the world when it was built and was in X-men: Last Stand and Shang-chi?",
+        "In what country is the ancient city of Machu Picchu located?",
         {
-            A: "Golden Gate Bridge",
-            B: "Tower Bridge",
-            C: "Brooklyn Bridge",
-            D: "Chicago Bridge",
+            A: "Mexico",
+            B: "Peru",
+            C: "Egypt",
+            D: "Argentina",
         },
-        "Golden Gate Bridge"
+        "Peru"
     ),
     [QuestionCategory.CATEGORY_5 + "-" + Points.Three]: new Question_MC(
         Points.Three,
         QuestionCategory.CATEGORY_5,
-        "Which fruit accounts for 50% of the world's deciduous fruit tree production",
+        "In which year did World War I begin?",
         {
-            A: "Mangoes",
-            B: "Apples",
-            C: "Blueberries",
-            D: "Cranberries",
+            A: "1910",
+            B: "1912",
+            C: "1914",
+            D: "1916",
         },
-        "Apples"
+        "1914"
     ),
     [QuestionCategory.CATEGORY_5 + "-" + Points.Four]: new Question_MC(
         Points.Four,
         QuestionCategory.CATEGORY_5,
-        "Which bird is the State bird of 7 states including Ohio and North Carolina",
+        "What is the name of the popular musical film starring John Travolta and Olivia Newton-John",
         {
-            A: "Robin",
-            B: "Cardinal",
-            C: "Western Meadowlark",
-            D: "Mockingboard",
+            A: "Singin' in the Rain",
+            B: "Grease",
+            C: "The Sound of Music",
+            D: "West Side Story",
         },
-        "Cardinal"
+        "Grease"
     ),
     [QuestionCategory.CATEGORY_5 + "-" + Points.Five]: new Question_MC(
         Points.Five,
         QuestionCategory.CATEGORY_5,
-        "In 2002 which fictional character testified in congress before the education subcommittee to seek support for funding musical education.",
+        "Which of the following dinosaurs is bird-hipped as opposed to lizard-hipped",
         {
-            A: "Elmo",
-            B: "Mr. Rogers",
-            C: "Spongebob",
-            D: "Mary Poppins",
+            A: "Apatosaurus",
+            B: "Tyrannosaurus Rex",
+            C: "Velociraptor",
+            D: "Triceratops",
         },
-        "Elmo"
+        "Triceratops"
     ),
 };
