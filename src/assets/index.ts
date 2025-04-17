@@ -16,6 +16,9 @@ import { ReactComponent as SpiderGwen } from "./spider_gwen.svg";
 import { ReactComponent as Thor } from "./thor.svg";
 import { ReactComponent as Wolverine } from "./wolverine.svg";
 import { ReactComponent as WolverineCute } from "./wolverine_cute.svg";
+import { ReactComponent as MoonKnight } from "./moon_knight.svg";
+import { ReactComponent as SheHulk } from "./sheHulk.svg";
+import { ReactComponent as Gambit } from "./gambit.svg";
 
 import { ReactComponent as Edit } from "./edit-svgrepo-com.svg";
 import { ReactComponent as Double } from "./powers/double.svg";
@@ -31,10 +34,13 @@ export const Icons = {
     CaptainAmerica,
     Cyclops,
     Daredevil,
+    Gambit,
     Groot,
     Hulk,
     IronMan,
     Loki,
+    MoonKnight,
+    SheHulk,
     Rocket,
     ScarletWitch,
     SpiderGwen,
