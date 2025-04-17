@@ -267,7 +267,9 @@ app.get("/test", () => {
     console.log("RECEIVED");
 });
 
-app.get("*", (_req, res) => {
+app.get("*", (req, res, next) => {
+    if (req.path.startsWith("/socket.io")) return next();
+
     res.sendFile(path.join(clientBuildPath, "index.html"));
 });
 
