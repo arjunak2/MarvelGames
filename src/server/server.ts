@@ -236,10 +236,6 @@ function setUpListeners(
         emitToAllClients("pageUpdate", pageSlice);
     });
 }
-
-const clientBuildPath = path.join(__dirname, "..", "..", "..", "..", "build");
-console.log(`clientBuildPath: ${clientBuildPath}`);
-app.use(express.static(clientBuildPath));
 app.get("/socket.io/*", (req, res, next) => next());
 
 io.on("connection", (socket) => {
@@ -275,6 +271,12 @@ const spaRoutes = [
     "/question/:questionId",
     // add more as you add more React Router paths…
 ];
+
+
+
+const clientBuildPath = path.join(__dirname, "..", "..", "..", "..", "build");
+console.log(`clientBuildPath: ${clientBuildPath}`);
+app.use(express.static(clientBuildPath));
 
 // Register each one explicitly:
 spaRoutes.forEach((route) => {
