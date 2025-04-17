@@ -237,7 +237,7 @@ function setUpListeners(
     });
 }
 
-const clientBuildPath = path.join(__dirname, "..", "..","..", "..", "build");
+const clientBuildPath = path.join(__dirname, "..", "..", "..", "..", "build");
 console.log(`clientBuildPath: ${clientBuildPath}`);
 app.use(express.static(clientBuildPath));
 
@@ -267,10 +267,19 @@ app.get("/test", () => {
     console.log("RECEIVED");
 });
 
-app.get("*", (req, res, next) => {
-    if (req.path.startsWith("/socket.io")) return next();
+// List every client‑side route your React app handles:
+const spaRoutes = [
+    "/",
+    "/GameBoard",
+    "/question/:questionId",
+    // add more as you add more React Router paths…
+];
 
-    res.sendFile(path.join(clientBuildPath, "index.html"));
+// Register each one explicitly:
+spaRoutes.forEach((route) => {
+    app.get(route, (_req, res) => {
+        res.sendFile(path.join(clientBuildPath, "index.html"));
+    });
 });
 
 export {};
