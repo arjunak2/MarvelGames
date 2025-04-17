@@ -240,6 +240,7 @@ function setUpListeners(
 const clientBuildPath = path.join(__dirname, "..", "..", "..", "..", "build");
 console.log(`clientBuildPath: ${clientBuildPath}`);
 app.use(express.static(clientBuildPath));
+app.get("/socket.io/*", (req, res, next) => next());
 
 io.on("connection", (socket) => {
     // register client
