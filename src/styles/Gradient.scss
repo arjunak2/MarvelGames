@@ -340,13 +340,13 @@
 .above_clouds {
     background-image: linear-gradient(to left, #bdbbbe 0%, #9d9ea3 100%),
         radial-gradient(
-            88% 271%,
+            at 88% 271%,
             rgba(255, 255, 255, 0.25) 0%,
             rgba(254, 254, 254, 0.25) 1%,
             rgba(0, 0, 0, 0.25) 100%
         ),
         radial-gradient(
-            50% 100%,
+            at 50% 100%,
             rgba(255, 255, 255, 0.3) 0%,
             rgba(0, 0, 0, 0.3) 100%
         );
@@ -608,9 +608,9 @@
 
 /*111 Elegance*/
 .elegance {
-    background-image: radial-gradient(73% 147%, #eadfdf 59%, #ece2df 100%),
+    background-image: radial-gradient(at 73% 147%, #eadfdf 59%, #ece2df 100%),
         radial-gradient(
-            91% 146%,
+            at 91% 146%,
             rgba(255, 255, 255, 0.5) 47%,
             rgba(0, 0, 0, 0.5) 100%
         );
