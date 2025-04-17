@@ -4,9 +4,7 @@ import {
     ClientToServerEvents,
 } from "../server/ServerTypes";
 
-export const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(
-    "ws://localhost:5000"
-);
+export const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io();
 socket.on("connect", () => {
     console.log(`WebSocket connection established! Id:${socket.id}`);
 });

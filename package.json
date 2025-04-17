@@ -41,8 +41,8 @@
         "ws": "^8.12.1"
     },
     "scripts": {
-        "start": "yarn concurrentlyProdStart",
-        "build": "react-scripts build",
+        "start": "yarn launchProdServer",
+        "build": "react-scripts build && tsc -p src/server/tsconfig.json",
         "buildServer": "tsc -p src/server/tsconfig.json",
         "test": "react-scripts test",
         "eject": "react-scripts eject",

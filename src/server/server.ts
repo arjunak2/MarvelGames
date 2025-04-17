@@ -30,6 +30,8 @@ import {
     initialState as initialQuestionPageState,
 } from "../types/PageData";
 import { Player, PlayerRaw, samplePlayersData } from "../types/Player";
+import path from "path";
+
 const CLIENTS: { [id: string]: Socket } = {};
 
 let QUESTION_PAGE_DATE: QuestionPageData = initialQuestionPageState;
@@ -47,7 +49,7 @@ let ITERATOR = {
     [Teams[1]]: 0,
 };
 
-const PORT = 5000;
+const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 5000;
 const app = express();
 const httpServer = http.createServer(app);
 const io = new Server<
@@ -235,6 +237,10 @@ function setUpListeners(
     });
 }
 
+const clientBuildPath = path.join(__dirname, "..", "..","..", "..", "build");
+console.log(`clientBuildPath: ${clientBuildPath}`);
+app.use(express.static(clientBuildPath));
+
 io.on("connection", (socket) => {
     // register client
     console.log(`Received a new connection from ${socket.id}`);
@@ -260,4 +266,9 @@ io.on("connection", (socket) => {
 app.get("/test", () => {
     console.log("RECEIVED");
 });
+
+app.get("*", (_req, res) => {
+    res.sendFile(path.join(clientBuildPath, "index.html"));
+});
+
 export {};
