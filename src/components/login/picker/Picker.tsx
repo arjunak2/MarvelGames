@@ -10,10 +10,12 @@ export enum PickerTypes {
 }
 
 export const Picker = <T extends GradientName | IconNames>({
+    color,
     value,
     setValue,
     pickerType,
 }: {
+    color?:string
     value?: T;
     setValue: (value: T) => void;
     pickerType: PickerTypes;
@@ -30,7 +32,7 @@ export const Picker = <T extends GradientName | IconNames>({
             >
                 <Dropdown.Toggle
                     variant="primary"
-                    className={`w-100 ${value} fs-5 border-0`}
+                    className={`w-100 ${color} fs-5 border-0`}
                 >
                     <h5 style={{ display: "inline-block" }}>
                         {value || title}

@@ -17,5 +17,5 @@
         "jsx": "react-jsx",
         "outDir": "dist"
     },
-    "include": ["../data/*"]
+    "include": ["../data/*", "."]
 }

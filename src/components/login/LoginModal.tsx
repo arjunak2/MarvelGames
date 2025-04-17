@@ -96,12 +96,14 @@ export const LoginModal = ({
                     />
                 </InputGroup>
                 <Picker
+                    color={color}
                     value={color}
                     setValue={setColor}
                     pickerType={PickerTypes.COLOR}
                 />
                 <Picker
                     value={icon}
+                    color={color}
                     setValue={setIcon}
                     pickerType={PickerTypes.ICON}
                 />
@@ -111,9 +113,10 @@ export const LoginModal = ({
                             key={teamNameRadio}
                             id={`${teamNameRadio}`}
                             type="radio"
-                            variant="outline-primary"
+                            variant="outline-secondary"
                             name="radio"
                             value={team || ""}
+                            className={teamNameRadio === team ?  color: undefined}
                             checked={teamNameRadio === team}
                             onChange={(e) => {
                                 setTeam(e.currentTarget.id as TeamNames);
