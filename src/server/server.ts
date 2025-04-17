@@ -51,6 +51,10 @@ let ITERATOR = {
 
 const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 5000;
 const app = express();
+app.use((req, res, next) => {
+    console.log(`[req] ${req.method} ${req.url}`);
+    next();
+  });
 const httpServer = http.createServer(app);
 const io = new Server<
     ClientToServerEvents,
