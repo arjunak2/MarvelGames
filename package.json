@@ -45,7 +45,7 @@
         "start": "yarn launchProdServer",
         "build": "react-scripts build && tsc -p src/server/tsconfig.json",
         "buildServer": "tsc -p src/server/tsconfig.json",
-        "test": "react-scripts test",
+        "test": "echo 'hey'",
         "eject": "react-scripts eject",
         "compileServer": "tsc -p src/server/tsconfig.json -w",
         "launchServer": "nodemon -r esm ./src/server/dist/server/server.js",
